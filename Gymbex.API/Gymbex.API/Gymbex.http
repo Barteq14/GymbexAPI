@@ -4,3 +4,13 @@
 
 ###
 GET {{url}}/api/activity
+
+
+###
+POST {{url}}/api/activity
+Content-Type: application/json
+
+{
+    "activityName": "Jogging",
+    "reservationDateTime": "2023-10-03"
+}

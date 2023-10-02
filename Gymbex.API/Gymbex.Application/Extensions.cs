@@ -12,14 +12,14 @@ namespace Gymbex.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            
-            //var applicationAssembly = typeof(ICommandHandler<>).Assembly;
 
-            ////zarejestrowanie modułów dynamicznie
-            //services.Scan(s => s.FromAssemblies(applicationAssembly)
-            //    .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
-            //    .AsImplementedInterfaces()
-            //    .WithScopedLifetime());
+            var applicationAssembly = typeof(ICommandHandler<>).Assembly;
+
+            //zarejestrowanie modułów dynamicznie
+            services.Scan(s => s.FromAssemblies(applicationAssembly)
+                .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
 
             return services;
         }
