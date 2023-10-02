@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gymbex.Core\Gymbex.Core.csproj" />
+    <ProjectReference Include="..\Gymbex.Application\Gymbex.Application.csproj" />
   </ItemGroup>
 
 </Project>
