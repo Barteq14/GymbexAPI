@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Gymbex.Infrastructure\Gymbex.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
