@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +23,18 @@ namespace Gymbex.Core.Entities
         public Guid CustomerId { get; private set; }
         public Customer Customer { get; private set; }
 
+        [ForeignKey("ActivityId")]
         public Guid ActivityId { get; private set; }
         public Activity Activity { get; private set; }
 
         #endregion
 
-        public Reservation(Guid id, DateTime createdAt, Guid customerId, Customer customer, Guid activityId, Activity activity)
+        public Reservation(Guid id, DateTime createdAt, Guid customerId, Guid activityId)
         {
             Id = id;
             CreatedAt = createdAt;
             CustomerId = customerId;
-            Customer = customer;
             ActivityId = activityId;
-            Activity = activity;
         }
     }
 }

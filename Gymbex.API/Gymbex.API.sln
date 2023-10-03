@@ -8,13 +8,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{346B98EF-A6FA-46C7-8863-8CECE7E308B2}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Core", "Gymbex.Core\Gymbex.Core.csproj", "{BD6117B4-1560-4816-8E92-3C82C2C7BFCD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Infrastructure", "Gymbex.Infrastructure\Gymbex.Infrastructure.csproj", "{59536B68-12CB-43A0-B129-5573654D5D4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gymbex.Application", "Gymbex.Application\Gymbex.Application.csproj", "{39EDE256-6BF3-4225-ADD3-CE44063D4C44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Application", "Gymbex.Application\Gymbex.Application.csproj", "{39EDE256-6BF3-4225-ADD3-CE44063D4C44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

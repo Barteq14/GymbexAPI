@@ -9,6 +9,7 @@ using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;
 using Gymbex.Core.Repositories;
+using Gymbex.Infrastructure.DAL;
 using Gymbex.Infrastructure.DAL.Handlers;
 using Gymbex.Infrastructure.DAL.Repositories;
 
@@ -30,6 +31,8 @@ namespace Gymbex.Infrastructure
                 .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
                 .AsImplementedInterfaces()
                 .WithScopedLifetime());
+
+            services.AddPostgres(configuration);
 
             return services;
         }
