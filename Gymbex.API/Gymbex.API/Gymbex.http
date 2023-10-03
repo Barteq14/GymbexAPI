@@ -1,6 +1,30 @@
 @url = https://localhost:7291
-
+@activityId = 6093de87-ab2d-490a-aa84-f843983701da
 
 
 ###
 GET {{url}}/api/activity
+###
+GET {{url}}/api/activity/{{activityId}}
+
+###
+POST {{url}}/api/activity
+Content-Type: application/json
+
+{
+    "activityName": "Jogging",
+    "reservationDateTime": "2023-10-03"
+}
+
+###
+PUT {{url}}/api/activity
+Content-Type: application/json
+
+{
+    "activityId": "{{activityId}}",
+    "ActivityDate": "2023-10-05"
+}
+
+###
+DELETE {{url}}/api/activity/{{activityId}}
+
