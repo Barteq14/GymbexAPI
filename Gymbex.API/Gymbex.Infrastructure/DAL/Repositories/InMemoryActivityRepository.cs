@@ -7,6 +7,7 @@ using Gymbex.Application.Dtos;
 using Gymbex.Core.Entities;
 using Gymbex.Core.Repositories;
 using Gymbex.Core.ValueObjects;
+using Gymbex.Infrastructure.DAL.Exceptions;
 
 namespace Gymbex.Infrastructure.DAL.Repositories
 {
@@ -20,7 +21,7 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             new Activity(Guid.NewGuid(),"Gym",new DateTime(2023,10,23)),
             new Activity(Guid.NewGuid(),"Gymnastic",new DateTime(2023,10,27)),
         };
-        public Task CreateActivity(Activity activity)
+        public Task CreateActivityAsync(Activity activity)
         {
             _activities.Add(activity);
             return Task.CompletedTask;
@@ -29,6 +30,30 @@ namespace Gymbex.Infrastructure.DAL.Repositories
         public async Task<IEnumerable<Activity>> GetAllActivitiesAsync()
         {
             return _activities;
+        }
+
+        public async Task<Activity> GetActivityByIdAsync(ActivityId id)
+        {
+            var activity = _activities.SingleOrDefault(x => x.Id == id);
+            return activity;
+        }
+
+        public Task DeleteActivityByIdAsync(ActivityId id)
+        {
+            _activities.RemoveAll(x => x.Id == id);
+            return Task.CompletedTask;
+        }
+
+        public Task ChangeActivityDate(Guid id, Date date)
+        {
+            var activity = _activities.SingleOrDefault(x => x.Id == new ActivityId(id));
+            if (activity is null)
+            {
+                throw new ActivityNotFoundException(id);
+            }
+
+            activity.ChangeActivityDate(date);
+            return Task.CompletedTask;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Gymbex.Application.Commands.Handlers
         public async Task HandlerExecuteAsync(CreateNewActivity command)
         {
             var activity = new Activity(command.ActivityId, command.ActivityName, command.ReservationDateTime);
-            await _activityRepository.CreateActivity(activity);
+            await _activityRepository.CreateActivityAsync(activity);
         }
     }
 }

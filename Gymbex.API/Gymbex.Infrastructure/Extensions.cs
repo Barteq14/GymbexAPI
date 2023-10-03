@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;

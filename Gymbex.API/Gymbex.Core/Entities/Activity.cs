@@ -34,5 +34,7 @@ namespace Gymbex.Core.Entities
             Name = name;
             Date = date;
         }
+
+        public void ChangeActivityDate(Date date) => Date = date;
     }
 }
