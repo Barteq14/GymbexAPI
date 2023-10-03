@@ -20,9 +20,10 @@ namespace Gymbex.Infrastructure.DAL
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        }
     }
 }

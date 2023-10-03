@@ -27,6 +27,8 @@ namespace Gymbex.Core.Entities
         /// Lista użytkowników zapisanych na zajęcia
         /// </summary>
         public IEnumerable<Customer> Customers { get; private set; } = _customers;
+        public IEnumerable<Reservation> Reservations { get; private set; }
+
 
         public Activity(ActivityId id, ActivityName name, Date date)
         {

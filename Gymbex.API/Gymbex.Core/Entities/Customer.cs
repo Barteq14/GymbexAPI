@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,13 +35,14 @@ namespace Gymbex.Core.Entities
         public string PhoneNumber { get; private set; }
 
         #region Relationships
+        [ForeignKey("TicketId")]
         public Guid TicketId { get; private set; }
         public Ticket Ticket { get; private set; }
 
         #endregion
 
 
-        public Customer(Guid id, string username, string password, string fullname, string email, string phoneNumber, Guid ticketId, Ticket ticket)
+        public Customer(Guid id, string username, string password, string fullname, string email, string phoneNumber, Guid ticketId)
         {
             Id = id;
             Username = username;
@@ -49,7 +51,6 @@ namespace Gymbex.Core.Entities
             Email = email;
             PhoneNumber = phoneNumber;
             TicketId = ticketId;
-            Ticket = ticket;
         }
     }
 }
