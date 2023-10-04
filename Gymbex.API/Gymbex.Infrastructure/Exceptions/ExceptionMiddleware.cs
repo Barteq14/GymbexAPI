@@ -28,6 +28,7 @@ namespace Gymbex.Infrastructure.Exceptions
             catch (Exception exception)
             {
                 _logger.LogError(exception, exception.Message);
+                await HandleExceptionAsync(exception, context);
             }
         }
 
