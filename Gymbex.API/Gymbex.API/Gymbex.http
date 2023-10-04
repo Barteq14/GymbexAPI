@@ -1,5 +1,5 @@
 @url = https://localhost:7291
-@activityId = 6093de87-ab2d-490a-aa84-f843983701da
+@activityId = 50715e50-c3cc-4ddd-b579-14e88ad515fe
 
 
 ###
@@ -12,8 +12,8 @@ POST {{url}}/api/activity
 Content-Type: application/json
 
 {
-    "activityName": "Jogging",
-    "reservationDateTime": "2023-10-03"
+    "activityName": "Cross fit",
+    "reservationDateTime": "2023-10-12"
 }
 
 ###

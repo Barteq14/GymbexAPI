@@ -7,23 +7,24 @@ using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;
 using Gymbex.Core.Repositories;
+using Gymbex.Core.ValueObjects;
 using Gymbex.Infrastructure.DAL.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gymbex.Infrastructure.DAL.Handlers
 {
     public sealed class GetActivityByIdHandler: IQueryHandler<GetActivityById,ActivityDto>
     {
-        private readonly IActivityRepository _activityRepository;
+        private readonly GymbexDbContext _dbContext;
 
-
-        public GetActivityByIdHandler(IActivityRepository activityRepository)
+        public GetActivityByIdHandler(GymbexDbContext dbContext)
         {
-            _activityRepository = activityRepository;
+            _dbContext = dbContext;
         }
 
         public async Task<ActivityDto> ExecuteHandleAsync(GetActivityById query)
         {
-            var activity = await _activityRepository.GetActivityByIdAsync(query.Id);
+            var activity = await _dbContext.Activities.SingleOrDefaultAsync(x => x.Id == new ActivityId(query.Id));
             return activity.AsActivityDto();
         }
     }

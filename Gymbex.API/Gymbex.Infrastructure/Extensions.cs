@@ -23,7 +23,7 @@ namespace Gymbex.Infrastructure
             var sectionApp = configuration.GetSection("app"); //pobranie sekcji
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
-            services.AddScoped<IActivityRepository,InMemoryActivityRepository>();
+            services.AddScoped<IActivityRepository,PostgresActivityRepository>();
 
             var infrastructureAssembly = typeof(AppOptions).Assembly;
 

@@ -14,24 +14,18 @@ namespace Gymbex.Infrastructure.DAL.Handlers
 {
     internal sealed class GetActivitiesHandler : IQueryHandler<GetActivities, IEnumerable<ActivityDto>>
     {
-        private readonly IActivityRepository _activityRepository;
+        private readonly GymbexDbContext _dbContext;
 
-        public GetActivitiesHandler(IActivityRepository activityRepository)
+        public GetActivitiesHandler(GymbexDbContext dbContext)
         {
-            _activityRepository = activityRepository;
+            _dbContext = dbContext;
         }
 
 
         public async Task<IEnumerable<ActivityDto>> ExecuteHandleAsync(GetActivities query)
         {
-            var activities = await _activityRepository.GetAllActivitiesAsync();
-            var activitiesDto = activities.Select(x => new ActivityDto()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Date = x.Date
-            });
-            return activitiesDto;
+            var activities = await _dbContext.Activities.ToListAsync();
+            return activities.Select(x => x.AsActivityDto());
         }
     }
 }
