@@ -1,6 +1,8 @@
 using Gymbex.Application;
 using Gymbex.Infrastructure;
+using Gymbex.Infrastructure.Exceptions;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+//swagger
 builder.Services.AddSwaggerGen(swagger =>
 {
     swagger.EnableAnnotations();
@@ -17,8 +21,16 @@ builder.Services.AddSwaggerGen(swagger =>
         Version = "v1"
     });
 });
-builder.Services.AddControllers();
 
+//serilog
+builder.Host.UseSerilog((context, configuration) =>
+{
+    configuration
+        .WriteTo.Console()
+        .WriteTo.File("logs/logs.txt");
+});
+
+builder.Services.AddControllers();
 
 
 var app = builder.Build();
@@ -29,6 +41,7 @@ app.UseSwaggerUI(swagger =>
 {
     swagger.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
 });
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
 
 app.Run();

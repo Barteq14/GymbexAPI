@@ -12,6 +12,7 @@ using Gymbex.Core.Repositories;
 using Gymbex.Infrastructure.DAL;
 using Gymbex.Infrastructure.DAL.Handlers;
 using Gymbex.Infrastructure.DAL.Repositories;
+using Gymbex.Infrastructure.Exceptions;
 
 
 namespace Gymbex.Infrastructure
@@ -24,6 +25,7 @@ namespace Gymbex.Infrastructure
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
             services.AddScoped<IActivityRepository,PostgresActivityRepository>();
+            services.AddSingleton<ExceptionMiddleware>();
 
             var infrastructureAssembly = typeof(AppOptions).Assembly;
 
@@ -33,7 +35,7 @@ namespace Gymbex.Infrastructure
                 .WithScopedLifetime());
 
             services.AddPostgres(configuration);
-
+            
             return services;
         }
     }
