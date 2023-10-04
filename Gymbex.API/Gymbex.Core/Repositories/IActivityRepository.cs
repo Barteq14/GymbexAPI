@@ -13,7 +13,7 @@ namespace Gymbex.Core.Repositories
         Task CreateActivityAsync(Activity activity);
         Task<IEnumerable<Activity>> GetAllActivitiesAsync();
         Task<Activity> GetActivityByIdAsync(ActivityId id);
-        Task DeleteActivityByIdAsync(ActivityId id);
-        Task ChangeActivityDate(Guid id, Date date);
+        Task DeleteActivityByIdAsync(Activity activity);
+        Task ChangeActivityDate(Activity activity);
     }
 }

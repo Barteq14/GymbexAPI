@@ -38,21 +38,15 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             return activity;
         }
 
-        public Task DeleteActivityByIdAsync(ActivityId id)
+        public Task DeleteActivityByIdAsync(Activity activity)
         {
-            _activities.RemoveAll(x => x.Id == id);
+            _activities.Remove(activity);
             return Task.CompletedTask;
         }
 
-        public Task ChangeActivityDate(Guid id, Date date)
+        public Task ChangeActivityDate(Activity activity)
         {
-            var activity = _activities.SingleOrDefault(x => x.Id == new ActivityId(id));
-            if (activity is null)
-            {
-                throw new ActivityNotFoundException(id);
-            }
-
-            activity.ChangeActivityDate(date);
+            activity.ChangeActivityDate(activity.Date);
             return Task.CompletedTask;
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Application.Abstractions;
+using Gymbex.Application.Exceptions;
 using Gymbex.Core.Repositories;
 
 namespace Gymbex.Application.Commands.Handlers
@@ -19,9 +20,13 @@ namespace Gymbex.Application.Commands.Handlers
 
         public async Task HandlerExecuteAsync(DeleteActivityById command)
         {
-            //sprawdzenie czy istnieje takie activity 
-            
-            await _activityRepository.DeleteActivityByIdAsync(command.ActivityId);
+            var activity = await _activityRepository.GetActivityByIdAsync(command.ActivityId);
+            if (activity is null)
+            {
+                throw new ActivityNotFoundException(command.ActivityId);
+            }
+
+            await _activityRepository.DeleteActivityByIdAsync(activity);
         }
     }
 }

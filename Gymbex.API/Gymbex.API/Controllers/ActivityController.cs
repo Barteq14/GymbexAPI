@@ -15,7 +15,7 @@ namespace Gymbex.API.Controllers
         private readonly ICommandHandler<CreateNewActivity> _createNewActivityCommandHandler;
         private readonly ICommandHandler<DeleteActivityById> _deleteActivityByIdCommandHandler;
         private readonly IQueryHandler<GetActivityById, ActivityDto> _getActivityByIdQueryHandler;
-        private readonly ICommandHandler<ChangeDateForActivity> _channgeDateForActivityCommandHandler;
+        private readonly ICommandHandler<ChangeDateForActivity> _changeDateForActivityCommandHandler;
 
         public ActivityController(IQueryHandler<GetActivities,IEnumerable<ActivityDto>> getActivitiesQueryHandler, ICommandHandler<CreateNewActivity> createNewActivityCommandHandler, ICommandHandler<DeleteActivityById> deleteActivityByIdCommandHandler, IQueryHandler<GetActivityById, ActivityDto> getActivityByIdQueryHandler, ICommandHandler<ChangeDateForActivity> channgeDateForActivityCommandHandler)
         {
@@ -23,7 +23,7 @@ namespace Gymbex.API.Controllers
             _createNewActivityCommandHandler = createNewActivityCommandHandler;
             _deleteActivityByIdCommandHandler = deleteActivityByIdCommandHandler;
             _getActivityByIdQueryHandler = getActivityByIdQueryHandler;
-            _channgeDateForActivityCommandHandler = channgeDateForActivityCommandHandler;
+            _changeDateForActivityCommandHandler = channgeDateForActivityCommandHandler;
         }
 
         [SwaggerOperation("Get activity by ID")]
@@ -66,7 +66,7 @@ namespace Gymbex.API.Controllers
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] ChangeDateForActivity command)
         {
-            await _channgeDateForActivityCommandHandler.HandlerExecuteAsync(command);
+            await _changeDateForActivityCommandHandler.HandlerExecuteAsync(command);
             return NoContent();
         }
 

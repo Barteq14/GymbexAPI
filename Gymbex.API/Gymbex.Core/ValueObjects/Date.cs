@@ -17,7 +17,7 @@ namespace Gymbex.Core.ValueObjects
             {
                 throw new ActivityDateIsInPastException(value);
             }
-            Value = value;
+            Value = value.SetKindUtc();
         }
 
         public static implicit operator Date(DateTime date) => new Date(date);
