@@ -12,12 +12,12 @@ namespace Gymbex.Infrastructure.DAL.Handlers
     {
         public static ActivityDto AsActivityDto(this Activity activity)
         {
-            return new ActivityDto()
+            return activity is not null ? new ActivityDto()
             {
                 Id = activity.Id,
                 Name = activity.Name,
                 Date = activity.Date
-            };
+            } : null;
         }
     }
 }

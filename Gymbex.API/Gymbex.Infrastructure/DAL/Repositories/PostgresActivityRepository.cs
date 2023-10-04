@@ -45,6 +45,11 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             return await _context.Activities.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<Activity> GetActivityByNameAsync(ActivityName name)
+        {
+            return await _context.Activities.FirstOrDefaultAsync(x => x.Name.Equals(name));
+        }
+
         public async Task DeleteActivityByIdAsync(Activity activity)
         {
             _context.Activities.Remove(activity);
