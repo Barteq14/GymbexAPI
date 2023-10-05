@@ -25,6 +25,7 @@ namespace Gymbex.Infrastructure
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
             services.AddScoped<IActivityRepository,PostgresActivityRepository>();
+            services.AddScoped<ICustomerRepository,PostgresCustomerRepository>();
             services.AddSingleton<ExceptionMiddleware>();
 
             var infrastructureAssembly = typeof(AppOptions).Assembly;

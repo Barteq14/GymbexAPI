@@ -21,11 +21,7 @@ namespace Gymbex.Core.Entities
         #region Relationships
 
         public Guid CustomerId { get; private set; }
-        public Customer Customer { get; private set; }
-
-        [ForeignKey("ActivityId")]
         public Guid ActivityId { get; private set; }
-        public Activity Activity { get; private set; }
 
         #endregion
 

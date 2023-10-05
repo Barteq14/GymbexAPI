@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Gymbex.Core.Entities;
+using Gymbex.Core.Repositories;
+using Gymbex.Core.ValueObjects;
+using Microsoft.EntityFrameworkCore;
+
+namespace Gymbex.Infrastructure.DAL.Repositories
+{
+    public sealed class PostgresCustomerRepository : ICustomerRepository
+    {
+        private readonly GymbexDbContext _context;
+
+        public PostgresCustomerRepository(GymbexDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task AddAsync(Customer customer)
+        {
+            await _context.Customers.AddAsync(customer);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Customer> GetUserById(CustomerId id)
+            => await _context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+
+
+        public async Task<Customer> GetUserByEmail(Email email)
+            => await _context.Customers.FirstOrDefaultAsync(x => x.Email.Equals(email));
+
+        public async Task<Customer> GetUserByUsername(Username username)
+            => await _context.Customers.FirstOrDefaultAsync(x => x.Username.Equals(username));
+    }
+}

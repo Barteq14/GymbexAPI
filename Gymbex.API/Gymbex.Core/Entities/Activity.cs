@@ -9,7 +9,7 @@ namespace Gymbex.Core.Entities
 {
     public sealed class Activity
     {
-        private static readonly HashSet<Customer> _customers = new();
+        private static readonly HashSet<Reservation> _reservations = new();
         /// <summary>
         /// Id zajęć
         /// </summary>
@@ -26,8 +26,7 @@ namespace Gymbex.Core.Entities
         /// <summary>
         /// Lista użytkowników zapisanych na zajęcia
         /// </summary>
-        public IEnumerable<Customer> Customers { get; private set; } = _customers;
-        public IEnumerable<Reservation> Reservations { get; private set; }
+        public IEnumerable<Reservation> Reservations { get; private set; } = _reservations;
 
 
         public Activity(ActivityId id, ActivityName name, Date date)
