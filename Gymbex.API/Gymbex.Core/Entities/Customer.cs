@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gymbex.Core.ValueObjects;
 
 namespace Gymbex.Core.Entities
 {
@@ -12,27 +13,27 @@ namespace Gymbex.Core.Entities
         /// <summary>
         /// Id użytkownika
         /// </summary>
-        public Guid Id { get; private set; }
+        public CustomerId Id { get; private set; }
         /// <summary>
         /// Nazwa użytkownika
         /// </summary>
-        public string Username { get; private set; }
+        public Username Username { get; private set; }
         /// <summary>
         /// Hasło użytkownika
         /// </summary>
-        public string Password { get; private set; }
+        public Password Password { get; private set; }
         /// <summary>
         /// Imię i nazwisko użytkownika
         /// </summary>
-        public string Fullname { get; private set; }
+        public Fullname Fullname { get; private set; }
         /// <summary>
         /// Email użytkownika
         /// </summary>
-        public string Email { get; private set; }
+        public Email Email { get; private set; }
         /// <summary>
         /// Numer telefonu
         /// </summary>
-        public string PhoneNumber { get; private set; }
+        public PhoneNumber PhoneNumber { get; private set; }
 
         #region Relationships
         [ForeignKey("TicketId")]
@@ -42,7 +43,7 @@ namespace Gymbex.Core.Entities
         #endregion
 
 
-        public Customer(Guid id, string username, string password, string fullname, string email, string phoneNumber, Guid ticketId)
+        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Guid ticketId)
         {
             Id = id;
             Username = username;
