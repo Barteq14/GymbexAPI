@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Application.Abstractions;
 
-namespace Gymbex.Application.Commands
+namespace Gymbex.Application.Commands.Activities
 {
-    public sealed record CreateNewActivity(Guid ActivityId, DateTime ReservationDateTime, 
+    public sealed record CreateNewActivity(Guid ActivityId, DateTime ReservationDateTime,
         string ActivityName) : ICommand;
 }

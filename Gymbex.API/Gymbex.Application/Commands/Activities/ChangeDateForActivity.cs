@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Application.Abstractions;
 
-namespace Gymbex.Application.Commands
+namespace Gymbex.Application.Commands.Activities
 {
     public sealed record ChangeDateForActivity(Guid ActivityId, DateTime ActivityDate) : ICommand;
 }

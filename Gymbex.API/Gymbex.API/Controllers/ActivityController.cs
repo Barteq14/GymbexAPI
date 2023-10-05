@@ -1,5 +1,5 @@
 ﻿using Gymbex.Application.Abstractions;
-using Gymbex.Application.Commands;
+using Gymbex.Application.Commands.Activities;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;
 using Microsoft.AspNetCore.Mvc;

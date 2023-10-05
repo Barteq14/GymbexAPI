@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gymbex.Application.Commands.Handlers
+namespace Gymbex.Application.Commands.Activities.Handlers
 {
     public sealed class ChangeDateForActivityHandler : ICommandHandler<ChangeDateForActivity>
     {
@@ -22,7 +22,7 @@ namespace Gymbex.Application.Commands.Handlers
         {
             var activity = await _activityRepository.GetActivityByIdAsync(command.ActivityId);
 
-            if(activity is null)
+            if (activity is null)
             {
                 throw new ActivityNotFoundException(command.ActivityId);
             }

@@ -7,7 +7,7 @@ using Gymbex.Application.Abstractions;
 using Gymbex.Application.Exceptions;
 using Gymbex.Core.Repositories;
 
-namespace Gymbex.Application.Commands.Handlers
+namespace Gymbex.Application.Commands.Activities.Handlers
 {
     internal sealed class DeleteActivityHandler : ICommandHandler<DeleteActivityById>
     {

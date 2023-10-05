@@ -10,11 +10,11 @@ using Gymbex.Core.Entities;
 using Gymbex.Core.Repositories;
 using Gymbex.Core.ValueObjects;
 
-namespace Gymbex.Application.Commands.Handlers
+namespace Gymbex.Application.Commands.Activities.Handlers
 {
     internal sealed class CreateNewActivityHandler : ICommandHandler<CreateNewActivity>
     {
-        private readonly  IActivityRepository _activityRepository;
+        private readonly IActivityRepository _activityRepository;
 
         public CreateNewActivityHandler(IActivityRepository activityRepository)
         {
@@ -31,7 +31,7 @@ namespace Gymbex.Application.Commands.Handlers
                 throw new ActivityAlreadyExistException(command.ActivityName);
             }
 
-            if(activities.Any(x => x.Date == new Date(command.ReservationDateTime)))
+            if (activities.Any(x => x.Date == new Date(command.ReservationDateTime)))
             {
                 throw new ActivityDateIsBusyException(command.ReservationDateTime);
             }
