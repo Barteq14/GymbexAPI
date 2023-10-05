@@ -10,7 +10,7 @@ namespace Gymbex.Core.ValueObjects
 {
     public sealed record Email
     {
-        private readonly Regex EmailRegex = new Regex(@"^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", RegexOptions.Compiled);
+        private readonly Regex EmailRegex = new (@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", RegexOptions.Compiled);
         public string Value { get; set; }
 
         public Email(string value)

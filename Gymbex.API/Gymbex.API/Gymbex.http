@@ -28,3 +28,16 @@ Content-Type: application/json
 ###
 DELETE {{url}}/api/activity/{{activityId}}
 
+###
+POST {{url}}/api/customer/
+Content-Type: application/json
+
+{
+    "username": "barlong",
+    "password": "secured-password",
+    "fullname": "Bartolomeo Pietruszka",
+    "email": "bartolo@gymbex.io",
+    "phoneNumber": "772226638",
+    "ticketId": null
+}
+

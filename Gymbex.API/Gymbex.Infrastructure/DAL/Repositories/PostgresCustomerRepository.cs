@@ -26,13 +26,13 @@ namespace Gymbex.Infrastructure.DAL.Repositories
         }
 
         public async Task<Customer> GetUserById(CustomerId id)
-            => await _context.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            => await _context.Customers.SingleOrDefaultAsync(x => x.Id == id);
 
 
         public async Task<Customer> GetUserByEmail(Email email)
-            => await _context.Customers.FirstOrDefaultAsync(x => x.Email.Equals(email));
+            => await _context.Customers.SingleOrDefaultAsync(x => x.Email.Equals(email));
 
         public async Task<Customer> GetUserByUsername(Username username)
-            => await _context.Customers.FirstOrDefaultAsync(x => x.Username.Equals(username));
+            => await _context.Customers.SingleOrDefaultAsync(x => x.Username.Equals(username));
     }
 }

@@ -8,5 +8,5 @@ using Gymbex.Application.Abstractions;
 namespace Gymbex.Application.Commands.Customers
 {
     public sealed record SignUp(Guid CustomerId, string Username, string Password, string FullName, 
-        string Email, string PhoneNumber) : ICommand;
+        string Email, string PhoneNumber, Guid? TicketId) : ICommand;
 }
