@@ -35,6 +35,11 @@ namespace Gymbex.Core.Entities
         /// Numer telefonu
         /// </summary>
         public PhoneNumber PhoneNumber { get; private set; }
+        /// <summary>
+        /// Rola użytkownika
+        /// </summary>
+        public Role Role { get; set; }
+
 
         #region Relationships
         public Guid? TicketId { get; private set; }
@@ -42,7 +47,7 @@ namespace Gymbex.Core.Entities
         #endregion
 
 
-        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Guid? ticketId)
+        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, Guid? ticketId)
         {
             Id = id;
             Username = username;
@@ -50,6 +55,7 @@ namespace Gymbex.Core.Entities
             Fullname = fullname;
             Email = email;
             PhoneNumber = phoneNumber;
+            Role = role;
             TicketId = ticketId;
         }
     }

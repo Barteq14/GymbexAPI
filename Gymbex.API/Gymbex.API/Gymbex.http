@@ -38,6 +38,7 @@ Content-Type: application/json
     "fullname": "Bartolomeo Pietruszka",
     "email": "bartolo@gymbex.io",
     "phoneNumber": "772226638",
+    "role": "Administrator"
     "ticketId": null
 }
 

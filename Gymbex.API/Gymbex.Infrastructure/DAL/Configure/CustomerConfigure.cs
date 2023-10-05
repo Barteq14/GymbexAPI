@@ -30,6 +30,8 @@ namespace Gymbex.Infrastructure.DAL.Configure
             builder.Property(x => x.Fullname)
                 .HasMaxLength(100)
                 .HasConversion(x => x.Value, c => new Fullname(c));
+            builder.Property(x => x.Role)
+                .HasConversion(x => x.Value, c => new Role(c));
             builder.Property(x => x.PhoneNumber)
                 .HasConversion(x => x.Value, c => new PhoneNumber(c));
         }

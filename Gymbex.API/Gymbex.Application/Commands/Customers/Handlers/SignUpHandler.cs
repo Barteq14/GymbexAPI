@@ -41,7 +41,7 @@ namespace Gymbex.Application.Commands.Customers.Handlers
             var hashedPassword = _passwordManager.Secure(password);
 
             var user = new Customer(command.CustomerId, command.Username, hashedPassword, command.FullName,
-                command.Email, command.PhoneNumber, command.TicketId);
+                command.Email, command.PhoneNumber, command.Role, command.TicketId);
 
             await _customerRepository.AddAsync(user);
         }
