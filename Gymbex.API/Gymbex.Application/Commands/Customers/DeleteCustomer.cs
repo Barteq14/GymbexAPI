@@ -7,6 +7,5 @@ using Gymbex.Application.Abstractions;
 
 namespace Gymbex.Application.Commands.Customers
 {
-    public sealed record SignUp(Guid CustomerId, string Username, string Password, string FullName, 
-        string Email, string PhoneNumber, string Role, Guid? TicketId) : ICommand;
+    public sealed record DeleteCustomer(Guid CustomerId) : ICommand;
 }

@@ -10,6 +10,7 @@ namespace Gymbex.Core.Entities
 {
     public sealed class Customer
     {
+        private static readonly HashSet<Reservation> _reservations = new();
         /// <summary>
         /// Id użytkownika
         /// </summary>
@@ -34,16 +35,19 @@ namespace Gymbex.Core.Entities
         /// Numer telefonu
         /// </summary>
         public PhoneNumber PhoneNumber { get; private set; }
+        /// <summary>
+        /// Rola użytkownika
+        /// </summary>
+        public Role Role { get; set; }
+
 
         #region Relationships
-        [ForeignKey("TicketId")]
-        public Guid TicketId { get; private set; }
-        public Ticket Ticket { get; private set; }
-
+        public Guid? TicketId { get; private set; }
+        public IEnumerable<Reservation> Reservations { get; private set; } = _reservations;
         #endregion
 
 
-        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Guid ticketId)
+        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, Guid? ticketId)
         {
             Id = id;
             Username = username;
@@ -51,6 +55,7 @@ namespace Gymbex.Core.Entities
             Fullname = fullname;
             Email = email;
             PhoneNumber = phoneNumber;
+            Role = role;
             TicketId = ticketId;
         }
     }

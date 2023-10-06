@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Builder;
 using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;
+using Gymbex.Application.Security;
 using Gymbex.Core.Repositories;
 using Gymbex.Infrastructure.DAL;
 using Gymbex.Infrastructure.DAL.Handlers;
 using Gymbex.Infrastructure.DAL.Repositories;
 using Gymbex.Infrastructure.Exceptions;
+using Gymbex.Infrastructure.Secure;
 
 
 namespace Gymbex.Infrastructure
@@ -25,7 +27,10 @@ namespace Gymbex.Infrastructure
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
             services.AddScoped<IActivityRepository,PostgresActivityRepository>();
+            services.AddScoped<ICustomerRepository,PostgresCustomerRepository>();
             services.AddSingleton<ExceptionMiddleware>();
+
+            services.AddSecure();
 
             var infrastructureAssembly = typeof(AppOptions).Assembly;
 

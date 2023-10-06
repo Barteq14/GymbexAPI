@@ -1,6 +1,6 @@
 @url = https://localhost:7291
 @activityId = d4bb7aa8-5626-4f37-ab2c-494248bc0d30
-
+@customerId = b47d4cd8-6ce8-4744-bc50-e46c0abe4d9a
 
 ###
 GET {{url}}/api/activity
@@ -27,4 +27,28 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/api/activity/{{activityId}}
+
+
+###
+GET {{url}}/api/customer
+
+###
+GET {{url}}/api/customer/{{customerId}}
+
+###
+POST {{url}}/api/customer
+Content-Type: application/json
+
+{
+    "username": "nami",
+    "password": "secured-nami",
+    "fullname": "Nami Wielka",
+    "email": "nami@gymbex.io",
+    "phoneNumber": "553413122",
+    "role": "User",
+    "ticketId": null
+}
+
+###
+DELETE {{url}}/api/customer/{{customerId}}
 

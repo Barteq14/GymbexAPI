@@ -37,6 +37,12 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
+app.UseReDoc(r =>
+{
+    r.DocumentTitle = "Gymbex API";
+    r.RoutePrefix = "docs";
+    r.SpecUrl = "/swagger/v1/swagger.json";
+});
 app.UseSwaggerUI(swagger =>
 {
     swagger.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");

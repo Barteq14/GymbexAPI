@@ -1,7 +1,7 @@
 ﻿using Gymbex.Application.Abstractions;
 using Gymbex.Application.Commands.Activities;
 using Gymbex.Application.Dtos;
-using Gymbex.Application.Queries;
+using Gymbex.Application.Queries.Activities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 

@@ -3,6 +3,7 @@ using System;
 using Gymbex.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gymbex.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(GymbexDbContext))]
-    partial class GymbexDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231005073618_NullableTicketId")]
+    partial class NullableTicketId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +48,9 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("ActivityId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -60,9 +66,6 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("text");
-
                     b.Property<Guid?>("TicketId")
                         .HasColumnType("uuid");
 
@@ -71,6 +74,10 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("TicketId");
 
                     b.ToTable("Customers");
                 });
@@ -125,24 +132,38 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                     b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("Gymbex.Core.Entities.Reservation", b =>
+            modelBuilder.Entity("Gymbex.Core.Entities.Customer", b =>
                 {
                     b.HasOne("Gymbex.Core.Entities.Activity", null)
+                        .WithMany("Customers")
+                        .HasForeignKey("ActivityId");
+
+                    b.HasOne("Gymbex.Core.Entities.Ticket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("Gymbex.Core.Entities.Reservation", b =>
+                {
+                    b.HasOne("Gymbex.Core.Entities.Activity", "Activity")
                         .WithMany("Reservations")
                         .HasForeignKey("ActivityId1");
 
-                    b.HasOne("Gymbex.Core.Entities.Customer", null)
-                        .WithMany("Reservations")
+                    b.HasOne("Gymbex.Core.Entities.Customer", "Customer")
+                        .WithMany()
                         .HasForeignKey("CustomerId1");
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Activity", b =>
                 {
-                    b.Navigation("Reservations");
-                });
+                    b.Navigation("Customers");
 
-            modelBuilder.Entity("Gymbex.Core.Entities.Customer", b =>
-                {
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618

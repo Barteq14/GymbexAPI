@@ -10,7 +10,8 @@ namespace Gymbex.Core.ValueObjects
 {
     public sealed record PhoneNumber
     {
-        private readonly Regex PhoneNumberRegex = new Regex(@"\\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})/", RegexOptions.Compiled);
+        private readonly Regex PhoneNumberRegex = 
+            new(@"^\+?[1-9][0-9]{7,14}$", RegexOptions.Compiled);
         public string Value { get; set; }
 
         public PhoneNumber(string value)
