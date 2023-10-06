@@ -36,7 +36,7 @@ GET {{url}}/api/customer
 GET {{url}}/api/customer/{{customerId}}
 
 ###
-POST {{url}}/api/customer
+POST {{url}}/api/customer/sign-up
 Content-Type: application/json
 
 {
@@ -47,6 +47,15 @@ Content-Type: application/json
     "phoneNumber": "553413122",
     "role": "User",
     "ticketId": null
+}
+
+###
+POST {{url}}/api/customer/sign-in
+Content-Type: application/json
+
+{
+    "email": "nami@gymbex.io",
+    "password": "secured-nami"
 }
 
 ###
