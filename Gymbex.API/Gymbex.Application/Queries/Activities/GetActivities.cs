@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
 
-namespace Gymbex.Application.Queries
+namespace Gymbex.Application.Queries.Activities
 {
     public sealed class GetActivities : IQuery<IEnumerable<ActivityDto>>
     {

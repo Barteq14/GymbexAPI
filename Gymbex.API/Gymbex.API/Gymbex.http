@@ -1,6 +1,6 @@
 @url = https://localhost:7291
 @activityId = d4bb7aa8-5626-4f37-ab2c-494248bc0d30
-
+@customerId = b47d4cd8-6ce8-4744-bc50-e46c0abe4d9a
 
 ###
 GET {{url}}/api/activity
@@ -28,8 +28,12 @@ Content-Type: application/json
 ###
 DELETE {{url}}/api/activity/{{activityId}}
 
+
 ###
-POST {{url}}/api/customer/
+GET {{url}}/api/customer/{{customerId}}
+
+###
+POST {{url}}/api/customer
 Content-Type: application/json
 
 {
@@ -38,7 +42,10 @@ Content-Type: application/json
     "fullname": "Bartolomeo Pietruszka",
     "email": "bartolo@gymbex.io",
     "phoneNumber": "772226638",
-    "role": "Administrator"
+    "role": "Administrator",
     "ticketId": null
 }
+
+###
+DELETE {{url}}/api/customer/{{customerId}}
 

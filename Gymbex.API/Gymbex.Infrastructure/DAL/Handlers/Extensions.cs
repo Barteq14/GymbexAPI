@@ -19,5 +19,17 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 Date = activity.Date
             } : null;
         }
+
+        public static CustomerDto AsCustomerDto(this Customer customer)
+        {
+            return new CustomerDto()
+            {
+                Id = customer.Id,
+                Username = customer.Username,
+                Email = customer.Email,
+                FullName = customer.Fullname,
+                PhoneNumber = customer.PhoneNumber
+            };
+        }
     }
 }

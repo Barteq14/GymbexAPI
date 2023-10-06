@@ -28,12 +28,12 @@ namespace Gymbex.Application.Commands.Customers.Handlers
             var username = command.Username;
             var password = command.Password;
 
-            if (await _customerRepository.GetUserByUsername(username) is not null)
+            if (await _customerRepository.GetUserByUsernameAsync(username) is not null)
             {
                 throw new UserWirhThisUsernameIsAlreadyExistException(username);
             }
 
-            if (await _customerRepository.GetUserByEmail(email) is not null)
+            if (await _customerRepository.GetUserByEmailAsync(email) is not null)
             {
                 throw new UserWithThisEmailIsAlreadyExistException(email);
             }

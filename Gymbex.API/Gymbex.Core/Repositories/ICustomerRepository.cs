@@ -11,8 +11,9 @@ namespace Gymbex.Core.Repositories
     public interface ICustomerRepository
     {
         Task AddAsync(Customer customer);
-        Task<Customer> GetUserById(CustomerId id);
-        Task<Customer> GetUserByEmail(Email email);
-        Task<Customer> GetUserByUsername(Username username);
+        Task<Customer> GetUserByIdAsync(CustomerId id);
+        Task<Customer> GetUserByEmailAsync(Email email);
+        Task<Customer> GetUserByUsernameAsync(Username username);
+        Task DeleteUserAsync(Customer customer);
     }
 }

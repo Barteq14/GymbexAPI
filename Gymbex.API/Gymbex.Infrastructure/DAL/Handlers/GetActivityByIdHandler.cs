@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Application.Abstractions;
 using Gymbex.Application.Dtos;
-using Gymbex.Application.Queries;
+using Gymbex.Application.Queries.Activities;
 using Gymbex.Core.Repositories;
 using Gymbex.Core.ValueObjects;
 using Gymbex.Infrastructure.DAL.Exceptions;
