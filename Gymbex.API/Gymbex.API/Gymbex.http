@@ -30,6 +30,9 @@ DELETE {{url}}/api/activity/{{activityId}}
 
 
 ###
+GET {{url}}/api/customer
+
+###
 GET {{url}}/api/customer/{{customerId}}
 
 ###
@@ -37,12 +40,12 @@ POST {{url}}/api/customer
 Content-Type: application/json
 
 {
-    "username": "barlong",
-    "password": "secured-password",
-    "fullname": "Bartolomeo Pietruszka",
-    "email": "bartolo@gymbex.io",
-    "phoneNumber": "772226638",
-    "role": "Administrator",
+    "username": "nami",
+    "password": "secured-nami",
+    "fullname": "Nami Wielka",
+    "email": "nami@gymbex.io",
+    "phoneNumber": "553413122",
+    "role": "User",
     "ticketId": null
 }
 
