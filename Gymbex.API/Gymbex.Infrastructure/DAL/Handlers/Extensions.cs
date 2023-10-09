@@ -31,5 +31,15 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 PhoneNumber = customer.PhoneNumber
             };
         }
+
+        public static TicketDto AsTicketDto(this Ticket ticket)
+        {
+            return new TicketDto()
+            {
+                TicketId = ticket.Id,
+                TicketKindEnum = ticket.Kind,
+                KindDisplayName = ticket.KindDescription
+            };
+        }
     }
 }
