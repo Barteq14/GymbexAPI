@@ -10,6 +10,7 @@ using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries;
 using Gymbex.Application.Security;
 using Gymbex.Core.Repositories;
+using Gymbex.Infrastructure.Auth;
 using Gymbex.Infrastructure.DAL;
 using Gymbex.Infrastructure.DAL.Handlers;
 using Gymbex.Infrastructure.DAL.Repositories;
@@ -29,7 +30,8 @@ namespace Gymbex.Infrastructure
             services.AddScoped<IActivityRepository,PostgresActivityRepository>();
             services.AddScoped<ICustomerRepository,PostgresCustomerRepository>();
             services.AddSingleton<ExceptionMiddleware>();
-
+            services.AddHttpContextAccessor();
+            services.AddAuth(configuration);
             services.AddSecure();
 
             var infrastructureAssembly = typeof(AppOptions).Assembly;

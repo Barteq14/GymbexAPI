@@ -22,7 +22,11 @@ namespace Gymbex.Infrastructure.Secure
             => _passwordHasher.HashPassword(default, password);
 
         public bool Validate(string password, string securedPassword)
-            => _passwordHasher.VerifyHashedPassword(default, securedPassword, password)
+        {
+            var x =_passwordHasher.VerifyHashedPassword(default, securedPassword, password)
                 is PasswordVerificationResult.Success;
+
+            return x;
+        }
     }
 }

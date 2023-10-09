@@ -14,5 +14,11 @@ namespace Gymbex.Core.Exceptions
             : base($"Customer with id: {id} was not found.")
         {
         }
+
+        public CustomerNotFoundException()
+            :base($"Customer was not found.")
+        {
+            
+        }
     }
 }
