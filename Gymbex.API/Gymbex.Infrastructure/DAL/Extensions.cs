@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gymbex.Core.Repositories;
+using Gymbex.Infrastructure.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +21,9 @@ namespace Gymbex.Infrastructure.DAL
             var options = configuration.GetOption<PostgresOption>(PostgresSection);
 
             services.AddDbContext<GymbexDbContext>(x => x.UseNpgsql(options.ConnectionString));
-            
+            services.AddScoped<IActivityRepository, PostgresActivityRepository>();
+            services.AddScoped<ICustomerRepository, PostgresCustomerRepository>();
+            services.AddScoped<ITicketRepository, PostgresTicketRepository>();
 
             return services;
         }

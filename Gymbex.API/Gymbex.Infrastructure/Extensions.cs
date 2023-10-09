@@ -27,8 +27,6 @@ namespace Gymbex.Infrastructure
             var sectionApp = configuration.GetSection("app"); //pobranie sekcji
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
-            services.AddScoped<IActivityRepository,PostgresActivityRepository>();
-            services.AddScoped<ICustomerRepository,PostgresCustomerRepository>();
             services.AddSingleton<ExceptionMiddleware>();
             services.AddHttpContextAccessor();
             services.AddAuth(configuration);
