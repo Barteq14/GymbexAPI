@@ -1,5 +1,4 @@
-﻿using Gymbex.Core.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +7,5 @@ using Gymbex.Application.Abstractions;
 
 namespace Gymbex.Application.Commands.Tickets
 {
-    public sealed record CreateTicket(Guid ticketId, int ticketKind, DateTime from) : ICommand;
+    public sealed record DeleteTicket(Guid TicketId) : ICommand;
 }
