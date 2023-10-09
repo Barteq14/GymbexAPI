@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gymbex.Core.ValueObjects;
 
 namespace Gymbex.Core.Entities
 {
@@ -12,20 +13,20 @@ namespace Gymbex.Core.Entities
         /// <summary>
         /// Id rezerwacji
         /// </summary>
-        public Guid Id { get; private set; }
+        public ReservationId Id { get; private set; }
         /// <summary>
         /// Data utworzenia rezerwacji
         /// </summary>
-        public DateTime CreatedAt { get; private set; }
+        public Date CreatedAt { get; private set; }
 
         #region Relationships
 
-        public Guid CustomerId { get; private set; }
-        public Guid ActivityId { get; private set; }
+        public CustomerId CustomerId { get; private set; }
+        public ActivityId ActivityId { get; private set; }
 
         #endregion
 
-        public Reservation(Guid id, DateTime createdAt, Guid customerId, Guid activityId)
+        public Reservation(ReservationId id, Date createdAt, CustomerId customerId, ActivityId activityId)
         {
             Id = id;
             CreatedAt = createdAt;
