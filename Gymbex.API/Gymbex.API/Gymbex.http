@@ -62,3 +62,12 @@ Content-Type: application/json
 ###
 DELETE {{url}}/api/customer/{{customerId}}
 
+
+
+###
+POST {{url}}/api/ticket
+Content-Type: application/json
+
+{
+    "ticketKind": 3
+}

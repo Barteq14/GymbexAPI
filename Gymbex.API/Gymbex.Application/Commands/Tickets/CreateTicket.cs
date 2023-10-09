@@ -8,5 +8,5 @@ using Gymbex.Application.Abstractions;
 
 namespace Gymbex.Application.Commands.Tickets
 {
-    public sealed record CreateTicket(Guid ticketId, int ticketKind, DateTime from) : ICommand;
+    public sealed record CreateTicket(Guid ticketId, int ticketKind, string KindDescription) : ICommand;
 }
