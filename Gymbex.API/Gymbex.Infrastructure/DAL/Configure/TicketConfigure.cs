@@ -19,12 +19,12 @@ namespace Gymbex.Infrastructure.DAL.Configure
             builder.Property(x => x.Id)
                 .IsRequired()
                 .HasConversion(x => x.Value, c => new TicketId(c));
-            builder.Property(x => x.ImportantFrom)
-                .IsRequired()
-                .HasConversion(x => x.Value, c => new Date(c));
-            builder.Property(x => x.ImportantTo)
-                .IsRequired()
-                .HasConversion(x => x.Value, c => new Date(c));
+            //builder.Property(x => x.ImportantFrom)
+            //    .IsRequired()
+            //    .HasConversion(x => x.Value, c => new Date(c));
+            //builder.Property(x => x.ImportantTo)
+            //    .IsRequired()
+            //    .HasConversion(x => x.Value, c => new Date(c));
         }
     }
 }

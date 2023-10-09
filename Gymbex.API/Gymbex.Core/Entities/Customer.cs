@@ -42,12 +42,12 @@ namespace Gymbex.Core.Entities
 
 
         #region Relationships
-        public Guid? TicketId { get; private set; }
+        public TicketId? TicketId { get; private set; }
         public IEnumerable<Reservation> Reservations { get; private set; } = _reservations;
         #endregion
 
 
-        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, Guid? ticketId)
+        public Customer(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, TicketId? ticketId)
         {
             Id = id;
             Username = username;

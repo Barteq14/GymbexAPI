@@ -1,6 +1,7 @@
 @url = https://localhost:7291
 @activityId = d4bb7aa8-5626-4f37-ab2c-494248bc0d30
 @customerId = b47d4cd8-6ce8-4744-bc50-e46c0abe4d9a
+@ticketId = e1806fe3-cb36-49d6-a971-7c281889beba
 
 ###
 GET {{url}}/api/activity
@@ -62,3 +63,21 @@ Content-Type: application/json
 ###
 DELETE {{url}}/api/customer/{{customerId}}
 
+
+
+###
+GET {{url}}/api/ticket 
+
+###
+GET {{url}}/api/ticket/{{ticketId}}
+
+###
+POST {{url}}/api/ticket
+Content-Type: application/json
+
+{
+    "ticketKind": 5
+}
+
+###
+DELETE {{url}}/api/ticket/{{ticketId}}

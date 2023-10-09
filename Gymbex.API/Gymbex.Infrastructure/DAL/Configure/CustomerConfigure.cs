@@ -34,6 +34,8 @@ namespace Gymbex.Infrastructure.DAL.Configure
                 .HasConversion(x => x.Value, c => new Role(c));
             builder.Property(x => x.PhoneNumber)
                 .HasConversion(x => x.Value, c => new PhoneNumber(c));
+            builder.Property(x => x.TicketId)
+                .HasConversion(x => x.Value, c => new TicketId(c));
         }
     }
 }

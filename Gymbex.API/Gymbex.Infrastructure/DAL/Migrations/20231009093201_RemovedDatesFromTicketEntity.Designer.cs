@@ -3,6 +3,7 @@ using System;
 using Gymbex.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gymbex.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(GymbexDbContext))]
-    partial class GymbexDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009093201_RemovedDatesFromTicketEntity")]
+    partial class RemovedDatesFromTicketEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,9 +117,6 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.Property<int>("Kind")
                         .HasColumnType("integer");
-
-                    b.Property<string>("KindDescription")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
