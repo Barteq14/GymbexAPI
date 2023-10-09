@@ -27,6 +27,8 @@ namespace Gymbex.API.Controllers
             _changeDateForActivityCommandHandler = channgeDateForActivityCommandHandler;
         }
 
+
+
         [SwaggerOperation("Get activity by ID")]
         [HttpGet("{activityId:guid}")]
         public async Task<ActionResult<ActivityDto>> Get([FromRoute]Guid activityId, [FromQuery] GetActivityById query)

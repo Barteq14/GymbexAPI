@@ -3,6 +3,7 @@ using System;
 using Gymbex.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gymbex.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(GymbexDbContext))]
-    partial class GymbexDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009104334_try")]
+    partial class @try
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Activities", (string)null);
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Customer", b =>
@@ -74,7 +77,7 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.HasIndex("TicketId");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Reservation", b =>
@@ -97,7 +100,7 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Reservations", (string)null);
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Ticket", b =>
@@ -113,7 +116,7 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Customer", b =>

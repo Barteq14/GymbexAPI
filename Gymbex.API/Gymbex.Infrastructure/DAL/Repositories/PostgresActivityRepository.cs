@@ -37,7 +37,7 @@ namespace Gymbex.Infrastructure.DAL.Repositories
 
         public async Task<IEnumerable<Activity>> GetAllActivitiesAsync()
         {
-            return await _context.Activities.ToListAsync();
+            return await _context.Activities.Include(x => x.Reservations).ToListAsync();
         }
 
         public async Task<Activity> GetActivityByIdAsync(ActivityId id)
