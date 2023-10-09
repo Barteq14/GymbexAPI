@@ -9,11 +9,12 @@ GET {{url}}/api/activity/{{activityId}}
 
 ###
 POST {{url}}/api/activity
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5OTIxNGEzMC1mYTkyLTQ3YTAtYWQ4My1iYjAxYTI1YjAwOTMiLCJ1bmlxdWVfbmFtZSI6Ijk5MjE0YTMwLWZhOTItNDdhMC1hZDgzLWJiMDFhMjViMDA5MyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmF0b3IiLCJuYmYiOjE2OTY4MzMyNjUsImV4cCI6MTY5NjgzNjg2NSwiaXNzIjoiZ3ltYmV4LWlzc3VlciIsImF1ZCI6Imd5bWJleC1hdWRpZW5jZSJ9.O7AHOcK419DX9KXZjr1W4eeK0RKJ-STkX-EjaakKeEQ
 Content-Type: application/json
 
 {
-    "activityName": "Fitness",
-    "reservationDateTime": "2023-10-13"
+    "activityName": "Zumba",
+    "reservationDateTime": "2023-10-11"
 }
 
 ###
@@ -40,12 +41,12 @@ POST {{url}}/api/customer/sign-up
 Content-Type: application/json
 
 {
-    "username": "nami",
-    "password": "secured-nami",
-    "fullname": "Nami Wielka",
-    "email": "nami@gymbex.io",
-    "phoneNumber": "553413122",
-    "role": "User",
+    "username": "AdminSon",
+    "password": "secured-adminson",
+    "fullname": "Admin Son",
+    "email": "adminson@gymbex.io",
+    "phoneNumber": "662113523",
+    "role": "Administrator",
     "ticketId": null
 }
 
@@ -54,8 +55,8 @@ POST {{url}}/api/customer/sign-in
 Content-Type: application/json
 
 {
-    "email": "nami@gymbex.io",
-    "password": "secured-nami"
+    "email": "adminson@gymbex.io",
+    "password": "secured-adminson"
 }
 
 ###

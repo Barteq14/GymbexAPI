@@ -41,6 +41,14 @@ namespace Gymbex.Infrastructure.Auth
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SigningKey))
                     };
                 });
+
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("is-admin", policy =>
+                {
+                    policy.RequireRole("Administrator");
+                });
+            });
             return services;
         }
     }

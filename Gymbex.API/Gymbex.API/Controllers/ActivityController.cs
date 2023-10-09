@@ -2,6 +2,7 @@
 using Gymbex.Application.Commands.Activities;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Activities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -53,6 +54,7 @@ namespace Gymbex.API.Controllers
             return NotFound();
         }
 
+        [Authorize(Policy = "is-admin")]
         [SwaggerOperation("Create new activity")]
         [HttpPost]
         public async Task<ActionResult> Post(CreateNewActivity command)
@@ -62,6 +64,7 @@ namespace Gymbex.API.Controllers
             return NoContent();
         }
 
+        [Authorize(Policy = "is-admin")]
         [SwaggerOperation("Change activity date with a new date value")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] ChangeDateForActivity command)
@@ -70,6 +73,7 @@ namespace Gymbex.API.Controllers
             return NoContent();
         }
 
+        [Authorize(Policy = "is-admin")]
         [SwaggerOperation("Delete activity by ID")]
         [HttpDelete("{activityId:guid}")]
         public async Task<ActionResult> Delete([FromRoute] Guid activityId)
