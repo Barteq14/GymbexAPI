@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Core.ValueObjects;
@@ -58,5 +59,8 @@ namespace Gymbex.Core.Entities
             Role = role;
             TicketId = ticketId;
         }
+
+        public static Customer Create(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, TicketId? ticketId)
+            => new(id, username, password, fullname, email, phoneNumber, role, ticketId);
     }
 }

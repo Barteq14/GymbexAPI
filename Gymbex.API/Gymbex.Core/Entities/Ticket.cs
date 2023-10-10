@@ -34,6 +34,9 @@ namespace Gymbex.Core.Entities
             KindDescription = kindDescription;
         }
 
+        public static Ticket Create(TicketId id, TicketKindEnum kind, string kindDescription)
+            => new(id, kind, kindDescription);
+
         public void AddTicketToCustomer(Customer customer)
         {
             if(customer.TicketId is not null)
