@@ -37,5 +37,10 @@ namespace Gymbex.Core.Entities
         }
 
         public void ChangeActivityDate(Date date) => Date = date;
+
+        public void AddReservation(Reservation reservation)
+        {
+            _reservations.Add(reservation);
+        }
     }
 }

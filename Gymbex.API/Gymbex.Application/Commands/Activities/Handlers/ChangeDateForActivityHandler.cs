@@ -29,7 +29,7 @@ namespace Gymbex.Application.Commands.Activities.Handlers
 
             activity.ChangeActivityDate(command.ActivityDate);
 
-            await _activityRepository.ChangeActivityDate(activity);
+            await _activityRepository.UpdateActivityAsync(activity);
         }
     }
 }

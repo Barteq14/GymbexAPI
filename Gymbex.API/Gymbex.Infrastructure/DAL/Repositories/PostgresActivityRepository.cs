@@ -42,7 +42,9 @@ namespace Gymbex.Infrastructure.DAL.Repositories
 
         public async Task<Activity> GetActivityByIdAsync(ActivityId id)
         {
-            return await _context.Activities.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Activities
+                .Include(x => x.Reservations)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Activity> GetActivityByNameAsync(ActivityName name)
@@ -56,7 +58,7 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task ChangeActivityDate(Activity activity)
+        public async Task UpdateActivityAsync(Activity activity)
         {
             _context.Activities.Update(activity);
             await _context.SaveChangesAsync();
