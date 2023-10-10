@@ -12,5 +12,6 @@ namespace Gymbex.Application.Dtos
         public Guid TicketId { get; set; }
         public TicketKindEnum TicketKindEnum { get; set; }
         public string KindDisplayName { get; set; }
+        public List<CustomerDto> Customers { get; set; }
     }
 }

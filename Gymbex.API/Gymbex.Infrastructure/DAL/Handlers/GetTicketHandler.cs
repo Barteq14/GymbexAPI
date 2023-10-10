@@ -23,7 +23,9 @@ namespace Gymbex.Infrastructure.DAL.Handlers
 
         public async Task<TicketDto> ExecuteHandleAsync(GetTicket query)
         {
-            var ticket = await _dbContext.Tickets.SingleOrDefaultAsync(x => x.Id == new TicketId(query.Id));
+            var ticket = await _dbContext.Tickets
+                .Include(x => x.Customers)
+                .SingleOrDefaultAsync(x => x.Id == new TicketId(query.Id));
             if (ticket is null)
             {
                 throw new TicketNotFoundException(query.Id);

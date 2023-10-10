@@ -3,8 +3,10 @@ using Gymbex.Application.Commands.Tickets;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Tickets;
 using Gymbex.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Gymbex.API.Controllers
 {
@@ -14,17 +16,20 @@ namespace Gymbex.API.Controllers
     {
         private readonly ICommandHandler<CreateTicket> _createTicketCommandHandler;
         private readonly ICommandHandler<DeleteTicket> _deleteTicketCommandHandler;
+        private readonly ICommandHandler<BuyTicket> _buyTicketCommandHandler;
         private readonly IQueryHandler<GetTicket, TicketDto> _getTicketQueryHandler;
         private readonly IQueryHandler<GetTickets, IEnumerable<TicketDto>> _getTicketsQueryHandler;
 
-        public TicketController(ICommandHandler<CreateTicket> createTicketCommandHandler, ICommandHandler<DeleteTicket> deleteTicketCommandHandler, IQueryHandler<GetTicket, TicketDto> getTicketQueryHandler, IQueryHandler<GetTickets, IEnumerable<TicketDto>> getTicketsQueryHandler)
+        public TicketController(ICommandHandler<CreateTicket> createTicketCommandHandler, ICommandHandler<DeleteTicket> deleteTicketCommandHandler, IQueryHandler<GetTicket, TicketDto> getTicketQueryHandler, IQueryHandler<GetTickets, IEnumerable<TicketDto>> getTicketsQueryHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler)
         {
             _createTicketCommandHandler = createTicketCommandHandler;
             _deleteTicketCommandHandler = deleteTicketCommandHandler;
             _getTicketQueryHandler = getTicketQueryHandler;
             _getTicketsQueryHandler = getTicketsQueryHandler;
+            _buyTicketCommandHandler = buyTicketCommandHandler;
         }
 
+        [SwaggerOperation("Get specify ticket by ID")]
         [HttpGet("{ticketId:guid}")]
         public async Task<ActionResult<TicketDto>> Get([FromRoute] Guid ticketId)
         {
@@ -32,6 +37,7 @@ namespace Gymbex.API.Controllers
             return Ok(ticket);
         }
 
+        [SwaggerOperation("Get all tickets from DB")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketDto>>> Get([FromQuery] GetTickets query)
         {
@@ -43,6 +49,7 @@ namespace Gymbex.API.Controllers
             return Ok(tickets);
         }
 
+        [SwaggerOperation("Create new ticket")]
         [HttpPost]
         public async Task<ActionResult> Post(CreateTicket command)
         {
@@ -52,10 +59,22 @@ namespace Gymbex.API.Controllers
             return Ok();
         }
 
+        [SwaggerOperation("Delete tikcet by ID")]
         [HttpDelete("{ticketId:guid}")]
         public async Task<ActionResult> Delete([FromRoute] Guid ticketId)
         {
             await _deleteTicketCommandHandler.HandlerExecuteAsync(new DeleteTicket(ticketId));
+            return NoContent();
+        }
+
+        [Authorize]
+        [SwaggerOperation("Get ticket by user")]
+        [HttpPost("get-ticket/{ticketId:guid}")]
+        public async Task<ActionResult> GetTicketByUser([FromRoute] Guid ticketId, BuyTicket command)
+        {
+            var currentCustomerId = Guid.Parse(HttpContext.User.Identity.Name);
+            command = command with { TicketId = ticketId, CustomerId = currentCustomerId};
+            await _buyTicketCommandHandler.HandlerExecuteAsync(command);
             return NoContent();
         }
     }

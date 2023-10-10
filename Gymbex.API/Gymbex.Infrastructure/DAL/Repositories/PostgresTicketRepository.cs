@@ -23,7 +23,9 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             => await _context.Tickets.ToListAsync();
 
         public async Task<Ticket> GetAsync(TicketId id)
-            => await _context.Tickets.SingleOrDefaultAsync(x => x.Id == id);
+            => await _context.Tickets
+            .Include(x => x.Customers)
+            .SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task CreateAsync(Ticket ticket)
         {
@@ -34,6 +36,12 @@ namespace Gymbex.Infrastructure.DAL.Repositories
         public async Task DeleteAsync(Ticket ticket)
         {
             _context.Tickets.Remove(ticket);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Ticket ticket)
+        {
+            _context.Tickets.Update(ticket);
             await _context.SaveChangesAsync();
         }
     }
