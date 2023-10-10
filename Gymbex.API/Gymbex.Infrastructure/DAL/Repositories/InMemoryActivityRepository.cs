@@ -44,7 +44,7 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             return Task.CompletedTask;
         }
 
-        public Task ChangeActivityDate(Activity activity)
+        public Task UpdateActivityAsync(Activity activity)
         {
             activity.ChangeActivityDate(activity.Date);
             return Task.CompletedTask;

@@ -13,10 +13,6 @@ namespace Gymbex.Core.ValueObjects
 
         public Date(DateTime value)
         {
-            if (value <= DateTime.Now)
-            {
-                throw new ActivityDateIsInPastException(value);
-            }
             Value = value.SetKindUtc();
         }
 

@@ -17,14 +17,16 @@ namespace Gymbex.API.Controllers
         private readonly ICommandHandler<DeleteActivityById> _deleteActivityByIdCommandHandler;
         private readonly IQueryHandler<GetActivityById, ActivityDto> _getActivityByIdQueryHandler;
         private readonly ICommandHandler<ChangeDateForActivity> _changeDateForActivityCommandHandler;
+        private readonly ICommandHandler<RegistrationForActivity> _registrationForActivityCommandHandler;
 
-        public ActivityController(IQueryHandler<GetActivities,IEnumerable<ActivityDto>> getActivitiesQueryHandler, ICommandHandler<CreateNewActivity> createNewActivityCommandHandler, ICommandHandler<DeleteActivityById> deleteActivityByIdCommandHandler, IQueryHandler<GetActivityById, ActivityDto> getActivityByIdQueryHandler, ICommandHandler<ChangeDateForActivity> channgeDateForActivityCommandHandler)
+        public ActivityController(IQueryHandler<GetActivities,IEnumerable<ActivityDto>> getActivitiesQueryHandler, ICommandHandler<CreateNewActivity> createNewActivityCommandHandler, ICommandHandler<DeleteActivityById> deleteActivityByIdCommandHandler, IQueryHandler<GetActivityById, ActivityDto> getActivityByIdQueryHandler, ICommandHandler<ChangeDateForActivity> channgeDateForActivityCommandHandler, ICommandHandler<RegistrationForActivity> registrationForActivityCommandHandler)
         {
             _getActivitiesQueryHandler = getActivitiesQueryHandler;
             _createNewActivityCommandHandler = createNewActivityCommandHandler;
             _deleteActivityByIdCommandHandler = deleteActivityByIdCommandHandler;
             _getActivityByIdQueryHandler = getActivityByIdQueryHandler;
             _changeDateForActivityCommandHandler = channgeDateForActivityCommandHandler;
+            _registrationForActivityCommandHandler = registrationForActivityCommandHandler;
         }
 
 
@@ -81,6 +83,19 @@ namespace Gymbex.API.Controllers
         public async Task<ActionResult> Delete([FromRoute] Guid activityId)
         {
             await _deleteActivityByIdCommandHandler.HandlerExecuteAsync(new DeleteActivityById(activityId));
+            return NoContent();
+        }
+
+        [Authorize]
+        [SwaggerOperation("Registration for activity")]
+        [HttpPost("registration-activity/{activityId:guid}")]
+        public async Task<ActionResult> ReserveActivity([FromRoute] Guid activityId, RegistrationForActivity command)
+        {
+            var currentCustomerId = Guid.Parse(HttpContext.User.Identity.Name);
+
+            command = command with { ActivityId = activityId, CustomerId = currentCustomerId};
+           
+            await _registrationForActivityCommandHandler.HandlerExecuteAsync(command);
             return NoContent();
         }
     }

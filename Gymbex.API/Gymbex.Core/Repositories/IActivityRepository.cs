@@ -15,6 +15,6 @@ namespace Gymbex.Core.Repositories
         Task<Activity> GetActivityByIdAsync(ActivityId id);
         Task<Activity> GetActivityByNameAsync(ActivityName name) => throw new NotImplementedException();
         Task DeleteActivityByIdAsync(Activity activity);
-        Task ChangeActivityDate(Activity activity);
+        Task UpdateActivityAsync(Activity activity);
     }
 }
