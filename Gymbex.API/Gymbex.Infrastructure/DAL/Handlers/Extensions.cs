@@ -38,7 +38,8 @@ namespace Gymbex.Infrastructure.DAL.Handlers
             {
                 TicketId = ticket.Id,
                 TicketKindEnum = ticket.Kind,
-                KindDisplayName = ticket.KindDescription
+                KindDisplayName = ticket.KindDescription,
+                Customers = ticket.Customers.Select(x => x.AsCustomerDto()).ToList(),
             };
         }
     }
