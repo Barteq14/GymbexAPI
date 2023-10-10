@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gymbex.Core.Exceptions;
 using Gymbex.Core.ValueObjects;
 
 namespace Gymbex.Core.Entities
@@ -36,10 +37,18 @@ namespace Gymbex.Core.Entities
             Date = date;
         }
 
+        public static Activity Create(ActivityId id, ActivityName name, Date date)
+            => new Activity(id, name, date);
+
         public void ChangeActivityDate(Date date) => Date = date;
 
         public void AddReservation(Reservation reservation)
         {
+            if(_reservations.Any(x => x.CustomerId == reservation.CustomerId))
+            {
+                throw new ReservationAlreadyExistsException(reservation.ActivityId);
+            }
+
             _reservations.Add(reservation);
         }
     }
