@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Application", "Gymbe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Tests.Unit", "Gymbex.Tests.Unit\Gymbex.Tests.Unit.csproj", "{B9667A69-8432-40BF-BAC0-84AB441BF1CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gymbex.Blazor", "Gymbex.Blazor\Gymbex.Blazor.csproj", "{584D0E95-34FA-45A7-8C9B-02E45B940BED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gymbex.Blazor", "Gymbex.Blazor\Gymbex.Blazor.csproj", "{584D0E95-34FA-45A7-8C9B-02E45B940BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
