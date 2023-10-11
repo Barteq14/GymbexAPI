@@ -2,6 +2,7 @@ using Gymbex.Application;
 using Gymbex.Infrastructure;
 using Gymbex.Infrastructure.Exceptions;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,9 +32,36 @@ builder.Host.UseSerilog((context, configuration) =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+//ENABLE CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder
+            .WithOrigins("https://localhost:7142") // Adresy URL, z których przyjmowane s¹ ¿¹dania.
+            .AllowAnyMethod() // Metody HTTP, które s¹ dozwolone (np. GET, POST).
+            .AllowAnyHeader() // Nag³ówki HTTP, które s¹ dozwolone.
+            .AllowCredentials(); // W³¹cz autoryzacjê z plików cookie lub tokenów.
+    });
+});
+
+builder.Services.AddControllers().
+    AddNewtonsoftJson(option =>
+    {
+        option.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+    })
+    .AddNewtonsoftJson(option =>
+    {
+        option.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    });
 
 
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigin");
+
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();

@@ -5,6 +5,10 @@
 
 ###
 GET {{url}}/api/activity
+
+###
+GET {{url}}/api/activity/all
+
 ###
 GET {{url}}/api/activity/{{activityId}}
 

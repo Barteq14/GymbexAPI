@@ -1,0 +1,17 @@
+﻿@page "/activities"
+
+<h3>Activities</h3>
+
+<div>
+    <table style="border: 1px solid black; width:100%; background-color:gray;">
+        <thead>Activities</thead>
+        <tbody>
+            @foreach(var item in ActivitiesList)
+            {              
+                <tr>@item.Id</tr>
+                <tr>@item.Name</tr>
+                <tr>@item.Date</tr>
+            }
+        </tbody>
+    </table>
+</div>
