@@ -1,17 +1,26 @@
 ﻿@page "/activities"
 
-<h3>Activities</h3>
-
-<div>
-    <table style="border: 1px solid black; width:100%; background-color:gray;">
-        <thead>Activities</thead>
-        <tbody>
-            @foreach(var item in ActivitiesList)
-            {              
-                <tr>@item.Id</tr>
-                <tr>@item.Name</tr>
-                <tr>@item.Date</tr>
-            }
-        </tbody>
-    </table>
+<div class="activities">
+<h3 class="activities-header">Dostępne zajęcia</h3>
+    <div class="activities-box">
+        <table class="activity-table">
+            <thead>
+                <tr>
+                    <th>Nazwa zajęć</th>
+                    <th>Data zajęć</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ActivitiesList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Date.Date.ToString("yyyy-MM-dd")</td>
+                        <td><button class="btn btn-primary btn-lg">Zapisz się</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
