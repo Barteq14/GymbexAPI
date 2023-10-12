@@ -1,0 +1,207 @@
+﻿body {
+}
+
+.container-custom{
+    width:100%;
+    height:100%;
+    background-color:gray;
+}
+
+.banner {
+    width: 100%;
+    background-image: url("../Images/crossfit.jpg");
+    background-position: center center;
+    background-size: cover;
+    height: 800px;
+    display: grid;
+}
+
+.banner-title {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-left: 500px;
+    margin-top: 250px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 72px;
+}
+
+    .banner-title a{
+        text-decoration:none;
+        color:black;
+        height:80px;
+    }
+
+    .banner-title a:hover{
+        color:red;
+    }
+
+.banner p {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.header-container {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: antiquewhite;
+}
+
+.flex-item {
+    display:flex;
+    flex: 1;
+    margin: 10px;
+    flex-basis: calc(33.33% - 20px); /* Ustalamy szerokość na 1/3 szerokości z marginesami */
+}
+
+.firts-column{
+    
+}
+.second-column{
+    
+}
+.third-column{
+    
+}
+
+.firts-column, .second-column, .third-column {
+    justify-content: center;
+    align-items: center;
+    color:black;
+    font-size:32px;
+}
+
+.firts-column, .second-column {
+    border-right:1px solid black;
+}
+
+.firts-column:hover, .second-column:hover, .third-column:hover{
+    border: 1px solid black;
+    border-radius:5px;
+    background-color:navajowhite;
+    cursor:pointer;
+}
+
+    .firts-column a, .second-column a, .third-column a {
+        text-decoration: none;
+        color: black;
+    }
+
+.activities-header{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:28px;
+    color:white;
+    margin-bottom:30px;
+}
+
+.activities{
+    background-image: url("../Images/man.jpg");
+    width:100%;
+    padding:30px 0px 50px 0px;
+}
+
+.activities-box {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    background-color: goldenrod;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    border: 10px solid darkgoldenrod;
+    border-radius:10px;
+    font-size:24px;
+}
+
+.activity-table{
+    width:100%;
+}
+
+.activity-row{
+    justify-content:space-around;
+}
+
+tbody + tbody{
+    margin-top:20px;
+}
+
+table > tbody > tr > td{
+    text-align:center;
+}
+
+table > thead {
+    text-align: center;
+}
+
+.footer-custom {
+    width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    background-color: azure;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.footer-custom p{
+    margin:10px 0px 10px 0px;
+}
+
+.main-content{
+    width:100%;
+    height:1000px;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    background-image: url("../Images/man2.jpg");
+    background-size:cover;
+    gap:100px;
+    padding:50px;
+}
+
+.quarter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 42px;
+    text-align: center;
+}
+
+.choose-ticket {
+    width: 100%;
+    height: 300px;
+    background-color: lightgray;
+    color: black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+}
+
+.other-information {
+    width: 100%;
+    height: 900px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-image: url("../Images/dumbbell.jpg");
+    color:white;
+}
+
+.columns-other-information
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:82px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
