@@ -1,0 +1,61 @@
+﻿@page "/signup"
+@using Gymbex.Blazor;
+@using Gymbex.Blazor.Components;
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+@*@inject CustomAuthenticationStateProvider AuthenticationStateProvider*@
+
+<div class="register-login-container">
+    @if(jwtSecurityToken is not null)
+    {
+        <div> Jesteś zalogowany jako: @Issuer @Email </div>
+    }
+    <div class="signup-class">
+        <div class="signup-class-title">Rejestracja</div>
+        <EditForm class="form-class" Model="@Customer" OnValidSubmit="SignUp">
+            <div class="form-group">
+                <label for="exampleInputEmail1">E-mail</label>
+                <input type="email" @bind-value="Customer.Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Hasło</label>
+                <input type="password" @bind-value="Customer.Password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nazwa użytkownika</label>
+                <input type="text" @bind-value="Customer.Username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Nazwa użytkownika">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Imię i nazwisko</label>
+                <input type="text" @bind-value="Customer.Fullname" class="form-control" id="fullname" aria-describedby="emailHelp" placeholder="Imię i nazwisko">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Telefon</label>
+                <input type="tel" @bind-value="Customer.PhoneNumber" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="Telefon">
+            </div>
+            <div>&nbsp;</div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </EditForm>
+    </div>
+
+
+    <div class="signin-class">
+        <div class="signin-class-title">Logowanie</div>
+        <EditForm  Model="@SignInCommand" OnValidSubmit="SignInRequest">
+            <div class="form-group">
+                <label for="exampleInputEmail1">E-mail</label>
+                <input type="email" @bind-value="SignInCommand.Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Hasło</label>
+                <input type="password" @bind-value="SignInCommand.Password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
+            </div>
+            <button type="submit" class="btn btn-success">Log in</button>
+        </EditForm>
+    </div>
+</div>
+

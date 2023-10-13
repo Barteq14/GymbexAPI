@@ -1,0 +1,18 @@
+﻿
+@if (VisibleNotification)
+{
+    <div class="notification-box">
+        @if (VisibleTitle)
+        {
+            <div class="notification-title">@Title</div>
+        }
+        @if (VisibleContent)
+        {
+            <div class="notification-content">@Content</div>
+        }
+        <div class="notification-button-box">
+            <button class="btn btn-danger notification-button" @onclick="ExitNotification" type="button">Zamknij</button>
+        </div>
+    </div>
+}
+

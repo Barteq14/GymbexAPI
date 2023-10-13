@@ -1,6 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@using Gymbex.Blazor.Components
+@inherits LayoutComponentBase
 <div class="container-fluid">
     <div class="banner">
+        @*<UserBanner />*@
+        <div class="registration-class"><button type="button" @onclick="RedirectToSignUp" class="btn btn-outline-primary">Rejestracja/Logowanie</button></div>
         <p class="banner-title"><a href="/"> Gymbex </a> &nbsp;  is your second HOME.</p>
     </div>
 
@@ -14,6 +17,8 @@
     </main>
     <footer class="footer-custom">
         <p>Gymbex.com</p>
+        <p>Nasze motto: Gymbex is your second home!</p>
+        <p>Serdecznie zapraszamy!</p>
         <p>Wersja aplikacji: v1</p>
     </footer>
 </div>

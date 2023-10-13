@@ -1,0 +1,11 @@
+﻿
+@*@page "/user-banner"
+@using Gymbex.Blazor.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@inject CustomAuthenticationStateProvider AuthenticationStateProvider;
+
+<AuthorizeView>
+    <Authorized>
+        <p>Jesteś zalogowany jako: @userDisplayName</p>
+    </Authorized>
+</AuthorizeView>*@

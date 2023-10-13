@@ -1,12 +1,22 @@
 ﻿@page "/"
+@page "/{RedirectInfo}"
 
+@if (!string.IsNullOrEmpty(RedirectInfo) && RedirectInfo.Equals("registration-success"))
+{
+    <Gymbex.Blazor.Components.Notification VisibleTitle=true Title="Powiadomienie" VisibleNotification=true VisibleContent=true Content="Rejestracja powiodła się!" />
+}
+
+@if (!string.IsNullOrEmpty(RedirectInfo) && RedirectInfo.Equals("login-success"))
+{
+    <Gymbex.Blazor.Components.Notification VisibleTitle=true Title="Powiadomienie" VisibleNotification=true VisibleContent=true Content="Jesteś zalogowany!" />
+}
 <div class="main-content">
     <div class="quarter">
         <p>Trenuj kiedy chcesz!</p>
     </div>
 
     <div class="quarter">
-        <p>Wszystkie potrzebne informacje znajdziesz tutaj na naszej stronie.</p>
+        <p>Nie siedź bezczynnie w domu. Sprawdź naszą ofertę i sam się przekonaj</p>
     </div>
 
     <div class="quarter">
@@ -14,7 +24,7 @@
     </div>
 
     <div class="quarter">
-        <p>Wszystkie potrzebne informacje znajdziesz tutaj na naszej stronie.</p>
+        <p>Wszystkie potrzebne informacje znajdziesz tutaj na naszej stronie</p>
     </div>
 </div>
 <div class="choose-ticket">

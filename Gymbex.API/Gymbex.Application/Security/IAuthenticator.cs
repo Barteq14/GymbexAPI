@@ -10,6 +10,6 @@ namespace Gymbex.Application.Security
 {
     public interface IAuthenticator
     {
-        JwtDto CreateToken(Guid customerId, Role role);
+        JwtDto CreateToken(Guid customerId, Role role, Email email);
     }
 }
