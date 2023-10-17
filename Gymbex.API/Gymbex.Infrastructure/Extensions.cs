@@ -31,7 +31,6 @@ namespace Gymbex.Infrastructure
             services.AddHttpContextAccessor();
             services.AddAuth(configuration);
             services.AddSecure();
-
             var infrastructureAssembly = typeof(AppOptions).Assembly;
 
             services.Scan(s => s.FromAssemblies(infrastructureAssembly)

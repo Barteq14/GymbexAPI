@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
+
 //swagger
 builder.Services.AddSwaggerGen(swagger =>
 {
@@ -61,8 +62,6 @@ builder.Services.AddControllers().
 var app = builder.Build();
 
 app.UseCors("AllowSpecificOrigin");
-
-
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseReDoc(r =>
@@ -75,7 +74,10 @@ app.UseSwaggerUI(swagger =>
 {
     swagger.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
 });
+
+app.UseRouting();
 app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
+
 
 app.Run();

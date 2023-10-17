@@ -1,9 +1,13 @@
 ﻿@using Gymbex.Blazor.Components
 @inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
 <div class="container-fluid">
+    <CascadingAuthenticationState>
+    <AuthenticationBanner />
     <div class="banner">
-        @*<UserBanner />*@
-        <div class="registration-class"><button type="button" @onclick="RedirectToSignUp" class="btn btn-outline-primary">Rejestracja/Logowanie</button></div>
         <p class="banner-title"><a href="/"> Gymbex </a> &nbsp;  is your second HOME.</p>
     </div>
 
@@ -15,6 +19,7 @@
     <main>
         @Body
     </main>
+    </CascadingAuthenticationState>
     <footer class="footer-custom">
         <p>Gymbex.com</p>
         <p>Nasze motto: Gymbex is your second home!</p>

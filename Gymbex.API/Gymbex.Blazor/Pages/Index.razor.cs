@@ -1,5 +1,6 @@
 ﻿using Gymbex.Blazor.Components;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Gymbex.Blazor.Pages
 {

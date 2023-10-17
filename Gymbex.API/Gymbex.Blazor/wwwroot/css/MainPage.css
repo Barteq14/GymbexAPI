@@ -208,15 +208,52 @@ table > thead {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-
+.container-fluid{
+    padding-left:0px;
+    padding-right:0px;
+}
 
 
 /*Rejestracja/Logowanie*/
-.registration-class {
+.banner-for-register-login {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     color: white;
-    position: absolute;
-    top: 20px;
-    right: 35px;
+    gap: 20px;
+    background-color: rebeccapurple;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.registration-class {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+    .registration-class p {
+        margin: 10px;
+        text-shadow: 1px 1px 2px red, 0 0 25px blue, 0 0 5px red;
+    }
+
+.customer-header{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:25px;
+}
+
+.customer-header a{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:20px;
+    margin:25px;
+    left:10px;
+    position:absolute;
+    text-decoration:none;
+    color:white;
 }
 
 .register-login-container {
@@ -224,10 +261,10 @@ table > thead {
     height: 800px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    background-image:url("../Images/background.png");
-    gap:100px;
-    padding:80px;
-    color:white;
+    background-image: url("../Images/background.png");
+    gap: 100px;
+    padding: 80px;
+    color: white;
 }
 
 .signup-class{

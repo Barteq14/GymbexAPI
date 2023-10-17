@@ -8,6 +8,7 @@ using Gymbex.Application.Security;
 using Gymbex.Core.Entities;
 using Gymbex.Core.Exceptions;
 using Gymbex.Core.Repositories;
+using Gymbex.Core.ValueObjects;
 
 namespace Gymbex.Application.Commands.Customers.Handlers
 {
@@ -41,7 +42,7 @@ namespace Gymbex.Application.Commands.Customers.Handlers
             var hashedPassword = _passwordManager.Secure(password);
 
             var user = new Customer(command.CustomerId, command.Username, hashedPassword, command.FullName,
-                command.Email, command.PhoneNumber, command.Role, command.TicketId);
+                command.Email, command.PhoneNumber, string.IsNullOrEmpty(command.Role) ? Role.User() : command.Role, command.TicketId);
 
             await _customerRepository.AddAsync(user);
         }

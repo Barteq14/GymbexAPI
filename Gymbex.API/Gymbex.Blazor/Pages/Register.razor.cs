@@ -66,7 +66,6 @@ namespace Gymbex.Blazor.Pages
                 //var identity = new ClaimsIdentity(claims, "custom");
                 //var user = new ClaimsPrincipal(identity);
 
-                //AuthenticationStateProvider.SetUser(user);
 
                 // Przenieś użytkownika na stronę po zalogowaniu
                 NavigationManager.NavigateTo("/login-success");

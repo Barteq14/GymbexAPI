@@ -1,0 +1,22 @@
+﻿@inherits ComponentBase
+<div class="banner-for-register-login">
+    <div class="customer-header">
+        <a href="/">Gymbex</a>
+    </div>
+    <div class="registration-class">
+        <AuthorizeView>
+            <Authorized>
+                <p>
+                    Witaj, @context.User.Identity.Name
+                </p>
+                <button type="button" class="btn btn-light" @onclick="Logout">Informacje o koncie</button>
+                <button type="button" class="btn btn-light" @onclick="Logout">Moje zajęcia</button>
+                <button type="button" class="btn btn-warning" @onclick="Logout">Wyloguj</button>
+            </Authorized>
+            <NotAuthorized>
+                <button type="button" class="btn btn-primary" @onclick="Register">Rejestracja</button>
+                <button type="button" class="btn btn-success" @onclick="Login">Logowanie</button>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
