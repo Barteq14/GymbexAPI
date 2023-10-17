@@ -56,12 +56,12 @@ POST {{url}}/api/customer/sign-up
 Content-Type: application/json
 
 {
-    "username": "AdminSon",
-    "password": "secured-adminson",
-    "fullname": "Admin Son",
-    "email": "adminson@gymbex.io",
+    "username": "UserSon",
+    "password": "secured-user",
+    "fullname": "User Son",
+    "email": "userson@gymbex.io",
     "phoneNumber": "662113523",
-    "role": "Administrator",
+    "role": "User",
     "ticketId": null
 }
 
@@ -70,8 +70,8 @@ POST {{url}}/api/customer/sign-in
 Content-Type: application/json
 
 {
-    "email": "adminson@gymbex.io",
-    "password": "secured-adminson"
+    "email": "userson@gymbex.io",
+    "password": "secured-user"
 }
 
 ###

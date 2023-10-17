@@ -42,7 +42,7 @@ namespace Gymbex.Application.Commands.Customers.Handlers
                 throw new InvalidCredentialException();
             }
 
-            var accessToken = _authenticator.CreateToken(customer.Id.Id, customer.Role);
+            var accessToken = _authenticator.CreateToken(customer.Id.Id, customer.Role, customer.Email);
             _tokenStorage.Set(accessToken);
         }
     }

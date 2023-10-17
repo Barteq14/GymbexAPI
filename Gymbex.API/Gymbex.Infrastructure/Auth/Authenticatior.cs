@@ -32,7 +32,7 @@ namespace Gymbex.Infrastructure.Auth
             _audience = options.Value.Audience;
         }
 
-        public JwtDto CreateToken(Guid customerId, Role role)
+        public JwtDto CreateToken(Guid customerId, Role role, Email email)
         {
             var now = DateTime.UtcNow;
             var expire = now.Add(_expire);
@@ -41,7 +41,10 @@ namespace Gymbex.Infrastructure.Auth
             {
                 new(JwtRegisteredClaimNames.Sub, customerId.ToString()),
                 new(JwtRegisteredClaimNames.UniqueName, customerId.ToString()),
-                new Claim(ClaimTypes.Role, role)
+                new Claim(ClaimTypes.Role, role.ToString()),
+                new Claim(ClaimTypes.Email, email.ToString()),
+                new Claim(ClaimTypes.Name, email.ToString()),
+                new Claim("email", email.ToString())
             };
 
             var jwt = new JwtSecurityToken(_issuer, _audience, claims, now, expire, _signingCredentials);

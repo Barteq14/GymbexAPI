@@ -3,6 +3,7 @@ using Gymbex.Application.Commands.Customers;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Customers;
 using Gymbex.Application.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,0 +1,32 @@
+﻿.notification-box {
+    min-width: 400px;
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    color: black;
+    font-size: 48px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    border: 10px solid navajowhite;
+    border-radius: 8px;
+    background-color: antiquewhite;
+    text-align: end;
+    padding: 20px;
+}
+
+.notification-title{
+    font-size:32px;
+}
+
+.notification-content{
+    font-size:24px;
+}
+
+.notification-button-box{
+    display:flex;
+    justify-content:end;
+}
+
+.notification-button {
+    width: 40%;
+}
