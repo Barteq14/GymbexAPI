@@ -1,15 +1,8 @@
 ﻿@page "/"
 @page "/{RedirectInfo}"
+@inject IJSRuntime JSRuntime
 
-@if (!string.IsNullOrEmpty(RedirectInfo) && RedirectInfo.Equals("registration-success"))
-{
-    <Gymbex.Blazor.Components.Notification VisibleTitle=true Title="Powiadomienie" VisibleNotification=true VisibleContent=true Content="Rejestracja powiodła się!" />
-}
 
-@if (!string.IsNullOrEmpty(RedirectInfo) && RedirectInfo.Equals("login-success"))
-{
-    <Gymbex.Blazor.Components.Notification VisibleTitle=true Title="Powiadomienie" VisibleNotification=true VisibleContent=true Content="Jesteś zalogowany!" />
-}
 <div class="main-content">
     <div class="quarter">
         <p>Trenuj kiedy chcesz!</p>

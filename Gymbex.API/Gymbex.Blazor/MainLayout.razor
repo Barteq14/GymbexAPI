@@ -2,19 +2,19 @@
 @inherits LayoutComponentBase
 @using Microsoft.AspNetCore.Components.Authorization
 @inject AuthenticationStateProvider AuthenticationStateProvider
-
-
 <div class="container-fluid">
     <CascadingAuthenticationState>
     <AuthenticationBanner />
+
     <div class="banner">
         <p class="banner-title"><a href="/"> Gymbex </a> &nbsp;  is your second HOME.</p>
     </div>
 
     <div class="header-container">
-        <div class="flex-item firts-column"> <a href="/activities"> O nas</a> </div>
-        <div class="flex-item second-column"> <a href="/activities">Kontakt</a> </div>
-        <div class="flex-item third-column"> <a href="/activities">Dostępne zajęcia</a> </div>
+            <div class="flex-item firts-column" @onclick="ShowActivities">  O nas </div>
+            <div class="flex-item second-column" @onclick="ShowActivities"> Nasi specjaliści </div>
+            <div class="flex-item third-column" @onclick="ShowActivities"> Dostępne zajęcia </div>
+            <div class="flex-item third-column" @onclick="ShowActivities"> Karnety </div>
     </div>
     <main>
         @Body

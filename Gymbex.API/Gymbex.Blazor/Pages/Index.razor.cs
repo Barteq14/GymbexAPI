@@ -1,6 +1,7 @@
 ﻿using Gymbex.Blazor.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 
 namespace Gymbex.Blazor.Pages
 {
@@ -9,5 +10,12 @@ namespace Gymbex.Blazor.Pages
         [Parameter] public string RedirectInfo { get; set; } 
         [Inject] public Notification Notification { get; set; }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await JSRuntime.InvokeVoidAsync("scrollToTop");
+            }
+        }
     }
 }

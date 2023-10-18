@@ -70,8 +70,8 @@ POST {{url}}/api/customer/sign-in
 Content-Type: application/json
 
 {
-    "email": "userson@gymbex.io",
-    "password": "secured-user"
+    "email": "kaka@gymbex.io",
+    "password": "Password123"
 }
 
 ###

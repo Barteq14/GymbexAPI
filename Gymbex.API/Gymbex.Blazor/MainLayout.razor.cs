@@ -7,9 +7,10 @@ namespace Gymbex.Blazor
     public partial class MainLayout
     {
         [Inject] public NavigationManager NavigationManager { get; set; }
-        private void RedirectToSignUp()
+        private void ShowActivities()
         {
-            NavigationManager.NavigateTo("/signup");
+            NavigationManager.NavigateTo("/activities");
         }
+
     }
 }

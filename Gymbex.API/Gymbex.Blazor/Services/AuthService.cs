@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text;
+using Gymbex.Blazor.ValueObjects;
 
 namespace Gymbex.Blazor.Services
 {
@@ -23,6 +24,8 @@ namespace Gymbex.Blazor.Services
 
         public async Task<TokenJWT> Login(SignInCommand loginModel)
         {
+            loginModel.Email = new Email(loginModel.Email);
+
             var response = await _httpClient.PostAsJsonAsync($"{API}api/customer/sign-in", loginModel);
             TokenJWT result = new TokenJWT();
 

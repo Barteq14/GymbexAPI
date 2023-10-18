@@ -1,4 +1,6 @@
-﻿namespace Gymbex.Blazor.Models
+﻿using Gymbex.Blazor.ValueObjects;
+
+namespace Gymbex.Blazor.Models
 {
     public class SignInCommand
     {
