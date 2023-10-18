@@ -3,8 +3,7 @@
 @using Microsoft.AspNetCore.Components.Forms
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
-
-<h1>Register</h1>
+@inject IJSRuntime JSRuntime
 
 @if (ShowErrors)
 {
@@ -15,40 +14,42 @@
         }
     </div>
 }
+<div class="register-login-container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rejestracja</h5>
+            <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Please enter your details</h5>
-        <EditForm Model="RegisterModel" OnValidSubmit="HandleRegistration">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
-                <ValidationMessage For="@(() => RegisterModel.Email)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
-                <ValidationMessage For="@(() => RegisterModel.Password)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Nazwa użytkownika</label>
-                <InputText Id="username" type="text" class="form-control" @bind-Value="RegisterModel.Username" />
-                <ValidationMessage For="@(() => RegisterModel.Username)" />
-            </div>
-            <div class="form-group">
-                <label for="fullname">Imię i nazwisko</label>
-                <InputText Id="fullname" type="text" class="form-control" @bind-Value="RegisterModel.Fullname" />
-                <ValidationMessage For="@(() => RegisterModel.Fullname)" />
-            </div>
-            <div class="form-group">
-                <label for="phone">Telefon</label>
-                <InputText Id="phone" type="tel" class="form-control" @bind-Value="RegisterModel.PhoneNumber" />
-                <ValidationMessage For="@(() => RegisterModel.PhoneNumber)" />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </EditForm>
+                <div class="form-group">
+                    <label for="email"> Email</label>
+                    <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
+                    <ValidationMessage For="@(() => RegisterModel.Email)" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Hasło</label>
+                    <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterModel.Password" />
+                    <ValidationMessage For="@(() => RegisterModel.Password)" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Nazwa użytkownika</label>
+                    <InputText Id="username" type="text" class="form-control" @bind-Value="RegisterModel.Username" />
+                    <ValidationMessage For="@(() => RegisterModel.Username)" />
+                </div>
+                <div class="form-group">
+                    <label for="fullname">Imię i nazwisko</label>
+                    <InputText Id="fullname" type="text" class="form-control" @bind-Value="RegisterModel.Fullname" />
+                    <ValidationMessage For="@(() => RegisterModel.Fullname)" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <InputText Id="phone" type="tel" class="form-control" @bind-Value="RegisterModel.PhoneNumber" />
+                    <ValidationMessage For="@(() => RegisterModel.PhoneNumber)" />
+                </div>
+                <div>&nbsp;</div>
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+            </EditForm>
+        </div>
     </div>
 </div>

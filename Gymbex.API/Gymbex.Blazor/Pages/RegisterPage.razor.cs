@@ -1,4 +1,5 @@
 ﻿using Gymbex.Blazor.Models;
+using Microsoft.JSInterop;
 
 namespace Gymbex.Blazor.Pages
 {
@@ -7,6 +8,14 @@ namespace Gymbex.Blazor.Pages
         private Customer RegisterModel = new Customer();
         private bool ShowErrors;
         private IEnumerable<string>? Errors;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await JSRuntime.InvokeVoidAsync("scrollToDiv");
+            }
+        }
 
         private async Task HandleRegistration()
         {

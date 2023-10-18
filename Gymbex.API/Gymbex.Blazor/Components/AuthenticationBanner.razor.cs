@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.JSInterop;
 using System.Security.Claims;
 
 namespace Gymbex.Blazor.Components
@@ -14,12 +15,12 @@ namespace Gymbex.Blazor.Components
             NavigationManager.NavigateTo("/logout",true);
         }
 
-        private void Register()
+        private async Task Register()
         {
             NavigationManager.NavigateTo("/register");
         }
 
-        private void Login()
+        private async Task Login()
         {
             NavigationManager.NavigateTo("/login");
         }
