@@ -6,6 +6,7 @@ using Gymbex.Application.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Authentication;
 
 namespace Gymbex.API.Controllers
 {
@@ -63,11 +64,19 @@ namespace Gymbex.API.Controllers
         }
 
         [HttpPost("sign-in")]
-        public async Task<ActionResult<JwtDto>> Post([FromBody] SignIn command)
+        public async Task<ActionResult<LoginResult>> Post([FromBody] SignIn command)
         {
-            await _signInCommandHandler.HandlerExecuteAsync(command);
-            var jwt = _tokenStorage.GetJwt();
-            return Ok(jwt);
+            try
+            {
+                await _signInCommandHandler.HandlerExecuteAsync(command);
+                var jwt = _tokenStorage.GetJwt();
+                return Ok(new LoginResult { Token = jwt.AccessToken, IsSuccess = true});
+            }
+            catch (InvalidCredentialException ex)
+            {
+                return BadRequest(new LoginResult { IsSuccess = false, Error = "Nieprawidłowy login lub hasło" });
+            }
+            
         }
 
         [HttpDelete("{customerId:guid}")]

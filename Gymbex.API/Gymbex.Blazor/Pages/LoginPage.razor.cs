@@ -24,13 +24,13 @@ namespace Gymbex.Blazor.Pages
 
             var result = await AuthService.Login(loginModel);
 
-            if (!string.IsNullOrEmpty(result.AccessToken))
+            if (!string.IsNullOrEmpty(result.Token))
             {
                 NavigationManager.NavigateTo("/",true);
             }
             else
             {
-                Error = "Zły login lub hasło. Proszę spróbuj ponownie.";
+                Error = result.Error;
                 ShowErrors = true;
             }
         }
