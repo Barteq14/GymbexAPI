@@ -1,13 +1,25 @@
 ﻿@page "/myAccount/{CustomerId:guid}"
 
+
+<div class="account-banner">
+    <h1>Twoje konto: @CustomerDto.Username</h1>
+</div>
 <div class="account-box">
     <div class="account-left-content"> 
         <div class="account-image">
 
         </div>
-        <p>Imie i nazwisko usera</p>
+        <p>@CustomerDto.FullName</p>
     </div>
     <div class="account-right-content">
-        prawa
+        <h3>Szczegółowe informacje</h3>
+        <p>Imię i nazwisko: <span>@CustomerDto.FullName</span></p>
+        <p>Email: <span>@CustomerDto.Email</span></p>
+        <p>Nazwa użytkownika: <span>@CustomerDto.Username</span></p>
+        <p>Telefon komórkowy: <span>@CustomerDto.PhoneNumber</span></p>
+        <button type="button" class="btn btn-primary">Edytuj dane</button>
     </div>
+</div>
+<div class="account-footer">
+    
 </div>
