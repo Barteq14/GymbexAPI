@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gymbex.Application.Dtos
 {
-    public sealed class JwtDto
+    public sealed class RegisterResult
     {
-        public string AccessToken { get; set; }
-        public string? Error { get; set; }
+        public bool IsSuccess { get; set; }
+        public string Error { get; set; }
 
     }
 }

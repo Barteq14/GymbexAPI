@@ -5,7 +5,7 @@ namespace Gymbex.Blazor.Services
     public interface IAuthService
     {
         Task<RegisterResult> Register(Customer registerModel);
-        Task<TokenJWT> Login(SignInCommand loginModel);
+        Task<LoginResult> Login(SignInCommand loginModel);
         Task Logout();
     }
 }

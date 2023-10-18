@@ -3,9 +3,11 @@ using Gymbex.Application.Commands.Customers;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Customers;
 using Gymbex.Application.Security;
+using Gymbex.Core.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Authentication;
 
 namespace Gymbex.API.Controllers
 {
@@ -55,19 +57,38 @@ namespace Gymbex.API.Controllers
         }
 
         [HttpPost("sign-up")]
-        public async Task<ActionResult> Post([FromBody] SignUp command)
+        public async Task<ActionResult<RegisterResult>> Post([FromBody] SignUp command)
         {
-            command = command with { CustomerId = Guid.NewGuid() };
-            await _signUpCommandHandler.HandlerExecuteAsync(command);
-            return Ok();
+            try
+            {
+                command = command with { CustomerId = Guid.NewGuid() };
+                await _signUpCommandHandler.HandlerExecuteAsync(command);
+                return Ok(new RegisterResult { IsSuccess = true });
+            }
+            catch (UserWirhThisUsernameIsAlreadyExistException)
+            {
+                return BadRequest(new RegisterResult { IsSuccess = false, Error = "Nazwa użytkownika jest już zajęta" });
+            }
+            catch (UserWithThisEmailIsAlreadyExistException)
+            {
+                return BadRequest(new RegisterResult { IsSuccess = false, Error = "Email jest już zajęty" });
+            }
         }
 
         [HttpPost("sign-in")]
-        public async Task<ActionResult<JwtDto>> Post([FromBody] SignIn command)
+        public async Task<ActionResult<LoginResult>> Post([FromBody] SignIn command)
         {
-            await _signInCommandHandler.HandlerExecuteAsync(command);
-            var jwt = _tokenStorage.GetJwt();
-            return Ok(jwt);
+            try
+            {
+                await _signInCommandHandler.HandlerExecuteAsync(command);
+                var jwt = _tokenStorage.GetJwt();
+                return Ok(new LoginResult { Token = jwt.AccessToken, IsSuccess = true});
+            }
+            catch (InvalidCredentialException)
+            {
+                return BadRequest(new LoginResult { IsSuccess = false, Error = "Nieprawidłowy login lub hasło" });
+            }
+            
         }
 
         [HttpDelete("{customerId:guid}")]

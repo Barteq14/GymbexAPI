@@ -5,16 +5,13 @@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
-@if (ShowErrors)
-{
-    <div class="alert alert-danger" role="alert">
-        @foreach (var error in Errors!)
-        {
-            <p>@error</p>
-        }
-    </div>
-}
 <div class="register-login-container">
+    @if (ShowErrors)
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>@Error</p>
+        </div>
+    }
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Rejestracja</h5>

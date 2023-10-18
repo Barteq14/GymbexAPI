@@ -56,10 +56,10 @@ POST {{url}}/api/customer/sign-up
 Content-Type: application/json
 
 {
-    "username": "UserSon",
+    "username": "Kaka",
     "password": "secured-user",
-    "fullname": "User Son",
-    "email": "userson@gymbex.io",
+    "fullname": "Kaka Unaka",
+    "email": "kaka@gymbex.io",
     "phoneNumber": "662113523",
     "role": "User",
     "ticketId": null
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 {
     "email": "kaka@gymbex.io",
-    "password": "Password123"
+    "password": "Passwo"
 }
 
 ###

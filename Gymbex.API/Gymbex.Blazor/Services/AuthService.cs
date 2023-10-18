@@ -22,24 +22,32 @@ namespace Gymbex.Blazor.Services
             _localStorage = localStorage;
         }
 
-        public async Task<TokenJWT> Login(SignInCommand loginModel)
+        public async Task<LoginResult> Login(SignInCommand loginModel)
         {
             loginModel.Email = new Email(loginModel.Email);
 
             var response = await _httpClient.PostAsJsonAsync($"{API}api/customer/sign-in", loginModel);
-            TokenJWT result = new TokenJWT();
+            LoginResult result = new LoginResult();
 
             if (response.IsSuccessStatusCode)
             {
-                var loginResult = await response.Content.ReadFromJsonAsync<TokenJWT>();
-                var token = loginResult.AccessToken;
+                var loginResult = await response.Content.ReadFromJsonAsync<LoginResult>();
+                var token = loginResult.Token;
 
                 await _localStorage.SetItemAsync("authToken", token);
-                result.AccessToken = token;
+                
+                result.IsSuccess = response.IsSuccessStatusCode;
+                result.Token = token;
             }
             else
             {
-                result.AccessToken = null;
+                var loginResult = await response.Content.ReadFromJsonAsync<LoginResult>();
+
+                result.IsSuccess = response.IsSuccessStatusCode;
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    result.Error = loginResult.Error;
+                }
             }
             return result;
         }
@@ -47,9 +55,11 @@ namespace Gymbex.Blazor.Services
         public async Task<RegisterResult> Register(Customer registerModel)
         {
             var result = await _httpClient.PostAsJsonAsync($"{API}api/customer/sign-up", registerModel);
-            if (!result.IsSuccessStatusCode)
-                return new RegisterResult { Successful = true, Errors = null };
-            return new RegisterResult { Successful = false, Errors = new List<string> { "Error occured" } };
+            var registerResult = await result.Content.ReadFromJsonAsync<RegisterResult>();
+
+            if (result.IsSuccessStatusCode)
+                return new RegisterResult { IsSuccess = registerResult.IsSuccess };
+            return new RegisterResult { IsSuccess = registerResult.IsSuccess, Error = registerResult.Error };
         }
 
         public async Task Logout()
