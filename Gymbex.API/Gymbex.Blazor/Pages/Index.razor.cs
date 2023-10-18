@@ -9,6 +9,8 @@ namespace Gymbex.Blazor.Pages
     {
         [Parameter] public string RedirectInfo { get; set; } 
         [Inject] public Notification Notification { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
+
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -16,6 +18,10 @@ namespace Gymbex.Blazor.Pages
             {
                 await JSRuntime.InvokeVoidAsync("scrollToTop");
             }
+        }
+        private void ShowActivities()
+        {
+            NavigationManager.NavigateTo("/activities");
         }
     }
 }

@@ -1,6 +1,6 @@
-1. Na pewno potrzebujê zwracaæ oprócz tokena przy logowaniu jeszcze czegoœ, np jakiœ errorów jeœli bêd¹
+1. Na pewno potrzebujê zwracaæ oprócz tokena przy logowaniu jeszcze czegoœ, np jakiœ errorów jeœli bêd¹	(+++)
 2. to samo przy rejestracji, poniewa¿ teraz jest fajnie zrobione w API wyj¹tki rzucane ale do WEB nic nie przechodzi, ¿adne
-info o b³êdach,
+info o b³êdach	(+++)
 3. Poprawiæ rejestracjê, aby nie trzeba by³o podawaæ tylu danych (chocia¿ nie wiem)
 4. Poprawiæ wyœwietlanie name z identity	(+++)
 5. Wyœwietliæ userowi jego dane o koncie (strona informacje o koncie)

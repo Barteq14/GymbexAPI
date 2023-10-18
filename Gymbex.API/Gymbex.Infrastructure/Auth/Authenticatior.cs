@@ -43,7 +43,8 @@ namespace Gymbex.Infrastructure.Auth
                 new(JwtRegisteredClaimNames.UniqueName, customerId.ToString()),
                 new Claim(ClaimTypes.Role, role.ToString()),
                 new Claim(ClaimTypes.Email, email.ToString()),
-                new Claim(ClaimTypes.Name, email)
+                new Claim(ClaimTypes.Name, email),
+                new Claim("CustomerId", customerId.ToString())
             };
 
             var jwt = new JwtSecurityToken(_issuer, _audience, claims, now, expire, _signingCredentials);

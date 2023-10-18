@@ -272,3 +272,46 @@ table > thead {
 .card{
     width:25%;
 }
+
+
+/*Main box*/
+.main-box{
+    width:100%;
+    height:auto;
+}
+
+
+/*Account*/
+
+.account-box{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    background-color:whitesmoke;
+    width:100%;
+    height:500px;
+}
+
+.account-left-content {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.account-right-content {
+    justify-content:flex-start;
+}
+
+.account-left-content, .account-right-content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 100px;
+}
+
+.account-image {
+    width: 25%;
+    border: 1px solid black;
+    background-image: url("../Images/man-303792_1920.png");
+    height: 250px;
+    background-size: cover; /* Dopasuj tło do rozmiaru kontenera */
+    background-position: center; /* Wyrównaj tło do środka kontenera */
+}
