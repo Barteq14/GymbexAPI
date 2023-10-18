@@ -55,9 +55,11 @@ namespace Gymbex.Blazor.Services
         public async Task<RegisterResult> Register(Customer registerModel)
         {
             var result = await _httpClient.PostAsJsonAsync($"{API}api/customer/sign-up", registerModel);
-            if (!result.IsSuccessStatusCode)
-                return new RegisterResult { Successful = true, Errors = null };
-            return new RegisterResult { Successful = false, Errors = new List<string> { "Error occured" } };
+            var registerResult = await result.Content.ReadFromJsonAsync<RegisterResult>();
+
+            if (result.IsSuccessStatusCode)
+                return new RegisterResult { IsSuccess = registerResult.IsSuccess };
+            return new RegisterResult { IsSuccess = registerResult.IsSuccess, Error = registerResult.Error };
         }
 
         public async Task Logout()

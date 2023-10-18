@@ -7,7 +7,7 @@ namespace Gymbex.Blazor.Pages
     {
         private Customer RegisterModel = new Customer();
         private bool ShowErrors;
-        private IEnumerable<string>? Errors;
+        private string Error;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -23,13 +23,13 @@ namespace Gymbex.Blazor.Pages
 
             var result = await AuthService.Register(RegisterModel);
 
-            if (result.Successful)
+            if (result.IsSuccess)
             {
                 NavigationManager.NavigateTo("/login");
             }
             else
             {
-                Errors = result.Errors;
+                Error = result.Error;
                 ShowErrors = true;
             }
         }
