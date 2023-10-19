@@ -17,12 +17,13 @@ namespace Gymbex.API.Controllers
     {
         private readonly ICommandHandler<SignUp> _signUpCommandHandler;
         private readonly ICommandHandler<DeleteCustomer> _deleteCustomerCommandHandler;
+        private readonly ICommandHandler<UpdateCustomer> _updateCustomerCommandHandler;
         private readonly IQueryHandler<GetCustomer, CustomerDto> _getCustomerByIdQueryHandler;
         private readonly IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> _getCustomersQueryHandler;
         private readonly ICommandHandler<SignIn> _signInCommandHandler;
         private readonly ITokenStorage _tokenStorage;
 
-        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage)
+        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _deleteCustomerCommandHandler = deleteCustomerCommandHandler;
@@ -30,6 +31,7 @@ namespace Gymbex.API.Controllers
             _getCustomersQueryHandler = getCustomersQueryHandler;
             _signInCommandHandler = signInCommandHandler;
             _tokenStorage = tokenStorage;
+            _updateCustomerCommandHandler = updateCustomerCommandHandler;
         }
 
         [HttpGet]
@@ -97,6 +99,14 @@ namespace Gymbex.API.Controllers
             var command = new DeleteCustomer(customerId);
             await _deleteCustomerCommandHandler.HandlerExecuteAsync(command);
             return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<UpdateCustomerResult>> Put([FromBody] UpdateCustomer command)
+        {
+            await _updateCustomerCommandHandler.HandlerExecuteAsync(command);
+
+            return Ok(new UpdateCustomerResult { IsSuccess = true});
         }
     }
 }
