@@ -66,6 +66,16 @@ Content-Type: application/json
 }
 
 ###
+PUT {{url}}/api/customer/{{customerId}}
+Content-Type: application/json
+
+{
+    "fullname": "",
+    "username": "",
+    "phoneNumber": "111222333"
+}
+
+###
 POST {{url}}/api/customer/sign-in
 Content-Type: application/json
 

@@ -1,5 +1,7 @@
 ﻿@page "/myAccount/{CustomerId:guid}"
-
+@using Microsoft.AspNetCore.Components.Forms
+@using Gymbex.Blazor.Components
+@inject IJSRuntime JSRuntime
 
 <div class="account-banner">
     <h1>Twoje konto: @CustomerDto.Username</h1>
@@ -17,9 +19,33 @@
         <p>Email: <span>@CustomerDto.Email</span></p>
         <p>Nazwa użytkownika: <span>@CustomerDto.Username</span></p>
         <p>Telefon komórkowy: <span>@CustomerDto.PhoneNumber</span></p>
-        <button type="button" class="btn btn-primary">Edytuj dane</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="@ModalClass" @onclick="ShowModal" data-bs-target="@ModalId">Edytuj dane</button>
     </div>
 </div>
 <div class="account-footer">
     
 </div>
+
+<ModalBlazor @ref="ModalBlazor" ModalClass="@ModalClass" Title="Edycja danych" OnSave="SaveHandler" ModalId="@ModalId">
+    <BodyContent>
+        <EditForm Model="ModelToUpdate" OnValidSubmit="SaveHandler">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+            <div class="form-group">
+                <label for="fullname"> Imię i nazwisko</label>
+                <InputText Id="fullname" class="form-control" @bind-Value="ModelToUpdate.Fullname" />
+                <ValidationMessage For="@(() => ModelToUpdate.Fullname)" />
+            </div>
+            <div class="form-group">
+                <label for="username">Nazwa użytkownika</label>
+                <InputText Id="username" type="text" class="form-control" @bind-Value="ModelToUpdate.Username" />
+                <ValidationMessage For="@(() => ModelToUpdate.Username)" />
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon</label>
+                <InputText Id="phone" type="text" class="form-control" @bind-Value="ModelToUpdate.Phone" />
+                <ValidationMessage For="@(() => ModelToUpdate.Phone)" />
+            </div>
+        </EditForm>
+    </BodyContent>
+</ModalBlazor>

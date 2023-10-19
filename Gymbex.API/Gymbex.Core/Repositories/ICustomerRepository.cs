@@ -15,5 +15,6 @@ namespace Gymbex.Core.Repositories
         Task<Customer> GetUserByEmailAsync(Email email);
         Task<Customer> GetUserByUsernameAsync(Username username);
         Task DeleteUserAsync(Customer customer);
+        Task UpdateUserAsync(Customer customer);
     }
 }

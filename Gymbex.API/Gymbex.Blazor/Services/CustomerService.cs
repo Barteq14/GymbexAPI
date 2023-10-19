@@ -26,5 +26,25 @@ namespace Gymbex.Blazor.Services
 
             return null;
         }
+
+        public async Task<UpdateResultCustomer> UpdateCustomerDtoAsync(UpdateCustomer model)
+        {
+            UpdateResultCustomer updateResultCustomer = new UpdateResultCustomer();
+            var response = await _httpClient.PutAsJsonAsync($"{API}api/customer", model);
+
+            if (response.IsSuccessStatusCode)
+            {
+                updateResultCustomer.IsSuccess = true;
+            }
+
+            var updateResult = await response.Content.ReadFromJsonAsync<UpdateResultCustomer>();
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                updateResultCustomer.IsSuccess = false;
+                updateResultCustomer.Error = updateResult.Error;
+            }
+
+            return updateResultCustomer;
+        }
     }
 }

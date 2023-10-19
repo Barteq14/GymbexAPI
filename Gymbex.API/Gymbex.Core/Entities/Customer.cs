@@ -62,5 +62,12 @@ namespace Gymbex.Core.Entities
 
         public static Customer Create(CustomerId id, Username username, Password password, Fullname fullname, Email email, PhoneNumber phoneNumber, Role role, TicketId? ticketId)
             => new(id, username, password, fullname, email, phoneNumber, role, ticketId);
+
+        public void UpdateCustomer(string fullname, string username, string phone)
+        {
+            Fullname = fullname ?? Fullname;
+            Username = username ?? Username;
+            PhoneNumber = phone ?? PhoneNumber;
+        }
     }
 }
