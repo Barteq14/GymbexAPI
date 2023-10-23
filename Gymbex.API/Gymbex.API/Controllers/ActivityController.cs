@@ -2,6 +2,7 @@
 using Gymbex.Application.Commands.Activities;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Activities;
+using Gymbex.Core.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -68,7 +69,6 @@ namespace Gymbex.API.Controllers
             return NoContent();
         }
 
-        [Authorize(Policy = "is-admin")]
         [SwaggerOperation("Change activity date with a new date value")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] ChangeDateForActivity command)
@@ -86,17 +86,32 @@ namespace Gymbex.API.Controllers
             return NoContent();
         }
 
-        [Authorize]
         [SwaggerOperation("Registration for activity")]
         [HttpPost("registration-activity/{activityId:guid}")]
-        public async Task<ActionResult> ReserveActivity([FromRoute] Guid activityId, RegistrationForActivity command)
+        public async Task<ActionResult<ReservationResponseDto>> ReserveActivity([FromRoute] Guid activityId, RegistrationForActivity command)
         {
-            var currentCustomerId = Guid.Parse(HttpContext.User.Identity.Name);
+            //var currentCustomerId = Guid.Parse(HttpContext.User.Identity.Name);
 
-            command = command with { ActivityId = activityId, CustomerId = currentCustomerId};
-           
-            await _registrationForActivityCommandHandler.HandlerExecuteAsync(command);
-            return NoContent();
+            //command = command with { ActivityId = activityId, CustomerId = currentCustomerId};
+
+            try
+            {
+                await _registrationForActivityCommandHandler.HandlerExecuteAsync(command);
+                return Ok(new ReservationResponseDto { IsSuccess = true, Message = "Właśnie zapisałeś się na zajęcia."});
+            }
+            catch (ActivityNotFoundException)
+            {
+                return BadRequest(new ReservationResponseDto { IsSuccess = false, Error = "Nie znaleziono takich zajęć" });
+            }
+            catch (CustomerNotFoundException)
+            {
+                return BadRequest(new ReservationResponseDto { IsSuccess = false, Error = "Nie znaleziono użytkownika" });
+            }
+            catch (ReservationAlreadyExistsException)
+            {
+                return BadRequest(new ReservationResponseDto { IsSuccess = false, Error = "Reserwacja na te zajęcia już istnieje" });
+            }
+
         }
     }
 }

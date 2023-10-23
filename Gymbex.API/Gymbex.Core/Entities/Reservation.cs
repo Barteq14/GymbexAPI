@@ -33,5 +33,7 @@ namespace Gymbex.Core.Entities
             CustomerId = customerId;
             ActivityId = activityId;
         }
+
+       
     }
 }
