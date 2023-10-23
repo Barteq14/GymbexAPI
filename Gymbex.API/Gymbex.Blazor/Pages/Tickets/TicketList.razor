@@ -1,0 +1,29 @@
+﻿@page "/tickets"
+@using Gymbex.Blazor.Components
+
+<div class="content-container">
+    <div class="content-box">
+
+
+        <h3>Dostępne karnety</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Rodzaj karnetu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in TicketsList)
+                {
+                    <tr>
+                        <td>@item.KindDisplayName</td>
+                        <td>
+                            <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert">Wybierz</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

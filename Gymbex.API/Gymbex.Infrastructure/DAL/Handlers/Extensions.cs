@@ -37,9 +37,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
             return new TicketDto()
             {
                 TicketId = ticket.Id,
-                TicketKindEnum = ticket.Kind,
-                KindDisplayName = ticket.KindDescription,
-                Customers = ticket.Customers.Select(x => x.AsCustomerDto()).ToList(),
+                KindDisplayName = ticket.KindDescription
             };
         }
     }
