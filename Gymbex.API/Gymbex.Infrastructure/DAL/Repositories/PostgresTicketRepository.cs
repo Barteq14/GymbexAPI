@@ -44,5 +44,8 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             _context.Tickets.Update(ticket);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Ticket> GetByIdAsync(Guid id)
+            => await _context.Tickets.SingleOrDefaultAsync(x => x.Id == new TicketId(id));
     }
 }

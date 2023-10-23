@@ -69,5 +69,10 @@ namespace Gymbex.Core.Entities
             Username = username ?? Username;
             PhoneNumber = phone ?? PhoneNumber;
         }
+
+        public void SetTicket(Guid ticketId)
+        {
+            TicketId = new TicketId(ticketId);
+        }
     }
 }

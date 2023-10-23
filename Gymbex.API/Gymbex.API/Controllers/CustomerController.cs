@@ -108,5 +108,11 @@ namespace Gymbex.API.Controllers
 
             return Ok(new UpdateCustomerResult { IsSuccess = true});
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] )
+        {
+            return Ok();
+        }
     }
 }
