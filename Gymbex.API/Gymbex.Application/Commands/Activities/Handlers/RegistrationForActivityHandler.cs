@@ -25,6 +25,7 @@ namespace Gymbex.Application.Commands.Activities.Handlers
 
         public async Task HandlerExecuteAsync(RegistrationForActivity command)
         {
+
             var activity = await _activityRepository.GetActivityByIdAsync(command.ActivityId);
             if(activity is null)
             {

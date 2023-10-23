@@ -1,0 +1,8 @@
+﻿@inject IJSRuntime JSRuntime
+
+
+<div class="@(Class) alert-dismissible" role="alert" @ref="alertElement" style="display: @(IsVisible ? "block" : "none")">
+    @Content
+</div>
+
+

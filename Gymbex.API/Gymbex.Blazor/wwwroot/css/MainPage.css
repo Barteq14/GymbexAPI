@@ -92,6 +92,8 @@
         color: white;
     }
 
+
+/*Activities*/
 .activities-header{
     width:100%;
     display:flex;
@@ -103,28 +105,44 @@
     margin-bottom:30px;
 }
 
-.activities{
+.activities {
     background-image: url("../Images/man.jpg");
-    width:100%;
-    padding:30px 0px 50px 0px;
+    width: 100%;
+    height:813px;
+    padding: 50px;
+    background-size: cover; /* Dopasuj tło do rozmiaru kontenera */
+    background-position: center; /* Wyrównaj tło do środka kontenera */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
 .activities-box {
     width: 80%;
-    height: 80%;
+    height: 60%;
     display: flex;
     background-color: goldenrod;
     margin-right: auto;
     margin-left: auto;
-    padding: 10px;
+    padding: 100px;
     border: 10px solid darkgoldenrod;
-    border-radius:10px;
-    font-size:24px;
+    border-radius: 10px;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:50px;
 }
 
-.activity-table{
-    width:100%;
-}
+    .activities-box h3{
+        font-size:48px
+    }
+
+    .activity-table {
+        width: 100%;
+    }
 
 .activity-row{
     justify-content:space-around;
@@ -352,4 +370,23 @@ table > thead {
     width: 100%;
     height: 100px;
     background-color: whitesmoke;
+}
+
+/*My activities*/
+
+.my-activities-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:80%;
+    height:auto;
+    border:1px solid black;
+}
+
+.alerts-box{
+    width:80%;
+    font-size:24px;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
 }
