@@ -18,5 +18,10 @@ namespace Gymbex.Blazor.Pages.Tickets
         {
             TicketsList = await CustomerService.GetTickets();
         }
+
+        private async Task ChooseTicket(Guid ticketId)
+        {
+
+        }
     }
 }

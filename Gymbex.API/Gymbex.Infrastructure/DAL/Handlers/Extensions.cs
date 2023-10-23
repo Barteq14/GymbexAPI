@@ -28,7 +28,8 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 Username = customer.Username,
                 Email = customer.Email,
                 FullName = customer.Fullname,
-                PhoneNumber = customer.PhoneNumber
+                PhoneNumber = customer.PhoneNumber,
+                TicketId = customer.TicketId,
             };
         }
 

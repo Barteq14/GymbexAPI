@@ -20,6 +20,10 @@
         <p>Nazwa użytkownika: <span>@CustomerDto.Username</span></p>
         <p>Telefon komórkowy: <span>@CustomerDto.PhoneNumber</span></p>
         <button type="button" class="btn btn-primary" data-bs-toggle="@ModalClass" @onclick="ShowModal" data-bs-target="@ModalId">Edytuj dane</button>
+        <div>
+            <p>Karnet awktywny: <span>@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
+            <p>Rodzaj karnetu: <span>Inny</span></p>
+        </div>
     </div>
 </div>
 <div class="account-footer">

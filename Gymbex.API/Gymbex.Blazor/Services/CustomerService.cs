@@ -59,5 +59,15 @@ namespace Gymbex.Blazor.Services
 
             return null;
         }
+
+        public async Task ChooseTicket(Guid ticketId, Guid customerId)
+        {
+            var response = await _httpClient.GetAsync($"{API}api/ticket");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<Ticket>>();
+            }
+        }
     }
 }

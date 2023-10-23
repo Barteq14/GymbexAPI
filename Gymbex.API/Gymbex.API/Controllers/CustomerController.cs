@@ -1,5 +1,6 @@
 ﻿using Gymbex.Application.Abstractions;
 using Gymbex.Application.Commands.Customers;
+using Gymbex.Application.Commands.Tickets;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Customers;
 using Gymbex.Application.Security;
@@ -21,9 +22,10 @@ namespace Gymbex.API.Controllers
         private readonly IQueryHandler<GetCustomer, CustomerDto> _getCustomerByIdQueryHandler;
         private readonly IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> _getCustomersQueryHandler;
         private readonly ICommandHandler<SignIn> _signInCommandHandler;
+        private readonly ICommandHandler<BuyTicket> _buyTicketCommandHandler;
         private readonly ITokenStorage _tokenStorage;
 
-        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler)
+        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _deleteCustomerCommandHandler = deleteCustomerCommandHandler;
@@ -32,6 +34,7 @@ namespace Gymbex.API.Controllers
             _signInCommandHandler = signInCommandHandler;
             _tokenStorage = tokenStorage;
             _updateCustomerCommandHandler = updateCustomerCommandHandler;
+            _buyTicketCommandHandler = buyTicketCommandHandler;
         }
 
         [HttpGet]
@@ -109,10 +112,11 @@ namespace Gymbex.API.Controllers
             return Ok(new UpdateCustomerResult { IsSuccess = true});
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> Post([FromBody] get)
-        //{
-        //    return Ok();
-        //}
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] BuyTicket command)
+        {
+            await _buyTicketCommandHandler.HandlerExecuteAsync(command);
+            return Ok();
+        }
     }
 }

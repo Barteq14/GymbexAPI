@@ -9,5 +9,6 @@ namespace Gymbex.Blazor.Services
 
         //tickets   
         Task<List<Ticket>> GetTickets();
+        Task ChooseTicket(Guid ticketId, Guid customerId);
     }
 }

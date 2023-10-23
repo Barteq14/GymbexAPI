@@ -18,7 +18,7 @@
                     <tr>
                         <td>@item.KindDisplayName</td>
                         <td>
-                            <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert">Wybierz</button>
+                            <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert" @onclick="@(async () => {await ChooseTicket(item.Id);})">Wybierz</button>
                         </td>
                     </tr>
                 }
