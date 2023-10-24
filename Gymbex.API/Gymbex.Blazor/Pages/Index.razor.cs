@@ -19,9 +19,6 @@ namespace Gymbex.Blazor.Pages
                 await JSRuntime.InvokeVoidAsync("scrollToTop");
             }
         }
-        private void ShowActivities()
-        {
-            NavigationManager.NavigateTo("/activities");
-        }
+
     }
 }

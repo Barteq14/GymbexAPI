@@ -1,19 +1,18 @@
 ﻿@page "/activities"
 @using Gymbex.Blazor.Components
 
-<div class="activities">
+<div class="content-container">
     <div class="alerts-box">
         <AlertBlazor
-            IsVisible="true"
             Class="@(IsError ? "alert alert-danger" : "alert alert-success")" 
             IsError="IsError" 
             Content="@Content" />
     </div>
-    <div class="activities-box">
+    <div class="content-box">
         
 
         <h3>Dostępne zajęcia</h3>
-        <table class="activity-table">
+        <table class="content-table">
             <thead>
                 <tr>
                     <th>Nazwa zajęć</th>

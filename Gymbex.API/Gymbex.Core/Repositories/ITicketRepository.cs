@@ -15,5 +15,6 @@ namespace Gymbex.Core.Repositories
         Task CreateAsync(Ticket ticket);
         Task DeleteAsync(Ticket ticket);
         Task UpdateAsync(Ticket ticket);
+        Task<Ticket> GetByIdAsync (Guid id);
     }
 }

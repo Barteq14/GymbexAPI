@@ -46,5 +46,43 @@ namespace Gymbex.Blazor.Services
 
             return updateResultCustomer;
         }
+
+        public async Task<List<Ticket>> GetTickets()
+        {
+            var response = await _httpClient.GetAsync($"{API}api/ticket");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<Ticket>>();
+                return result;
+            }
+
+            return null;
+        }
+
+        public async Task<ResponseModel> ChooseTicket(ChooseTicketRequest command)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"{API}api/customer/choose-ticket", command);
+            var responseModel = new ResponseModel();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<ResponseModel>();
+
+                responseModel.IsSuccess = response.IsSuccessStatusCode;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    responseModel.IsSuccess = false;
+                    responseModel.Error = result.Error;
+                }
+            }
+            else
+            {
+                responseModel.IsSuccess = true;
+            }
+
+            return responseModel;
+        }
     }
 }

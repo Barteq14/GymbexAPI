@@ -28,7 +28,8 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 Username = customer.Username,
                 Email = customer.Email,
                 FullName = customer.Fullname,
-                PhoneNumber = customer.PhoneNumber
+                PhoneNumber = customer.PhoneNumber,
+                TicketId = customer.TicketId ?? null,
             };
         }
 
@@ -37,9 +38,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
             return new TicketDto()
             {
                 TicketId = ticket.Id,
-                TicketKindEnum = ticket.Kind,
-                KindDisplayName = ticket.KindDescription,
-                Customers = ticket.Customers.Select(x => x.AsCustomerDto()).ToList(),
+                KindDisplayName = ticket.KindDescription
             };
         }
     }
