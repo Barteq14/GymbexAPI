@@ -4,11 +4,11 @@
 @inject IJSRuntime JSRuntime
 
 <div class="account-banner">
-    <h1>Twoje konto: @CustomerDto.Username</h1>
+    <h1>@CustomerDto.Username</h1>
 </div>
 <div class="account-box">
     <div class="account-left-content"> 
-        <div class="account-image">
+        <div class="account-image border border-5">
 
         </div>
         <p>@CustomerDto.FullName</p>
@@ -22,7 +22,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="@ModalClass" @onclick="ShowModal" data-bs-target="@ModalId">Edytuj dane</button>
         <hr />
         <div>
-            <p>Karnet awktywny: <span class="@(CustomerDto.TicketId.HasValue ? "badge bg-success" : "badge bg-danger")">@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
+            <p>Karnet aktywny: <span class="@(CustomerDto.TicketId.HasValue ? "badge bg-success" : "badge bg-danger")">@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
             <p>Rodzaj karnetu: <span>@TicketName</span></p>
             <p><button type="button" class="btn btn-danger" style="width:auto;">Zrezygnuj z obecnego karnetu</button></p>
         </div>

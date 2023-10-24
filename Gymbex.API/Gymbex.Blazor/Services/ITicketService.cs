@@ -6,5 +6,6 @@ namespace Gymbex.Blazor.Services
     {
         //metoda do pobrania ticketu
         Task<Ticket> GetTicketAsync(Guid ticketId);
+        Task RemoveTicketAsync(Guid customerId);
     }
 }

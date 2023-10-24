@@ -46,5 +46,13 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }
+
+        public async Task RemoveTicketAsync(Guid customerId)
+        {
+            var customer = await _context.Customers.SingleOrDefaultAsync(x => x.Id == new CustomerId(customerId));
+            customer.DeleteTicket();
+
+            await UpdateUserAsync(customer);
+        }
     }
 }
