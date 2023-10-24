@@ -112,11 +112,26 @@ namespace Gymbex.API.Controllers
             return Ok(new UpdateCustomerResult { IsSuccess = true});
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Post([FromBody] BuyTicket command)
+        [HttpPost("choose-ticket")]
+        public async Task<ActionResult<ResponseModel>> Post([FromBody] BuyTicket command)
         {
-            await _buyTicketCommandHandler.HandlerExecuteAsync(command);
-            return Ok();
+            try
+            {
+                await _buyTicketCommandHandler.HandlerExecuteAsync(command);
+                return Ok(new ResponseModel { IsSuccess = true});
+            }
+            catch (TicketNotFoundException)
+            {
+                return BadRequest(new ResponseModel { IsSuccess = false, Error = "Nie znaleziono takiego karnetu."});
+            }
+            catch (CustomerAlreadyHasTicketException)
+            {
+                return BadRequest(new ResponseModel { IsSuccess = false, Error = "Już posiadasz karnet."});
+            }
+            catch (TicketAlreadyExistsException)
+            {
+                return BadRequest(new ResponseModel { IsSuccess = false, Error = "Już posiadasz karnet." });
+            }
         }
     }
 }

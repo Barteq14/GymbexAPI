@@ -20,14 +20,15 @@
         <p>Nazwa użytkownika: <span>@CustomerDto.Username</span></p>
         <p>Telefon komórkowy: <span>@CustomerDto.PhoneNumber</span></p>
         <button type="button" class="btn btn-primary" data-bs-toggle="@ModalClass" @onclick="ShowModal" data-bs-target="@ModalId">Edytuj dane</button>
+        <hr />
         <div>
-            <p>Karnet awktywny: <span>@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
-            <p>Rodzaj karnetu: <span>Inny</span></p>
+            <p>Karnet awktywny: <span class="@(CustomerDto.TicketId.HasValue ? "badge bg-success" : "badge bg-danger")">@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
+            <p>Rodzaj karnetu: <span>@TicketName</span></p>
+            <p><button type="button" class="btn btn-danger" style="width:auto;">Zrezygnuj z obecnego karnetu</button></p>
         </div>
     </div>
 </div>
 <div class="account-footer">
-    
 </div>
 
 <ModalBlazor @ref="ModalBlazor" ModalClass="@ModalClass" Title="Edycja danych" OnSave="SaveHandler" ModalId="@ModalId">

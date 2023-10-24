@@ -2,9 +2,13 @@
 @using Gymbex.Blazor.Components
 
 <div class="content-container">
+    <div class="alerts-box">
+        <AlertBlazor Class="@(IsError ? "alert alert-danger" : "alert alert-success")"
+                     IsError="IsError"
+                     Content="@Content" />
+    </div>
+
     <div class="content-box">
-
-
         <h3>Dostępne karnety</h3>
         <table class="content-table">
             <thead>
@@ -18,7 +22,7 @@
                     <tr>
                         <td>@item.KindDisplayName</td>
                         <td>
-                            <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert" @onclick="@(async () => {await ChooseTicket(item.Id);})">Wybierz</button>
+                            <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert" @onclick="@(async () => {await ChooseTicket(item.TicketId);})">Wybierz</button>
                         </td>
                     </tr>
                 }

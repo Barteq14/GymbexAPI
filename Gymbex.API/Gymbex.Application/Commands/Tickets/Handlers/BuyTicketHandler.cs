@@ -40,6 +40,11 @@ namespace Gymbex.Application.Commands.Tickets.Handlers
                 throw new CustomerNotFoundException(command.CustomerId);
             }
 
+            if(customer.TicketId is not null)
+            {
+                throw new TicketAlreadyExistsException(customer.Username);
+            }
+
             ticket.AddTicketToCustomer(customer);
             await _ticketRepository.UpdateAsync(ticket);
         }

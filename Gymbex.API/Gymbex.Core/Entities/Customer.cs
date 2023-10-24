@@ -70,9 +70,9 @@ namespace Gymbex.Core.Entities
             PhoneNumber = phone ?? PhoneNumber;
         }
 
-        public void SetTicket(Guid ticketId)
+        public void SetTicket(Guid? ticketId)
         {
-            TicketId = new TicketId(ticketId);
+            TicketId = new TicketId(ticketId.Value);
         }
     }
 }

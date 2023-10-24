@@ -39,10 +39,6 @@ namespace Gymbex.Core.Entities
 
         public void AddTicketToCustomer(Customer customer)
         {
-            if(customer.TicketId is not null)
-            {
-                throw new TicketAlreadyExistsException(customer.Username);
-            }
             _customers.Add(customer);
         }
     }
