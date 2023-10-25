@@ -315,6 +315,7 @@ table > thead {
     align-items: center;
     border-right: 1px solid black;
     gap: 25px;
+    
 }
 
 .account-left-content p{
@@ -340,12 +341,11 @@ table > thead {
 
 .account-left-content, .account-right-content {
     display: flex;
-    padding: 100px;
+    padding: 50px;
 }
 
 .account-image {
     width: 25%;
-    border: 1px solid black;
     background-image: url("../Images/man-303792_1920.png");
     height: 250px;
     background-size: cover; /* Dopasuj tło do rozmiaru kontenera */

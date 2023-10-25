@@ -24,5 +24,10 @@ namespace Gymbex.Blazor.Services
 
             return ticket;
         }
+
+        public Task RemoveTicketAsync(Guid customerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

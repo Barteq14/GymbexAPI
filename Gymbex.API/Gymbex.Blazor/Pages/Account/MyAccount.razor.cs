@@ -62,5 +62,11 @@ namespace Gymbex.Blazor.Pages.Account
             StateHasChanged();
             NavigationManager.NavigateTo($"/myAccount/{CustomerId}",true);
         }
+
+        private async Task RemoveTicket()
+        {
+            await CustomerService.RemoveTicket(CustomerId);
+            NavigationManager.NavigateTo($"/myAccount/{CustomerId}",true);
+        }
     }
 }

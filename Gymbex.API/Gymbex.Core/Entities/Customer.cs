@@ -74,5 +74,10 @@ namespace Gymbex.Core.Entities
         {
             TicketId = new TicketId(ticketId.Value);
         }
+
+        public void DeleteTicket()
+        {
+            TicketId = null;
+        }
     }
 }
