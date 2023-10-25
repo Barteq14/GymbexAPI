@@ -1,0 +1,34 @@
+﻿@page "/instructorList"
+@typeparam T
+
+<div class="title">
+    <h3>@Title</h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var property in GetProperties())
+            {
+                <th>@property.Name</th>
+            }
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                @foreach (var property in GetProperties())
+                {
+                    <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
+                }
+                <td><button type="button" class="btn btn-primary">Opcja</button></td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
+
+<style>
+    
+</style>
