@@ -20,7 +20,6 @@ namespace Gymbex.Application.Commands.Customers.Handlers
         public async Task HandlerExecuteAsync(RemoveTIcket command)
         {
             await _customerRepository.RemoveTicketAsync(command.customerId);
-            throw new NotImplementedException();
         }
     }
 }

@@ -23,8 +23,12 @@
         <hr />
         <div>
             <p>Karnet aktywny: <span class="@(CustomerDto.TicketId.HasValue ? "badge bg-success" : "badge bg-danger")">@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
-            <p>Rodzaj karnetu: <span>@TicketName</span></p>
-            <p><button type="button" class="btn btn-danger" style="width:auto;">Zrezygnuj z obecnego karnetu</button></p>
+            
+            @if (CustomerDto.TicketId.HasValue)
+            {
+                <p>Rodzaj karnetu: <span>@TicketName</span></p>
+                <p><button type="button" class="btn btn-danger" style="width:auto;" @onclick="RemoveTicket">Zrezygnuj z obecnego karnetu</button></p>
+            }
         </div>
     </div>
 </div>

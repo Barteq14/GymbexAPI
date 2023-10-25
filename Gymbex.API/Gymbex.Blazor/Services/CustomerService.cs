@@ -84,5 +84,21 @@ namespace Gymbex.Blazor.Services
 
             return responseModel;
         }
+
+        public async Task RemoveTicket(Guid customerId)
+        {
+            var removeTicketModel = new RemoveTicket();
+            removeTicketModel.CustomerId = customerId;
+
+            var response = await _httpClient.PutAsJsonAsync($"{API}api/customer/remove-ticket", removeTicketModel);
+            if (response.IsSuccessStatusCode)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }
