@@ -8,18 +8,50 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
     {
         [Inject] public NavigationManager NavigationManager{ get; set; }
         [Inject] public ICustomerService CustomerService{ get; set; }
+        [Inject] public ITicketService TicketService { get; set; }
+        [Inject] public IActivityService ActivityService { get; set; }
         public List<CustomerDto> Customers { get; set; } = new List<CustomerDto>();
+        public List<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public List<ActivityDto> Activities { get; set; } = new List<ActivityDto>();
+
+        public bool ShowCustomers { get; set; }
+        public bool ShowTickets { get; set; }
+        public bool ShowActivities { get; set; }
+        public bool ShowReservations { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
             Customers = await CustomerService.GetCustomersAsync();
+            Tickets = await TicketService.GetTicketsAsync();
+            Activities = await ActivityService.GetActivitiesAsync();
         }
 
-        public bool ShowCustomers { get; set; }
-
-        private void Go()
+        private void ResetVariables()
         {
+            ShowCustomers = false;
+            ShowTickets = false;
+            ShowActivities = false;
+            ShowReservations = false;
+        }
+
+        private void CustomerListView()
+        {
+            ResetVariables();
             ShowCustomers = true;
+            StateHasChanged();
+        }
+
+        private void TicketListView()
+        {
+            ResetVariables();
+            ShowTickets = true;
+            StateHasChanged();
+        }
+
+        private void ActivityListView()
+        {
+            ResetVariables();
+            ShowActivities = true;
             StateHasChanged();
         }
     }

@@ -21,9 +21,6 @@
 .admin-content {
     background-color: grey;
     padding: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -49,4 +46,9 @@
     width: 100%;
     margin-bottom: 20px;
     border-radius: 10px;
+    gap:20px;
+}
+
+.admin-table-width{
+    width:100%;
 }

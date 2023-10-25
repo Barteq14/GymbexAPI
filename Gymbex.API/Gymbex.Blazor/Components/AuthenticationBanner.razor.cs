@@ -30,6 +30,11 @@ namespace Gymbex.Blazor.Components
             NavigationManager.NavigateTo("/login");
         }
 
+        private async Task AdminPanel()
+        {
+            NavigationManager.NavigateTo("/adminPanel");
+        }
+
         private async void MyAccount()
         {
             var token = await LocalStorageService.GetItemAsync<string>("authToken");

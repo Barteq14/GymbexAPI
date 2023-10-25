@@ -6,7 +6,6 @@ namespace Gymbex.Blazor.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime Date { get; set; }
-        public IEnumerable<CustomerDto> Customers { get; set; }
+        public DateTime Date { get; set; } 
     }
 }

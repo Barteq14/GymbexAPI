@@ -3,11 +3,12 @@
 
 <div class="title">
     <h3>@Title</h3>
+    <button type="button" class="btn btn-primary btn-lg">Dodaj</button>
 </div>
-<table class="table">
+<table class="table admin-table-width">
     <thead>
         <tr>
-            @foreach (var property in GetProperties())
+            @foreach (var property in GetProperties().Skip(1))
             {
                 <th>@property.Name</th>
             }
@@ -18,11 +19,14 @@
         @foreach (var item in Items)
         {
             <tr>
-                @foreach (var property in GetProperties())
+                @foreach (var property in GetProperties().Skip(1))
                 {
                     <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
                 }
-                <td><button type="button" class="btn btn-primary">Opcja</button></td>
+                <td>
+                    <button type="button" class="btn btn-warning">Edytuj</button>
+                    <button type="button" class="btn btn-danger">Usuń</button>
+                </td>
             </tr>
             
         }

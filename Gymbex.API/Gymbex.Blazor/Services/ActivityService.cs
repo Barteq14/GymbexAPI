@@ -35,5 +35,18 @@ namespace Gymbex.Blazor.Services
             
             return reservationActivityResponse;
         }
+
+        public async Task<List<ActivityDto>> GetActivitiesAsync()
+        {
+            var response = await _httpClient.GetAsync($"{API}api/activity");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<ActivityDto>>();
+                return result;
+            }
+
+            return new List<ActivityDto>();
+        }
     }
 }
