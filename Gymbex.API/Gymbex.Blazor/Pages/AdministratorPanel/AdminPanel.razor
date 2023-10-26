@@ -14,7 +14,7 @@
         @if (ShowCustomers)
         {
             <div class="tab-pane" id="uzytkownicy">
-                <BlazorList Items="Customers" Title="Lista uzytkowników"/>
+                <BlazorList Items="Customers" Title="Lista uzytkowników" />
             </div>
         }
         @if (ShowTickets)
@@ -26,7 +26,7 @@
         @if (ShowActivities)
         {
             <div class="tab-pane" id="zajecia">
-                <BlazorList Items="Activities" Title="Lista zajęć" />
+                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" />
             </div>
         }
     </div>

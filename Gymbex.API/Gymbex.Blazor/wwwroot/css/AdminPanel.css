@@ -19,7 +19,7 @@
 }
 
 .admin-content {
-    background-color: grey;
+    background-color: white;
     padding: 50px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -51,4 +51,7 @@
 
 .admin-table-width{
     width:100%;
+
 }
+
+

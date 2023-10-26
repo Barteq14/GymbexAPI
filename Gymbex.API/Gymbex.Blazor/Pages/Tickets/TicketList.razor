@@ -8,30 +8,6 @@
                      Content="@Content" />
     </div>
 
-    <div class="content-box">
-        <h3>Dostępne karnety</h3>
-        <table class="content-table">
-            <thead>
-                <tr>
-                    <th>Rodzaj karnetu</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in TicketsList)
-                {
-                    <tr>
-                        <td>@item.KindDisplayName</td>
-                        <AuthorizeView>
-                            <Authorized>
-                                <td>
-                                    <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert" @onclick="@(async () => {await ChooseTicket(item.TicketId);})">Wybierz</button>
-                                </td>
-                            </Authorized>
-                        </AuthorizeView>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    <BlazorList Items="TicketsList" Title="Dostępne karnety" />
 </div>
 

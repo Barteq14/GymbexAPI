@@ -106,9 +106,8 @@
 }
 
 .content-container {
-    background-image: url("../Images/man.jpg");
     width: 100%;
-    height:813px;
+    height:auto;
     padding: 50px;
     background-size: cover; /* Dopasuj tło do rozmiaru kontenera */
     background-position: center; /* Wyrównaj tło do środka kontenera */

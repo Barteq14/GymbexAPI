@@ -3,7 +3,7 @@
 
 <div class="title">
     <h3>@Title</h3>
-    <button type="button" class="btn btn-primary btn-lg">Dodaj</button>
+    <button type="button" class="btn btn-success btn-lg">Dodaj</button>
 </div>
 <table class="table admin-table-width">
     <thead>
@@ -24,8 +24,16 @@
                     <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-warning">Edytuj</button>
-                    <button type="button" class="btn btn-danger">Usuń</button>
+                    <AuthorizeView>
+                        <Authorized>
+                            <button type="button" class="btn btn-warning">Edytuj</button>
+                            <button type="button" class="btn btn-danger">Usuń</button>
+                        </Authorized>
+                    </AuthorizeView>
+                    @if (ShowAdditionalButton)
+                    {
+                        <button type="button" class="btn btn-primary" style="margin-left:5px;">@AdditionalButtonTitle</button>
+                    }
                 </td>
             </tr>
             

@@ -1,6 +1,7 @@
 ﻿@page "/activities"
 @using Gymbex.Blazor.Components
 
+
 <div class="content-container">
     <div class="alerts-box">
         <AlertBlazor
@@ -8,41 +9,5 @@
             IsError="IsError" 
             Content="@Content" />
     </div>
-    <div class="content-box">
-        
-
-        <h3>Dostępne zajęcia</h3>
-        <table class="content-table">
-            <thead>
-                <tr>
-                    <th>Nazwa zajęć</th>
-                    <th>Data zajęć</th>
-                    <AuthorizeView>
-                        <Authorized>
-                            <th>Akcja</th>
-                        </Authorized>
-                    </AuthorizeView>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in ActivitiesList)
-                {
-                    @if (item.Date.Date > DateTime.Now.Date)
-                    {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.Date.Date.ToString("yyyy-MM-dd")</td>
-                            <AuthorizeView>
-                                <Authorized>
-                                    <td>
-                                        <button class="btn btn-primary btn-lg" data-bs-toggle="alert" data-bs-target="#myAlert" @onclick="@(async () => {await RegisterOnActivity(item.Id);})">Zapisz się</button>
-                                    </td>
-                                </Authorized>
-                            </AuthorizeView>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
-    </div>
+    <BlazorList Items="ActivitiesList" Title="Dostępne zajęcia" />
 </div>

@@ -7,6 +7,8 @@ namespace Gymbex.Blazor.Components
     {
         [Parameter] public List<T> Items { get; set; }
         [Parameter] public string Title { get; set; }
+        [Parameter] public bool ShowAdditionalButton { get; set; } = false;
+        [Parameter] public string AdditionalButtonTitle { get; set; }
         
         private List<PropertyInfo> GetProperties()
         {

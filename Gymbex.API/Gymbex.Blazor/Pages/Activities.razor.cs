@@ -10,7 +10,7 @@ namespace Gymbex.Blazor.Pages
     public partial class Activities
     {
         private string API_URL = "https://localhost:7291/";
-        private IEnumerable<ActivityDto> ActivitiesList = Enumerable.Empty<ActivityDto>();
+        private List<ActivityDto> ActivitiesList = new List<ActivityDto>();
         [Inject] public ILocalStorageService LocalStorageService { get; set; }
         [Inject] public IActivityService ActivityService { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
@@ -26,7 +26,7 @@ namespace Gymbex.Blazor.Pages
             client.Dispose();
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            ActivitiesList = await JsonSerializer.DeserializeAsync<IEnumerable<ActivityDto>>(responseStream);
+            ActivitiesList = await JsonSerializer.DeserializeAsync<List<ActivityDto>>(responseStream);
         }
 
         protected override async Task OnInitializedAsync()
