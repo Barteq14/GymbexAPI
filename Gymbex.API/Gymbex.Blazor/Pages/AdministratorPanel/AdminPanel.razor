@@ -1,0 +1,33 @@
+﻿@page "/adminPanel"
+@using Gymbex.Blazor.Components
+
+<h1 class="admin-title">Panel administracyjny</h1>
+<div class="admin-box">
+    <div class="admin-menu">
+        <button type="button" class="btn btn-dark" @onclick="CustomerListView">Użytkownicy</button>
+        <button type="button" class="btn btn-dark" @onclick="CustomerListView">Sprzęt</button>
+        <button type="button" class="btn btn-dark" @onclick="ActivityListView">Zajęcia</button>
+        <button type="button" class="btn btn-dark" @onclick="TicketListView">Karnety</button>
+        <button type="button" class="btn btn-dark" @onclick="CustomerListView">Rezerwacje</button>
+    </div>
+    <div class="admin-content">
+        @if (ShowCustomers)
+        {
+            <div class="tab-pane" id="uzytkownicy">
+                <BlazorList Items="Customers" Title="Lista uzytkowników" />
+            </div>
+        }
+        @if (ShowTickets)
+        {
+            <div class="tab-pane" id="karnety">
+                <BlazorList Items="Tickets" Title="Lista karnetów" />
+            </div>
+        }
+        @if (ShowActivities)
+        {
+            <div class="tab-pane" id="zajecia">
+                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" />
+            </div>
+        }
+    </div>
+</div>

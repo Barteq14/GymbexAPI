@@ -29,5 +29,19 @@ namespace Gymbex.Blazor.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Ticket>> GetTicketsAsync()
+        {
+            var response = await _httpClient.GetAsync($"{API}api/ticket");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<Ticket>>();
+
+                return result;
+            }
+
+            return new List<Ticket>();
+        }
     }
 }
