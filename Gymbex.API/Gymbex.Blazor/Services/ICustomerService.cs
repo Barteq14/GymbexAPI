@@ -6,6 +6,7 @@ namespace Gymbex.Blazor.Services
     {
         Task<CustomerDto> GetCustomerDtoAsync(Guid id);
         Task<List<CustomerDto>> GetCustomersAsync();
+        Task<List<CustomerDto>> GetInstructorsAsync();
         Task<UpdateResultCustomer> UpdateCustomerDtoAsync(UpdateCustomer model);
 
         //tickets   

@@ -16,5 +16,10 @@ namespace Gymbex.Blazor
         {
             NavigationManager.NavigateTo("/tickets");
         }
+
+        private void ShowInstructors()
+        {
+            NavigationManager.NavigateTo("/instructors");
+        }
     }
 }
