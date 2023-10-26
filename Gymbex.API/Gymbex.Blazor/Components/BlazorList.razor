@@ -1,9 +1,16 @@
-﻿@page "/instructorList"
+﻿
 @typeparam T
 
 <div class="title">
     <h3>@Title</h3>
-    <button type="button" class="btn btn-success btn-lg">Dodaj</button>
+    <AuthorizeView>
+        <Authorized>
+            @if(IsAdmin)
+            {
+                <button type="button" class="btn btn-success btn-lg">Dodaj</button>
+            }
+        </Authorized>
+    </AuthorizeView>
 </div>
 <table class="table admin-table-width">
     <thead>
@@ -26,14 +33,18 @@
                 <td>
                     <AuthorizeView>
                         <Authorized>
-                            <button type="button" class="btn btn-warning">Edytuj</button>
-                            <button type="button" class="btn btn-danger">Usuń</button>
+                            @if (IsAdmin)
+                            {
+                                <button type="button" class="btn btn-warning">Edytuj</button>
+                                <button type="button" class="btn btn-danger">Usuń</button>
+                            }
+                            @if (ShowAdditionalButton)
+                            {
+                                <button type="button" class="btn btn-primary" style="margin-left:5px;">@AdditionalButtonTitle</button>
+                            }
                         </Authorized>
                     </AuthorizeView>
-                    @if (ShowAdditionalButton)
-                    {
-                        <button type="button" class="btn btn-primary" style="margin-left:5px;">@AdditionalButtonTitle</button>
-                    }
+                   
                 </td>
             </tr>
             

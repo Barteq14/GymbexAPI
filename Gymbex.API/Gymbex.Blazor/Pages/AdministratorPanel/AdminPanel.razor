@@ -14,19 +14,19 @@
         @if (ShowCustomers)
         {
             <div class="tab-pane" id="uzytkownicy">
-                <BlazorList Items="Customers" Title="Lista uzytkowników" />
+                <BlazorList Items="Customers" Title="Lista uzytkowników" IsAdmin=true/>
             </div>
         }
         @if (ShowTickets)
         {
             <div class="tab-pane" id="karnety">
-                <BlazorList Items="Tickets" Title="Lista karnetów" />
+                <BlazorList Items="Tickets" Title="Lista karnetów" IsAdmin=true />
             </div>
         }
         @if (ShowActivities)
         {
             <div class="tab-pane" id="zajecia">
-                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" />
+                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" IsAdmin=true />
             </div>
         }
     </div>
