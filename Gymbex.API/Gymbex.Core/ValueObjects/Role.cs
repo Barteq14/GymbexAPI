@@ -28,5 +28,8 @@ namespace Gymbex.Core.ValueObjects
 
         public static Role Administrator()
             => new("Administrator");
+
+        public static Role Instructor()
+            => new("Instructor");
     }
 }
