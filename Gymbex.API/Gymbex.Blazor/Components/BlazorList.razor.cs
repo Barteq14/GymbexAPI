@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Net.Sockets;
 using System.Reflection;
 
 namespace Gymbex.Blazor.Components
@@ -10,7 +11,8 @@ namespace Gymbex.Blazor.Components
         [Parameter] public bool ShowAdditionalButton { get; set; } = false;
         [Parameter] public bool IsAdmin { get; set; } = false;
         [Parameter] public string AdditionalButtonTitle { get; set; }
-        
+        [Parameter] public RenderFragment<T> ChildContent { get; set; }
+
         private List<PropertyInfo> GetProperties()
         {
             if(Items is not null && Items.Any())

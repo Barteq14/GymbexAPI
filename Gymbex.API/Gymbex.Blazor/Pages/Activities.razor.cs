@@ -2,7 +2,9 @@
 using Gymbex.Blazor.Models;
 using Gymbex.Blazor.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Gymbex.Blazor.Pages
@@ -27,11 +29,32 @@ namespace Gymbex.Blazor.Pages
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             ActivitiesList = await JsonSerializer.DeserializeAsync<List<ActivityDto>>(responseStream);
+
+            
         }
 
         protected override async Task OnInitializedAsync()
         {
             await RefreshActivitiesList();
+            foreach (var item in ActivitiesList)
+            {
+                if (item.Name.Equals("Yoga"))
+                {
+                    item.ImageSrc = "../Images/female-1300399_1280.png";
+                }
+                if (item.Name.Equals("Cross fit"))
+                {
+                    item.ImageSrc = "../Images/crossfitImage.jpg";
+                }
+                if (item.Name.Equals("Fitness"))
+                {
+                    item.ImageSrc = "../Images/fitness.jpg";
+                }
+                if (item.Name.Equals("Zumba"))
+                {
+                    item.ImageSrc = "../Images/zumba.jpeg";
+                }
+            }
         }
 
         private async Task RegisterOnActivity(Guid activityId)

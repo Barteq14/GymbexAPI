@@ -1,13 +1,27 @@
 ﻿@page "/activities"
 @using Gymbex.Blazor.Components
 
-
 <div class="content-container">
+    <h3 style="margin-bottom:50px;">Dostępne zajęcia</h3>
     <div class="alerts-box">
         <AlertBlazor
             Class="@(IsError ? "alert alert-danger" : "alert alert-success")" 
             IsError="IsError" 
             Content="@Content" />
     </div>
-    <BlazorList Items="ActivitiesList" Title="Dostępne zajęcia" ShowAdditionalButton=true AdditionalButtonTitle="Zapisz się"/>
+    <div class="activity-container-content">
+        @foreach (var item in ActivitiesList)
+        {
+            <div class="activity-float-left-content" style="background-image: url('@item.ImageSrc')"></div>
+            <div class="activity-float-right-content">
+                <h3>@item.Name</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <button type="button" class="btn btn-success" @onclick="@(async () => {await RegisterOnActivity(item.Id);})">Zapisz się</button>
+            </div>
+        }
+    </div>
+   
+   
 </div>

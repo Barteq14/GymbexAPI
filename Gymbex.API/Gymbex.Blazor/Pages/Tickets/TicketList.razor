@@ -8,6 +8,13 @@
                      Content="@Content" />
     </div>
 
-    <BlazorList Items="TicketsList" Title="Dostępne karnety" ShowAdditionalButton=true AdditionalButtonTitle="Szczegóły"/>
+    <BlazorList Items="TicketsList" Title="Dostępne karnety">
+        <ChildContent>
+            @{
+                var item = context;
+                <button type="button" class="btn btn-success" @onclick="@(async () => { await ChooseTicket(item); })">Wybierz karnet</button>
+            }
+        </ChildContent>
+    </BlazorList>
 </div>
 

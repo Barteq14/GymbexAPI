@@ -33,15 +33,7 @@
                 <td>
                     <AuthorizeView>
                         <Authorized>
-                            @if (IsAdmin)
-                            {
-                                <button type="button" class="btn btn-warning">Edytuj</button>
-                                <button type="button" class="btn btn-danger">Usuń</button>
-                            }
-                            @if (ShowAdditionalButton)
-                            {
-                                <button type="button" class="btn btn-primary" style="margin-left:5px;">@AdditionalButtonTitle</button>
-                            }
+                            @ChildContent(item)
                         </Authorized>
                     </AuthorizeView>
                    
@@ -51,7 +43,3 @@
         }
     </tbody>
 </table>
-
-<style>
-    
-</style>

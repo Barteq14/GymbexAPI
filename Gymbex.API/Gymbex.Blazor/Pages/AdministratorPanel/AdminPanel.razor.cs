@@ -26,6 +26,49 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
             Activities = await ActivityService.GetActivitiesAsync();
         }
 
+        private async Task InvokeEdit<T>(T value)
+        {
+            if(value is CustomerDto customer)
+            {
+                var updateModel = new UpdateCustomer {
+                    CustomerId = customer.Id,
+                    Fullname = customer.FullName,
+                    Phone = customer.PhoneNumber,
+                    Username = customer.Username
+                };
+
+                var result = await CustomerService.UpdateCustomerDtoAsync(updateModel);
+            }
+
+            if(value is Ticket ticket)
+            {
+               
+            }
+
+            if(value is ActivityDto activity)
+            {
+                
+            }
+        }
+
+        private async Task InvokeDelete<T>(T value)
+        {
+            if (value is CustomerDto customer)
+            {
+               
+            }
+
+            if (value is Ticket ticket)
+            {
+                
+            }
+
+            if (value is ActivityDto activity)
+            {
+               
+            }
+        }
+
         private void ResetVariables()
         {
             ShowCustomers = false;
