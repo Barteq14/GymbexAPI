@@ -14,19 +14,35 @@
         @if (ShowCustomers)
         {
             <div class="tab-pane" id="uzytkownicy">
-                <BlazorList Items="Customers" Title="Lista uzytkowników" IsAdmin=true/>
+                <BlazorList Items="Customers" Title="Lista uzytkowników" IsAdmin=true>
+                    <RenderFragment>
+                        <button type="button" class="btn btn-warning">Edytuj</button>
+                        <button type="button" class="btn btn-danger">Usuń</button>
+                    </RenderFragment>
+                </BlazorList>
             </div>
         }
         @if (ShowTickets)
         {
             <div class="tab-pane" id="karnety">
-                <BlazorList Items="Tickets" Title="Lista karnetów" IsAdmin=true />
+                <BlazorList Items="Tickets" Title="Lista karnetów" IsAdmin=true>
+                    <RenderFragment>
+                        <button type="button" class="btn btn-warning">Edytuj</button>
+                        <button type="button" class="btn btn-danger">Usuń</button>
+                        <button type="button" class="btn btn-primary">Rezerwacje</button>
+                    </RenderFragment>
+                </BlazorList>
             </div>
         }
         @if (ShowActivities)
         {
             <div class="tab-pane" id="zajecia">
-                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" IsAdmin=true />
+                <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" IsAdmin=true>
+                    <RenderFragment>
+                        <button type="button" class="btn btn-warning">Edytuj</button>
+                        <button type="button" class="btn btn-danger">Usuń</button>
+                    </RenderFragment>
+                </BlazorList>
             </div>
         }
     </div>

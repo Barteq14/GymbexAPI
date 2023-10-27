@@ -25,7 +25,7 @@ namespace Gymbex.Blazor.Pages.Tickets
             TicketsList = await CustomerService.GetTickets();
         }
 
-        private async Task ChooseTicket(Guid ticketId)
+        private async Task ChooseTicket(Ticket ticket)
         {
             var token = await LocalStorageService.GetItemAsync<string>("authToken");
             var handler = new JwtSecurityTokenHandler();
@@ -36,7 +36,7 @@ namespace Gymbex.Blazor.Pages.Tickets
 
             var id = Guid.Parse(uniqueName);
 
-            var command = new ChooseTicketRequest { CustomerId = id, TicketId = ticketId};
+            var command = new ChooseTicketRequest { CustomerId = id, TicketId = ticket.TicketId};
 
             var response = await CustomerService.ChooseTicket(command);
 

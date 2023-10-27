@@ -389,3 +389,30 @@ table > thead {
     justify-content:flex-start;
     align-items:center;
 }
+
+.activity-float-left-content, .activity-float-right-content {
+    width:100%;
+    height:auto;
+    background-color:ghostwhite;
+    padding:50px;
+    border:1px solid black;
+}
+
+.activity-float-left-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-size: cover; /* Dopasuj tło do rozmiaru kontenera */
+    background-position: center; /* Wyrównaj tło do środka kontenera */
+}
+
+.activity-float-right-content {
+    justify-content: flex-start;
+}
+
+.activity-container-content{
+    width:100%;
+    display:grid;
+    grid-row-gap:50px;
+    grid-template-columns: 30% 70%;
+}
