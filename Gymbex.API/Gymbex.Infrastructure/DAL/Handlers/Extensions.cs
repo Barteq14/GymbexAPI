@@ -41,5 +41,16 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 KindDisplayName = ticket.KindDescription
             };
         }
+
+        public static ReservationDto AsReservationDto(this Reservation reservation, Activity activity)
+        {
+            return new ReservationDto()
+            {
+                ReservationId = reservation.Id,
+                ActivityName = activity.Name,
+                ActivityDate = activity.Date,
+                CreatedAt = reservation.CreatedAt
+            };
+        }
     }
 }

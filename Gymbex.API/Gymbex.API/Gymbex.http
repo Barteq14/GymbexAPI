@@ -1,6 +1,6 @@
 @url = https://localhost:7291
 @activityId = 87ae998b-df16-46c3-8c43-038063e3cebf
-@customerId = 2b607c6c-c556-47da-80a8-64c349aeef32
+@customerId = 711b963a-326b-4c98-b88c-648182609f22
 @ticketId = 26e0a280-8de0-40e4-a17e-6eab92b77402
 
 ###
@@ -46,6 +46,9 @@ DELETE {{url}}/api/activity/{{activityId}}
 
 ###
 GET {{url}}/api/customer/instructors
+
+###
+GET {{url}}/api/customer/customer-reservations/{{customerId}}
 
 ###
 GET {{url}}/api/customer
