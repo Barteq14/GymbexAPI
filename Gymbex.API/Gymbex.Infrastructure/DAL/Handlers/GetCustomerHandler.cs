@@ -23,7 +23,9 @@ namespace Gymbex.Infrastructure.DAL.Handlers
 
         public async Task<CustomerDto> ExecuteHandleAsync(GetCustomer query)
         {
-            var customer = await _context.Customers.SingleOrDefaultAsync(x => x.Id == query.Id);
+            var customer = await _context.Customers
+                .Include(x => x.Reservations)
+                .SingleOrDefaultAsync(x => x.Id == query.Id);
             return customer.AsCustomerDto();
         }
     }
