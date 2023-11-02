@@ -11,3 +11,4 @@ info o b³êdach	(+++)
 10. Refaktor pod k¹tem uporz¹dkowania plików i klas w aplikacji Blazor wasm
 11. Przystosowanie do WCAG (najwa¿niejsze rzeczy)
 12. Przystosowanie do urz¹dzeñ mobilnych
+13. Refactor (usingi, userHelper, responseModels)

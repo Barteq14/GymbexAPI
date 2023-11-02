@@ -39,7 +39,7 @@ namespace Gymbex.Infrastructure.Exceptions
                 CustomException => (StatusCodes.Status400BadRequest, new Error(exception
                     .GetType().Name.Replace("Exception", string.Empty), exception.Message)),
 
-                _ => (StatusCodes.Status500InternalServerError, new Error("error", "There was an error")),
+                _ => (StatusCodes.Status500InternalServerError, new Error(exception.GetType().Name.Replace("Exception", string.Empty), exception.Message)),
             };
 
             context.Response.StatusCode = statusCode;

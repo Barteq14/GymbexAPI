@@ -10,9 +10,12 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
         [Inject] public ICustomerService CustomerService{ get; set; }
         [Inject] public ITicketService TicketService { get; set; }
         [Inject] public IActivityService ActivityService { get; set; }
+        [Inject] public IReservationService ReservationService { get; set; }
         public List<CustomerDto> Customers { get; set; } = new List<CustomerDto>();
         public List<Ticket> Tickets { get; set; } = new List<Ticket>();
         public List<ActivityDto> Activities { get; set; } = new List<ActivityDto>();
+        public List<ReservationDto> Reservations { get; set; } = new List<ReservationDto>();
+
 
         public bool ShowCustomers { get; set; }
         public bool ShowTickets { get; set; }
@@ -24,6 +27,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
             Customers = await CustomerService.GetCustomersAsync();
             Tickets = await TicketService.GetTicketsAsync();
             Activities = await ActivityService.GetActivitiesAsync();
+            Reservations = await ReservationService.GetAllReservationsForAdmin();
         }
 
         private async Task InvokeEdit<T>(T value)
@@ -95,6 +99,13 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
         {
             ResetVariables();
             ShowActivities = true;
+            StateHasChanged();
+        }
+
+        private void ReservationListView()
+        {
+            ResetVariables();
+            ShowReservations = true;
             StateHasChanged();
         }
     }
