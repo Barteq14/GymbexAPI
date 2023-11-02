@@ -4,6 +4,7 @@ using Gymbex.Core.Enums;
 using Gymbex.Infrastructure.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Gymbex.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(GymbexDbContext))]
-    partial class GymbexDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231102120150_AddedEquipmentEntity")]
+    partial class AddedEquipmentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,9 +52,12 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<int?>("TotalQuantity")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.ToTable("CategoriesEquipment");
+                    b.ToTable("CategoryEquipment");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Customer", b =>
@@ -102,6 +108,9 @@ namespace Gymbex.Infrastructure.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("EquipmentCategoryId")
+                        .HasColumnType("uuid");
+
                     b.Property<EquipmentState?>("EquipmentState")
                         .HasColumnType("integer");
 
@@ -115,7 +124,7 @@ namespace Gymbex.Infrastructure.DAL.Migrations
 
                     b.HasIndex("CategoryEquipmentId");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("Equipment");
                 });
 
             modelBuilder.Entity("Gymbex.Core.Entities.Reservation", b =>
