@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Gymbex.Infrastructure.DAL.Handlers
 {
-    internal class GetReservationsHandler : IQueryHandler<GetReservationsByCustomerId, List<ReservationDto>>
+    internal class GetReservationsHandler : IQueryHandler<GetReservations, List<ReservationDto>>
     {
         private readonly GymbexDbContext _dbContext;
 
@@ -22,7 +22,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
             _dbContext = dbContext;
         }
 
-        public async Task<List<ReservationDto>> ExecuteHandleAsync(GetReservationsByCustomerId query)
+        public async Task<List<ReservationDto>> ExecuteHandleAsync(GetReservations query)
         {
             var list = await _dbContext.Reservations
                 .Include(x => x.Activity)

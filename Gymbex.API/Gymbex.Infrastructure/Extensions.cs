@@ -27,7 +27,7 @@ namespace Gymbex.Infrastructure
             var sectionApp = configuration.GetSection("app"); //pobranie sekcji
             services.Configure<AppOptions>(sectionApp); //zbindowanie na AppOptions
 
-            services.AddSingleton<ExceptionMiddleware>();
+            
             services.AddHttpContextAccessor();
             services.AddAuth(configuration);
             services.AddSecure();
@@ -39,7 +39,7 @@ namespace Gymbex.Infrastructure
                 .WithScopedLifetime());
 
             services.AddPostgres(configuration);
-            
+            services.AddSingleton<ExceptionMiddleware>();
             return services;
         }
     }

@@ -8,17 +8,17 @@
         <button type="button" class="btn btn-dark" @onclick="CustomerListView">Sprzęt</button>
         <button type="button" class="btn btn-dark" @onclick="ActivityListView">Zajęcia</button>
         <button type="button" class="btn btn-dark" @onclick="TicketListView">Karnety</button>
-        <button type="button" class="btn btn-dark" @onclick="CustomerListView">Rezerwacje</button>
+        <button type="button" class="btn btn-dark" @onclick="ReservationListView">Rezerwacje</button>
     </div>
     <div class="admin-content">
         @if (ShowCustomers)
         {
             <div class="tab-pane" id="uzytkownicy">
                 <BlazorList Items="Customers" Title="Lista uzytkowników" IsAdmin=true>
-                    <RenderFragment>
+                    <ChildContent>
                         <button type="button" class="btn btn-warning">Edytuj</button>
                         <button type="button" class="btn btn-danger">Usuń</button>
-                    </RenderFragment>
+                    </ChildContent>
                 </BlazorList>
             </div>
         }
@@ -26,11 +26,11 @@
         {
             <div class="tab-pane" id="karnety">
                 <BlazorList Items="Tickets" Title="Lista karnetów" IsAdmin=true>
-                    <RenderFragment>
+                    <ChildContent>
                         <button type="button" class="btn btn-warning">Edytuj</button>
                         <button type="button" class="btn btn-danger">Usuń</button>
                         <button type="button" class="btn btn-primary">Rezerwacje</button>
-                    </RenderFragment>
+                    </ChildContent>
                 </BlazorList>
             </div>
         }
@@ -38,12 +38,24 @@
         {
             <div class="tab-pane" id="zajecia">
                 <BlazorList Items="Activities" Title="Lista zajęć" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje" IsAdmin=true>
-                    <RenderFragment>
+                    <ChildContent>
                         <button type="button" class="btn btn-warning">Edytuj</button>
                         <button type="button" class="btn btn-danger">Usuń</button>
-                    </RenderFragment>
+                    </ChildContent>
                 </BlazorList>
             </div>
         }
+
+        @if (ShowReservations)
+        {
+             <div class="tab-pane" id="rezerwacje">
+                <BlazorList Items="Reservations" Title="Rezerwacje użytkowników" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje">
+                    <ChildContent>
+                        <button type="button" class="btn btn-danger">Usuń</button>
+                    </ChildContent>
+                </BlazorList>
+            </div>
+        }
+
     </div>
 </div>
