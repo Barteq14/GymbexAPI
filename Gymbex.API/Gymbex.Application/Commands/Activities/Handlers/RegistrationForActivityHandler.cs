@@ -46,8 +46,10 @@ namespace Gymbex.Application.Commands.Activities.Handlers
             var newReservation = new Reservation(Guid.NewGuid(), DateTime.UtcNow, command.CustomerId, command.ActivityId);
 
             activity.AddReservation(newReservation);
+            customer.AddReservation(newReservation);
 
             await _activityRepository.UpdateActivityAsync(activity); 
+            await _customerRepository.UpdateUserAsync(customer);
         }
     }
 }

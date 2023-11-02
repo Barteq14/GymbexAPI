@@ -19,7 +19,10 @@
             {
                 <th>@property.Name</th>
             }
-            <th>Akcja</th>
+            @if (ShowActionHeader)
+            {
+                <th>Akcja</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -31,12 +34,14 @@
                     <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
                 }
                 <td>
-                    <AuthorizeView>
-                        <Authorized>
-                            @ChildContent(item)
-                        </Authorized>
-                    </AuthorizeView>
-                   
+                    @if (HaveChildContent)
+                    {
+                        <AuthorizeView>
+                            <Authorized>
+                                @ChildContent(item)
+                            </Authorized>
+                        </AuthorizeView>
+                    }
                 </td>
             </tr>
             

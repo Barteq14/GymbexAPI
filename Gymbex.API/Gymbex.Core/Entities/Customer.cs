@@ -79,5 +79,10 @@ namespace Gymbex.Core.Entities
         {
             TicketId = null;
         }
+
+        public void AddReservation(Reservation reservation)
+        {
+            _reservations.Add(reservation);
+        }
     }
 }

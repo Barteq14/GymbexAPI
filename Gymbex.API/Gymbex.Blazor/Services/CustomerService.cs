@@ -126,5 +126,18 @@ namespace Gymbex.Blazor.Services
 
             return new List<CustomerDto>();
         }
+
+        public async Task<List<ReservationDto>> GetCustomerReservations(Guid customerId)
+        {
+            var response = await _httpClient.GetAsync($"{API}api/customer/customer-reservations/{customerId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<List<ReservationDto>>();
+
+                return result;
+            }
+
+            return new List<ReservationDto>();
+        }
     }
 }

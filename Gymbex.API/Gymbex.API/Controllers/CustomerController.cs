@@ -23,12 +23,13 @@ namespace Gymbex.API.Controllers
         private readonly IQueryHandler<GetCustomer, CustomerDto> _getCustomerByIdQueryHandler;
         private readonly IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> _getCustomersQueryHandler;
         private readonly IQueryHandler<GetInstructors, List<CustomerDto>> _getInstructorsQueryHandler;
+        private readonly IQueryHandler<GetReservationsByCustomerId, List<ReservationDto>> _getReservationsByCustomerIdQueryHandler;
         private readonly ICommandHandler<SignIn> _signInCommandHandler;
         private readonly ICommandHandler<BuyTicket> _buyTicketCommandHandler;
         private readonly ICommandHandler<RemoveTIcket> _removeTicketCommandHandler;
         private readonly ITokenStorage _tokenStorage;
 
-        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler, ICommandHandler<RemoveTIcket> removeTicketCommandHandler, IQueryHandler<GetInstructors, List<CustomerDto>> getInstructorsQueryHandler)
+        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler, ICommandHandler<RemoveTIcket> removeTicketCommandHandler, IQueryHandler<GetInstructors, List<CustomerDto>> getInstructorsQueryHandler, IQueryHandler<GetReservationsByCustomerId, List<ReservationDto>> getReservationsByCustomerIdQueryHandler)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _deleteCustomerCommandHandler = deleteCustomerCommandHandler;
@@ -40,6 +41,7 @@ namespace Gymbex.API.Controllers
             _buyTicketCommandHandler = buyTicketCommandHandler;
             _removeTicketCommandHandler = removeTicketCommandHandler;
             _getInstructorsQueryHandler = getInstructorsQueryHandler;
+            _getReservationsByCustomerIdQueryHandler = getReservationsByCustomerIdQueryHandler;
         }
 
         #region GET
@@ -75,6 +77,15 @@ namespace Gymbex.API.Controllers
             var instructors = await _getInstructorsQueryHandler.ExecuteHandleAsync(query);
             return Ok(instructors);
         }
+
+        [HttpGet("customer-reservations/{customerId:guid}")]
+        public async Task<ActionResult<List<ReservationDto>>> GetCustomerReservations([FromRoute] Guid CustomerId, [FromQuery] GetReservationsByCustomerId query)
+        {
+            query.CustomerId = CustomerId;
+            var reservations = await _getReservationsByCustomerIdQueryHandler.ExecuteHandleAsync(query);  
+            return Ok(reservations);
+        }
+
         #endregion
 
         #region POST

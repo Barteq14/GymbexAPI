@@ -22,7 +22,9 @@ namespace Gymbex.Core.Entities
         #region Relationships
 
         public CustomerId CustomerId { get; private set; }
+        public Customer Customer { get; private set; }
         public ActivityId ActivityId { get; private set; }
+        public Activity Activity { get; private set; }
 
         #endregion
 
