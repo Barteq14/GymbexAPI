@@ -10,21 +10,18 @@ namespace Gymbex.Core.Entities
     public sealed class CategoryEquipment
     {
         private static readonly HashSet<Equipment> _equipments = new();
-        public EquipmentCategoryId Id { get; set; }
-        public EquipmentCategoryName Name { get; set; }
-        public EquipmentCategoryTotalQuantity TotalQuantity { get; set; }
+        public CategoryEquipmentId Id { get; private set; }
+        public EquipmentCategoryName Name { get; private set; }
 
         public IEnumerable<Equipment> Equipments { get; private set; } = _equipments;
 
-        public CategoryEquipment(EquipmentCategoryId id, EquipmentCategoryName name, EquipmentCategoryTotalQuantity totalQuantity)
-        {
+        public CategoryEquipment(CategoryEquipmentId id, EquipmentCategoryName name) {  
             Id = id;
             Name = name;
-            TotalQuantity = totalQuantity;
         }
 
-        public CategoryEquipment Create(EquipmentCategoryId id, EquipmentCategoryName name, EquipmentCategoryTotalQuantity totalQuantity)
-            => new CategoryEquipment(Id, name, totalQuantity);
+        public static CategoryEquipment Create(CategoryEquipmentId id, EquipmentCategoryName name)
+            => new CategoryEquipment(id, name);
 
         public void AddEquipment(Equipment equipment)
         {

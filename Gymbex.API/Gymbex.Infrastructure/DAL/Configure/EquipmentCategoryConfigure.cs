@@ -15,9 +15,8 @@ namespace Gymbex.Infrastructure.DAL.Configure
         public void Configure(EntityTypeBuilder<CategoryEquipment> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).HasConversion(x => x.Value, c => new EquipmentCategoryId(c));
+            builder.Property(x => x.Id).HasConversion(x => x.Value, c => new CategoryEquipmentId(c));
             builder.Property(x => x.Name).HasConversion(x => x.Value, c => new EquipmentCategoryName(c));
-            builder.Property(x => x.TotalQuantity).HasConversion(x => x.Value, c => new EquipmentCategoryTotalQuantity(c));
         }
     }
 }

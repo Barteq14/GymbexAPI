@@ -10,27 +10,27 @@ namespace Gymbex.Core.Entities
 {
     public class Equipment
     {
-        public EquipmentId Id { get; set; }
-        public EquipmentName Name { get; set; }
-        public EquipmentDescription Description { get; set; }
-        public EquipmentStateEnum EquipmentState { get; set; }
-        public EquipmentQuantity Quantity { get; set; }
-        public Guid CategoryEquipmentId { get; set; }
-        public CategoryEquipment CategoryEquipment { get; set; }
+        public EquipmentId Id { get; private set; }
+        public EquipmentName Name { get; private set; }
+        public EquipmentDescription Description { get; private set; }
+        public EquipmentStateEnum EquipmentState { get; private set; }
+        public EquipmentQuantity Quantity { get; private set; }
+        public CategoryEquipmentId CategoryEquipmentId { get; private set; }
+        public CategoryEquipment CategoryEquipment { get; private set; }
 
 
-        public Equipment(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, int quantity, Guid categoryId)
+        public Equipment(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, EquipmentQuantity quantity, CategoryEquipmentId categoryEquipmentId)
         {
             Id = id;
             Name = name;
             Description = description;
             EquipmentState = equipmentState;
             Quantity = quantity;
-            CategoryEquipmentId = categoryId;
+            CategoryEquipmentId = categoryEquipmentId;
         }
 
-        public Equipment Create(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, int quantity, Guid categoryId)
-                => new Equipment(id, name, description, equipmentState, quantity, categoryId);
+        public static Equipment Create(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, EquipmentQuantity quantity, CategoryEquipmentId categoryEquipmentId)
+                => new Equipment(id, name, description, equipmentState, quantity, categoryEquipmentId);
 
     }
 }

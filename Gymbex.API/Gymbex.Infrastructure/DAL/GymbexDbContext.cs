@@ -19,6 +19,8 @@ namespace Gymbex.Infrastructure.DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<CategoryEquipment> CategoriesEquipment { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

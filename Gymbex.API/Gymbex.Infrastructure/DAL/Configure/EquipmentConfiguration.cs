@@ -20,6 +20,7 @@ namespace Gymbex.Infrastructure.DAL.Configure
             builder.Property(x => x.Description).HasConversion(x => x.Value, c => new EquipmentDescription(c));
             builder.Property(x => x.EquipmentState).HasConversion(x => x.Value, c => new EquipmentStateEnum(c));
             builder.Property(x => x.Quantity).HasConversion(x => x.Value, c => new EquipmentQuantity(c));
+            builder.Property(x => x.CategoryEquipmentId).HasConversion(x => x.Value, c => new CategoryEquipmentId(c));
         }
     }
 }
