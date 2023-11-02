@@ -1,4 +1,5 @@
 ﻿using Gymbex.Core.Enums;
+using Gymbex.Core.ValueObjects.Equipmetn;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace Gymbex.Core.Entities
 {
     public class Equipment
     {
-        Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public EquipmentState EquipmentState { get; set; }
-        public int Quantity { get; set; }
+        public EquipmentId Id { get; set; }
+        public EquipmentName Name { get; set; }
+        public EquipmentDescription Description { get; set; }
+        public EquipmentStateEnum EquipmentState { get; set; }
+        public EquipmentQuantity Quantity { get; set; }
         public Guid CategoryEquipmentId { get; set; }
         public CategoryEquipment CategoryEquipment { get; set; }
 
 
-        public Equipment(Guid id, string name, string description, EquipmentState equipmentState, int quantity, Guid categoryId)
+        public Equipment(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, int quantity, Guid categoryId)
         {
             Id = id;
             Name = name;
@@ -28,7 +29,7 @@ namespace Gymbex.Core.Entities
             CategoryEquipmentId = categoryId;
         }
 
-        public Equipment Create(Guid id, string name, string description, EquipmentState equipmentState, int quantity, Guid categoryId)
+        public Equipment Create(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, int quantity, Guid categoryId)
                 => new Equipment(id, name, description, equipmentState, quantity, categoryId);
 
     }
