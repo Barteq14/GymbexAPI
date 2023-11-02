@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Gymbex.Blazor.Security;
+using Gymbex.Blazor.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,16 +36,14 @@ namespace Gymbex.Blazor.Components
             NavigationManager.NavigateTo("/adminPanel");
         }
 
+        private async Task MyReservations()
+        {
+            NavigationManager.NavigateTo("/myReservations");
+        }
+
         private async void MyAccount()
         {
-            var token = await LocalStorageService.GetItemAsync<string>("authToken");
-            var handler = new JwtSecurityTokenHandler();
-
-            var jwt = new JwtSecurityToken(token);
-
-            var uniqueName = jwt.Claims.FirstOrDefault(c => c.Type == "unique_name").Value;
-
-            var id = Guid.Parse(uniqueName);
+            var id = await UserHelper.GetUserId(LocalStorageService);
 
             NavigationManager.NavigateTo($"/myAccount/{id}");
         }

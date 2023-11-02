@@ -11,7 +11,7 @@ namespace Gymbex.Application.Dtos
     {
         public Guid ReservationId { get; set; }
         public string ActivityName { get; set; }
-        public Date ActivityDate { get; set; }
-        public Date CreatedAt { get; set; }
+        public DateTime ActivityDate { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
