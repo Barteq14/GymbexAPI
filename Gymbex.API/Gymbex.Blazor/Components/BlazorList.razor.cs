@@ -15,6 +15,45 @@ namespace Gymbex.Blazor.Components
         [Parameter] public string AdditionalButtonTitle { get; set; }
         [Parameter] public RenderFragment<T> ChildContent { get; set; }
 
+
+        //paginacja
+        private int currentPage = 1;
+        private int itemsPerPage = 10;
+        private int totalItems => Items.Count;
+        private int totalPages => (int)Math.Ceiling((double)totalItems / itemsPerPage);
+
+        private List<T> CurrentPageItems => Items
+            .Skip((currentPage -1) * itemsPerPage)
+            .Take(itemsPerPage)
+            .ToList();
+
+        private bool IsFirstPage => currentPage == 1;
+        private bool IsLastPage => currentPage == totalPages;
+
+        private void GoToPage(int page)
+        {
+            if(page >= 1 && page <= totalPages)
+            {
+                currentPage = page;
+            }
+        }
+
+        private void GoToNextPage()
+        {
+            if (!IsLastPage)
+            {
+                currentPage++;
+            }
+        }
+
+        private void GoToPreviousPage()
+        {
+            if (!IsFirstPage)
+            {
+                currentPage--;
+            }
+        }
+
         private List<PropertyInfo> GetProperties()
         {
             if(Items is not null && Items.Any())
