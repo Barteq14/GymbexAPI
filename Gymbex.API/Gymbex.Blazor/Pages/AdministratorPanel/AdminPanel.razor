@@ -5,7 +5,7 @@
 <div class="admin-box">
     <div class="admin-menu">
         <button type="button" class="btn btn-dark" @onclick="CustomerListView">Użytkownicy</button>
-        <button type="button" class="btn btn-dark" @onclick="CustomerListView">Sprzęt</button>
+        <button type="button" class="btn btn-dark" @onclick="EquipmentListView">Sprzęt</button>
         <button type="button" class="btn btn-dark" @onclick="ActivityListView">Zajęcia</button>
         <button type="button" class="btn btn-dark" @onclick="TicketListView">Karnety</button>
         <button type="button" class="btn btn-dark" @onclick="ReservationListView">Rezerwacje</button>
@@ -51,6 +51,18 @@
              <div class="tab-pane" id="rezerwacje">
                 <BlazorList Items="Reservations" Title="Rezerwacje użytkowników" ShowAdditionalButton=true AdditionalButtonTitle="Rezerwacje">
                     <ChildContent>
+                        <button type="button" class="btn btn-danger">Usuń</button>
+                    </ChildContent>
+                </BlazorList>
+            </div>
+        }
+
+        @if (ShowEquipments)
+        {
+            <div class="tab-pane" id="sprzet">
+                <BlazorList Items="Equipments" Title="Lista sprzętu" IsAdmin=true ShowAdditionalButton=true AdditionalButtonTitle="Akcja">
+                    <ChildContent>
+                        <button type="button" class="btn btn-warning">Edytuj</button>
                         <button type="button" class="btn btn-danger">Usuń</button>
                     </ChildContent>
                 </BlazorList>
