@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Gymbex.Application.Dtos;
 using Gymbex.Core.Entities;
+using Gymbex.Core.Enums.Extensions;
 
 namespace Gymbex.Infrastructure.DAL.Handlers
 {
@@ -50,6 +51,19 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 ActivityName = activity.Name,
                 ActivityDate = activity.Date,
                 CreatedAt = reservation.CreatedAt
+            };
+        }
+
+        public static EquipmentDto AsEquipmentDto(this Equipment equipment)
+        {
+            return new EquipmentDto()
+            {
+                ID = equipment.Id,
+                Name = equipment.Name,
+                Description = equipment.Description,
+                EquipmentState = equipment.EquipmentState.Value.GetDisplayName(),
+                Quantity = equipment.Quantity,
+                CategoryName = equipment.CategoryEquipment.Name
             };
         }
     }

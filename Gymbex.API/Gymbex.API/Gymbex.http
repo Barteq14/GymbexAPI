@@ -135,3 +135,7 @@ Content-Type: application/json
 
 ###
 GET {{url}}/api/reservation
+
+
+###
+GET {{url}}/api/equipment
