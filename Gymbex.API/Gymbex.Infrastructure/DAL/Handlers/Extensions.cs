@@ -50,6 +50,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 ReservationId = reservation.Id,
                 ActivityName = activity.Name,
                 ActivityDate = activity.Date,
+                CustomerEmail = reservation.Customer.Email,
                 CreatedAt = reservation.CreatedAt
             };
         }
