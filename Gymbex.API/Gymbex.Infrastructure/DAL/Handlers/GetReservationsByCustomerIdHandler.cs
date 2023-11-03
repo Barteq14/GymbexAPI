@@ -25,7 +25,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
             var customerId = new CustomerId(query.CustomerId);
             var list  = await _dbContext.Reservations
                 .Include(x => x.Activity)
-                .Include(x => x.CustomerId)
+                .Include(x => x.Customer)
                 .Where(x => x.CustomerId == customerId)
                 .ToListAsync();
 

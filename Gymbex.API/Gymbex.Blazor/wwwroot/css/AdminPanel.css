@@ -54,3 +54,33 @@
 }
 
 
+.pagination-box{
+    width:100%;
+    display:grid;
+    grid-template-columns:50% 50%;
+    flex-direction:column;
+}
+
+.pagination-buttons{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    gap:5px
+}
+
+.pagination-infos{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+
+.pagination-infos p{
+    margin:5px;
+    font-weight:900;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:20px;
+}
+
+.active-page {
+    border: 2px solid #2510a3 !important;
+}

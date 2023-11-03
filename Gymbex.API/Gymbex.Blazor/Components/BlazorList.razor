@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Items)
+        @foreach (var item in CurrentPageItems)
         {
             <tr>
                 @foreach (var property in GetProperties().Skip(1))
@@ -48,3 +48,20 @@
         }
     </tbody>
 </table>
+
+<div class="pagination-box">
+    <div class="pagination-buttons">
+        <button class="btn btn-primary" disabled="@IsFirstPage" @onclick="GoToPreviousPage"> @("<") </button>
+        @for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++)
+        {
+            int currentPageNumber = pageNumber; // Użyj zmiennej lokalnej currentPageNumber
+
+            <button class="btn btn-link @(currentPageNumber == currentPage ? "active-page" : "")" @onclick="() => GoToPage(currentPageNumber)">@currentPageNumber</button>
+        }
+        <button class="btn btn-primary" disabled="@IsLastPage" @onclick="GoToNextPage">@(">")</button>
+    </div>
+    <div class="pagination-infos">
+        <p>Bieżąca strona: @currentPage</p>
+        <p>Ilość stron: @totalPages</p>
+    </div>
+</div>
