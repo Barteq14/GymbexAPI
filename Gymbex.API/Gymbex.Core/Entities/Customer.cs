@@ -71,6 +71,11 @@ namespace Gymbex.Core.Entities
             PhoneNumber = phone ?? PhoneNumber;
         }
 
+        public void ChangeRoleByAdmin(Role role)
+        {
+            Role = role;
+        }
+
         public void SetTicket(Guid? ticketId)
         {
             TicketId = new TicketId(ticketId.Value);
