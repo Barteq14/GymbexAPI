@@ -20,7 +20,9 @@ namespace Gymbex.Infrastructure.DAL.Handlers
         }
 
         public async Task<IEnumerable<CustomerDto>> ExecuteHandleAsync(GetCustomers query) 
-            => await _context.Customers.Select(x => x.AsCustomerDto()).ToListAsync();
+            => await _context.Customers
+                .Include(x => x.Ticket)
+                .Select(x => x.AsCustomerDto()).ToListAsync();
 
     }
 }

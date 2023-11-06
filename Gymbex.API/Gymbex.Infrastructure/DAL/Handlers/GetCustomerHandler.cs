@@ -25,6 +25,7 @@ namespace Gymbex.Infrastructure.DAL.Handlers
         {
             var customer = await _context.Customers
                 .Include(x => x.Reservations)
+                .Include(x => x.Ticket)
                 .SingleOrDefaultAsync(x => x.Id == query.Id);
             return customer.AsCustomerDto();
         }

@@ -39,11 +39,7 @@ namespace Gymbex.Blazor.Pages.Account
             ModelToUpdate.Phone = CustomerDto.PhoneNumber;
             ModelToUpdate.CustomerId = CustomerId;
 
-            if (CustomerDto.TicketId.HasValue)
-            {
-                var ticket = await TicketService.GetTicketAsync(CustomerDto.TicketId.Value);
-                TicketName = ticket.KindDisplayName;
-            }
+            TicketName = CustomerDto.TicketName;
         }
 
         private async Task ShowModal()
