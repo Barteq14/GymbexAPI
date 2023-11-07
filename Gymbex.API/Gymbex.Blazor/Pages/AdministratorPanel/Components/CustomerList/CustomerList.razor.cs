@@ -12,11 +12,18 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.CustomerList
         [Inject] ICustomerService CustomerService { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
         CustomerDto ModelToUpdate { get; set; } = new CustomerDto();
+        CustomerDto ModelToDelete { get; set; } = new CustomerDto();
         public ModalBlazor ModalBlazor { get; set; } = new ModalBlazor();
         private string ModalClass = "modal";
         private string ModalId = "account-modal";
+
+        public ModalBlazor AlertModal { get; set; } = new ModalBlazor();
+        private string ModalAlertClass = "modal";
+        private string ModalAlertId = "modal-alert-id";
+
         private string selectedOption;
         public List<string> Roles = new List<string> { "User", "Admin", "Instructor" };
+        public BlazorAlert AlertComponent;
 
         private async Task OpenModal(CustomerDto customer)
         {
@@ -28,6 +35,17 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.CustomerList
         private async Task SaveHandler()
         {
             await CustomerService.ChangeRoleAsync(ModelToUpdate.Id, ModelToUpdate.Role);
+            NavigationManager.NavigateTo("/adminPanel", true);
+        }
+
+        private async Task OpenAlertModal(CustomerDto customer)
+        {
+            await JSRuntime.InvokeVoidAsync("showModal", ModalAlertId);
+            ModelToDelete = customer;
+        }
+        private async Task DeleteUser()
+        {
+            await CustomerService.DeleteUserAsync(ModelToDelete.Id);
             NavigationManager.NavigateTo("/adminPanel", true);
         }
     }

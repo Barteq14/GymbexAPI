@@ -7,7 +7,8 @@
     <BlazorList Items="Items" Title="Lista uzytkowników" IsAdmin=true>
         <ChildContent>
             <button type="button" class="btn btn-warning" @onclick="@(async () => {await OpenModal(context);})">Zmień rolę</button>
-            <button type="button" class="btn btn-danger">Usuń</button>
+          
+            <button type="button" class="btn btn-danger" @onclick="@(async () => {await OpenAlertModal(context);})">Usuń</button>
         </ChildContent>
     </BlazorList>
 </div>
@@ -29,3 +30,5 @@
         </EditForm>
     </BodyContent>
 </ModalBlazor>
+
+<ModalBlazor @ref="AlertModal" AlertMode=true OnSaveTitle="Tak, usuń" ModalClass="@ModalAlertClass" Title=@($"Czy napewno chcesz usunąć użytkownika: {ModelToDelete.Email}") OnSave="DeleteUser" ModalId="@ModalAlertId" />

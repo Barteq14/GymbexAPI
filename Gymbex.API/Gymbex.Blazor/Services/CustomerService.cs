@@ -150,5 +150,15 @@ namespace Gymbex.Blazor.Services
                 throw new Exception("Something is wrong with edit role by Admin");
             }
         }
+
+        public async Task DeleteUserAsync(Guid customerId)
+        {
+            var response = await _httpClient.DeleteAsync($"{API}api/customer/{customerId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Something is wrong with removing user");
+            }
+        }
     }
 }
