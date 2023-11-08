@@ -1,0 +1,28 @@
+﻿@media only screen and (max-width: 1000px) {
+    .banner-for-register-login{
+        grid-template-columns:auto auto;
+    }
+
+    .menu-class {
+        display: none;
+    }
+
+    .menu-mobile-class {
+        display: block;
+    }
+    
+    .flex-item{
+        font-size:24px;
+    }
+
+    .header-container{
+        display:block;
+        height:auto;
+        width:auto;
+    }
+
+    .footer-custom{
+        height:auto;
+        display:block;
+    }
+}

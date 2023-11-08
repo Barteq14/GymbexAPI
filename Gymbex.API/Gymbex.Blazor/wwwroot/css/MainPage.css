@@ -17,20 +17,21 @@
 }
 
 .banner-title {
-    height: 20;
+    height: auto;
     display: flex;
     justify-content: center;
-    top:180px;
-    right:120px;
+    padding:100px;
+    right:100px;
+    left:100px;
     color: black;
     font-family: Bradley Hand ITC;
-    font-size: 55px;
+    font-size: 81px;
     position:absolute
 }
 
     .banner-title a{
         text-decoration:none;
-        color:black;
+        color:white;
         height:80px;
     }
 
@@ -46,7 +47,7 @@
 .header-container {
     display: flex;
     width: 100%;
-    height: 100px;
+    height:80px;
     background-color: rebeccapurple;
     border:5px solid black;
 }
@@ -76,12 +77,12 @@
     color:white;
 }
 
-.firts-column, .second-column {
+.firts-column, .second-column, .third-column {
     border-right:1px solid black;
 }
 
 .firts-column:hover, .second-column:hover, .third-column:hover{
-    border: 5px solid white;
+    border: 1px solid white;
     border-radius:5px;
     background-color:darkslateblue;
     cursor:pointer;
@@ -246,14 +247,14 @@ table > thead {
     box-sizing: border-box;
 }
 
-.registration-class {
+.menu-class {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 20px;
 }
 
-    .registration-class p {
+    .menu-class p {
         margin: 10px;
         text-shadow: 1px 1px 2px red, 0 0 25px blue, 0 0 5px red;
     }

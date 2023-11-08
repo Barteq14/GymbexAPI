@@ -15,6 +15,12 @@ namespace Gymbex.Blazor.Components
         [Inject] public NavigationManager NavigationManager { get; set; }
 
         [Inject] public ILocalStorageService LocalStorageService { get; set; }
+        public Guid UserId { get; set; }
+
+        protected override async Task OnInitializedAsync()
+        {
+            UserId = await UserHelper.GetUserId(LocalStorageService);
+        }
 
         private void Logout()
         {

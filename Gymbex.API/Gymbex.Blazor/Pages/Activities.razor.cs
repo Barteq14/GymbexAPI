@@ -1,6 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using Gymbex.Blazor.Models;
 using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.IdentityModel.Tokens.Jwt;
@@ -59,13 +60,9 @@ namespace Gymbex.Blazor.Pages
 
         private async Task RegisterOnActivity(Guid activityId)
         {
-            var token = await LocalStorageService.GetItemAsync<string>("authToken");
-            var handler = new JwtSecurityTokenHandler();
+            var userId = await UserHelper.GetUserId(LocalStorageService);
 
-            var jwt = new JwtSecurityToken(token);
-            var uniqueName = jwt.Claims.FirstOrDefault(c => c.Type == "unique_name").Value;
-            var id = Guid.Parse(uniqueName);
-            var command = new ReservationActivityRequest { ActivityId = activityId , CustomerId = id};
+            var command = new ReservationActivityRequest { ActivityId = activityId , CustomerId = userId };
 
 
             var result = await ActivityService.RegisterOnActivity(command, activityId);
