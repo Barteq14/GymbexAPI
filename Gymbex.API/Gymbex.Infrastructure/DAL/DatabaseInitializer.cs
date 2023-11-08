@@ -74,7 +74,7 @@ namespace Gymbex.Infrastructure.DAL
                     {
                         Equipment.Create(Guid.NewGuid(), "Sztanga 1,5m", "Sztanga, rozmiar półtora metra, średnia", EquipmentState.GoodState, 10, categoryIds[5]),
                         Equipment.Create(Guid.NewGuid(), "Sztanga 2m", "Sztanga, rozmiar dwa metry, duża", EquipmentState.GoodState, 10, categoryIds[5]),
-                        Equipment.Create(Guid.NewGuid(), "Gryf 1m", "Gryf, rozmiar jeden metr, mały", EquipmentState.GoodState, 10, categoryIds[0]),
+                        Equipment.Create(Guid.NewGuid(), "Gryf 1m", "Gryf, rozmiar jeden metr, mały", EquipmentState.GoodState, 10, categories.FirstOrDefault(x => x.Name.Value.Contains("Gryfy")).Id),
                         Equipment.Create(Guid.NewGuid(), "Gryf 1,5m", "Gryf, rozmiar półtora metra, duży", EquipmentState.GoodState, 10, categoryIds[0]),
                         Equipment.Create(Guid.NewGuid(), "Skakanka 2m", "Skakanka, rozmiar 2 metry", EquipmentState.GoodState, 10, categoryIds[1]),
                         Equipment.Create(Guid.NewGuid(), "Mata", "Mata do ćwiczeń", EquipmentState.GoodState, 10, categoryIds[2]),
