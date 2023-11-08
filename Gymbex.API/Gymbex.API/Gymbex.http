@@ -1,6 +1,6 @@
 @url = https://localhost:7291
 @activityId = 87ae998b-df16-46c3-8c43-038063e3cebf
-@customerId = 711b963a-326b-4c98-b88c-648182609f22
+@customerId = b626ead6-a14d-4eaf-b9e5-144e5ca71e1f
 @ticketId = 26e0a280-8de0-40e4-a17e-6eab92b77402
 
 ###
@@ -52,6 +52,15 @@ GET {{url}}/api/customer/customer-reservations/{{customerId}}
 
 ###
 GET {{url}}/api/customer
+
+###
+PUT {{url}}/api/customer/change-role
+Content-Type: application/json
+
+{
+    "customerId": "{{customerId}}",
+    "role": "Instructor"
+}
 
 ###
 GET {{url}}/api/customer/{{customerId}}

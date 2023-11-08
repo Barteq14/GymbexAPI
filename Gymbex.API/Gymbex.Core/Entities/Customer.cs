@@ -44,6 +44,7 @@ namespace Gymbex.Core.Entities
 
         #region Relationships
         public TicketId? TicketId { get; private set; }
+        public Ticket Ticket { get; private set; }
         public IEnumerable<Reservation> Reservations { get; private set; } = _reservations;
         #endregion
 
@@ -68,6 +69,11 @@ namespace Gymbex.Core.Entities
             Fullname = fullname ?? Fullname;
             Username = username ?? Username;
             PhoneNumber = phone ?? PhoneNumber;
+        }
+
+        public void ChangeRoleByAdmin(Role role)
+        {
+            Role = role;
         }
 
         public void SetTicket(Guid? ticketId)

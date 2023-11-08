@@ -22,9 +22,9 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="@ModalClass" @onclick="ShowModal" data-bs-target="@ModalId">Edytuj dane</button>
         <hr />
         <div>
-            <p>Karnet aktywny: <span class="@(CustomerDto.TicketId.HasValue ? "badge bg-success" : "badge bg-danger")">@(CustomerDto.TicketId.HasValue ? "Tak" : "Nie")</span></p>
+            <p>Karnet aktywny: <span class="@(!string.IsNullOrEmpty(CustomerDto.TicketName) ? "badge bg-success" : "badge bg-danger")">@(!string.IsNullOrEmpty(CustomerDto.TicketName) ? "Tak" : "Nie")</span></p>
             
-            @if (CustomerDto.TicketId.HasValue)
+            @if (!string.IsNullOrEmpty(CustomerDto.TicketName))
             {
                 <p>Rodzaj karnetu: <span>@TicketName</span></p>
                 <p><button type="button" class="btn btn-danger" style="width:auto;" @onclick="RemoveTicket">Zrezygnuj z obecnego karnetu</button></p>

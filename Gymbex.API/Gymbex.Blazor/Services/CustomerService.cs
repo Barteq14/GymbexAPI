@@ -139,5 +139,26 @@ namespace Gymbex.Blazor.Services
 
             return new List<ReservationDto>();
         }
+
+        public async Task ChangeRoleAsync(Guid id, string Role)
+        {
+            var changeroleModel = new ChangeRoleRequest { CustomerId = id, Role = Role };
+            var response = await _httpClient.PutAsJsonAsync($"{API}api/customer/change-role", changeroleModel);
+
+            if(!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Something is wrong with edit role by Admin");
+            }
+        }
+
+        public async Task DeleteUserAsync(Guid customerId)
+        {
+            var response = await _httpClient.DeleteAsync($"{API}api/customer/{customerId}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Something is wrong with removing user");
+            }
+        }
     }
 }

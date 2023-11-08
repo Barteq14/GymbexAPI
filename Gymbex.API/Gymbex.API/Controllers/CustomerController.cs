@@ -27,9 +27,10 @@ namespace Gymbex.API.Controllers
         private readonly ICommandHandler<SignIn> _signInCommandHandler;
         private readonly ICommandHandler<BuyTicket> _buyTicketCommandHandler;
         private readonly ICommandHandler<RemoveTIcket> _removeTicketCommandHandler;
+        private readonly ICommandHandler<ChangeRoleByAdmin> _changeRoleByAdminCommandHandler;
         private readonly ITokenStorage _tokenStorage;
 
-        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler, ICommandHandler<RemoveTIcket> removeTicketCommandHandler, IQueryHandler<GetInstructors, List<CustomerDto>> getInstructorsQueryHandler, IQueryHandler<GetReservationsByCustomerId, List<ReservationDto>> getReservationsByCustomerIdQueryHandler)
+        public CustomerController(ICommandHandler<SignUp> signUpCommandHandler, ICommandHandler<DeleteCustomer> deleteCustomerCommandHandler, IQueryHandler<GetCustomer, CustomerDto> getCustomerByIdQueryHandler, IQueryHandler<GetCustomers, IEnumerable<CustomerDto>> getCustomersQueryHandler, ICommandHandler<SignIn> signInCommandHandler, ITokenStorage tokenStorage, ICommandHandler<UpdateCustomer> updateCustomerCommandHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler, ICommandHandler<RemoveTIcket> removeTicketCommandHandler, IQueryHandler<GetInstructors, List<CustomerDto>> getInstructorsQueryHandler, IQueryHandler<GetReservationsByCustomerId, List<ReservationDto>> getReservationsByCustomerIdQueryHandler, ICommandHandler<ChangeRoleByAdmin> changeRoleByAdminCommandHandler)
         {
             _signUpCommandHandler = signUpCommandHandler;
             _deleteCustomerCommandHandler = deleteCustomerCommandHandler;
@@ -42,6 +43,7 @@ namespace Gymbex.API.Controllers
             _removeTicketCommandHandler = removeTicketCommandHandler;
             _getInstructorsQueryHandler = getInstructorsQueryHandler;
             _getReservationsByCustomerIdQueryHandler = getReservationsByCustomerIdQueryHandler;
+            _changeRoleByAdminCommandHandler = changeRoleByAdminCommandHandler;
         }
 
         #region GET
@@ -170,6 +172,14 @@ namespace Gymbex.API.Controllers
             //tutaj trzeba zrobić usunięcie ticketu od customera
             return NoContent();
         }
+
+        [HttpPut("change-role")]
+        public async Task<ActionResult> ChangeRole(ChangeRoleByAdmin command)
+        {
+            await _changeRoleByAdminCommandHandler.HandlerExecuteAsync(command);
+            return NoContent();
+        }
+
         #endregion
 
         #region DELETE

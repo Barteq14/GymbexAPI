@@ -30,7 +30,9 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 Email = customer.Email,
                 FullName = customer.Fullname,
                 PhoneNumber = customer.PhoneNumber,
-                TicketId = customer.TicketId ?? null,
+                TicketId = customer.TicketId is null ? null : customer.TicketId.Value,
+                TicketName = customer.Ticket is null ? "Brak" : customer.Ticket.KindDescription,
+                Role = customer.Role.Value
             };
         }
 

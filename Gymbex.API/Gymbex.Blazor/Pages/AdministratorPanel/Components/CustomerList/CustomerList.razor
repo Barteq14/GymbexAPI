@@ -1,0 +1,34 @@
+﻿@page "/customerList"
+@using Gymbex.Blazor.Components
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+
+<div class="tab-pane" id="uzytkownicy">
+    <BlazorList Items="Items" Title="Lista uzytkowników">
+        <ChildContent>
+            <button type="button" class="btn btn-warning" @onclick="@(async () => {await OpenModal(context);})">Zmień rolę</button>
+          
+            <button type="button" class="btn btn-danger" @onclick="@(async () => {await OpenAlertModal(context);})">Usuń</button>
+        </ChildContent>
+    </BlazorList>
+</div>
+<ModalBlazor @ref="ModalBlazor" ModalClass="@ModalClass" Title=@($"Zmiana roli użytkownika: {ModelToUpdate.FullName}") OnSave="SaveHandler" ModalId="@ModalId">
+    <BodyContent>
+        <EditForm Model="ModelToUpdate" OnValidSubmit="SaveHandler">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+            <div class="form-group">
+                <label for="role"> Nowa rola</label>
+                <select class="form-control" id="selectOption" @bind="ModelToUpdate.Role">
+                    @foreach (var option in Roles)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+                <ValidationMessage For="@(() => ModelToUpdate.Role)" />
+            </div>
+        </EditForm>
+    </BodyContent>
+</ModalBlazor>
+
+<ModalBlazor @ref="AlertModal" AlertMode=true OnSaveTitle="Tak, usuń" ModalClass="@ModalAlertClass" Title=@($"Czy napewno chcesz usunąć użytkownika: {ModelToDelete.Email}") OnSave="DeleteUser" ModalId="@ModalAlertId" />

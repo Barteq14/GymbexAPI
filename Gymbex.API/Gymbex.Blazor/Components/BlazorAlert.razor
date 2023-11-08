@@ -1,0 +1,43 @@
+﻿@page "/alert"
+
+<div class="modal" style="display: @modalDisplay ;position:absolute;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@title</h5>
+                <button type="button" class="close" @onclick="Close">X</button>
+            </div>
+            <div class="modal-body">
+                @message
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" @onclick="Close">OK</button>
+                <button class="btn btn-secondary" @onclick="Cancel">Anuluj</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string modalDisplay = "none";
+    private string title = "Alert";
+    private string message = "Czy na pewno chcesz usunąć ten element?";
+
+    public void Show(string title, string message)
+    {
+        this.title = title;
+        this.message = message;
+        modalDisplay = "block";
+    }
+
+    private void Close()
+    {
+        modalDisplay = "none";
+    }
+
+    private void Cancel()
+    {
+        Close();
+        // Możesz umieścić tutaj kod do anulowania operacji usuwania.
+    }
+}
