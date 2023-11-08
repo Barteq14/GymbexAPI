@@ -1,5 +1,5 @@
 ﻿@inherits ComponentBase
-
+@*
 <div class="banner-for-register-login">
     <div class="customer-header">
         <a href="/">Gymbex</a>
@@ -21,4 +21,55 @@
             </NotAuthorized>
         </AuthorizeView>
     </div>
-</div>
+
+    <div class="menu-mobile-class">
+
+    </div>
+</div>*@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding:10px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Gymbex</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <AuthorizeView>
+            <Authorized>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/adminPanel">Panel administratora</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href=@($"/myAccount/{UserId}")>Informacje o koncie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/myReservations">Moje zajęcia</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-text">
+                        <span>
+                            Witaj, @context.User.Identity.Name
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-warning" @onclick="Logout">Wyloguj</button>
+                        </span>
+                    </div>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="collapse navbar-collapse" style="flex-grow:0;" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/register">Rejestracja</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Logowanie</a>
+                        </li>
+                    </ul>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+        
+    </div>
+</nav>

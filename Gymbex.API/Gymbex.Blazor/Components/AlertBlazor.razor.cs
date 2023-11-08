@@ -15,16 +15,5 @@ namespace Gymbex.Blazor.Components
         private ElementReference alertElement;
         private string SetClass;
 
-        protected override async Task OnInitializedAsync()
-        {
-            await Task.Delay(2000);
-            HideAlert();
-        }
-
-        private void HideAlert()
-        {
-            IsVisible = false;
-            StateHasChanged();
-        }
     }
 }
