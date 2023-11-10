@@ -1,6 +1,6 @@
 ﻿namespace Gymbex.Blazor.Models
 {
-    public class Ticket
+    public class TicketDto
     {
         public Guid TicketId { get; set; }
         public string KindDisplayName { get; set; }

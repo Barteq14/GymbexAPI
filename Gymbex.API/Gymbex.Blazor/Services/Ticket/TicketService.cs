@@ -1,7 +1,7 @@
 ﻿using Gymbex.Blazor.Models;
 using System.Net.Http.Json;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Ticket
 {
     public class TicketService : ITicketService
     {
@@ -13,13 +13,13 @@ namespace Gymbex.Blazor.Services
             _httpClient = httpClient;
         }
 
-        public async Task<Ticket> GetTicketAsync(Guid ticketId)
+        public async Task<TicketDto> GetTicketAsync(Guid ticketId)
         {
             var response = await _httpClient.GetAsync($"{API}api/ticket/{ticketId}");
-            var ticket = new Ticket();
+            var ticket = new TicketDto();
             if (response.IsSuccessStatusCode)
             {
-                ticket = await response.Content.ReadFromJsonAsync<Ticket>();
+                ticket = await response.Content.ReadFromJsonAsync<TicketDto>();
             }
 
             return ticket;
@@ -30,18 +30,18 @@ namespace Gymbex.Blazor.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Ticket>> GetTicketsAsync()
+        public async Task<List<TicketDto>> GetTicketsAsync()
         {
             var response = await _httpClient.GetAsync($"{API}api/ticket");
 
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<List<Ticket>>();
+                var result = await response.Content.ReadFromJsonAsync<List<TicketDto>>();
 
                 return result;
             }
 
-            return new List<Ticket>();
+            return new List<TicketDto>();
         }
     }
 }

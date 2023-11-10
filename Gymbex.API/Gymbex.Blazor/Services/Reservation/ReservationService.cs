@@ -2,7 +2,7 @@
 using Gymbex.Blazor.Utils;
 using System.Net.Http.Json;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Reservation
 {
     public class ReservationService : IReservationService
     {

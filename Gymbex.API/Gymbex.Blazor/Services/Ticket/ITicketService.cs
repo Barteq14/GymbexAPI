@@ -1,12 +1,12 @@
 ﻿using Gymbex.Blazor.Models;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Ticket
 {
     public interface ITicketService
     {
         //metoda do pobrania ticketu
-        Task<Ticket> GetTicketAsync(Guid ticketId);
-        Task<List<Ticket>> GetTicketsAsync();
+        Task<TicketDto> GetTicketAsync(Guid ticketId);
+        Task<List<TicketDto>> GetTicketsAsync();
         Task RemoveTicketAsync(Guid customerId);
     }
 }

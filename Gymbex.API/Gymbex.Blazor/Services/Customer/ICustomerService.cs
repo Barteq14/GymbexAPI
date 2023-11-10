@@ -1,6 +1,6 @@
 ﻿using Gymbex.Blazor.Models;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Customer
 {
     public interface ICustomerService
     {
@@ -12,7 +12,7 @@ namespace Gymbex.Blazor.Services
         Task DeleteUserAsync(Guid customerId);
 
         //tickets   
-        Task<List<Ticket>> GetTickets();
+        Task<List<TicketDto>> GetTickets();
         Task<ResponseModel> ChooseTicket(ChooseTicketRequest command);
         Task RemoveTicket(Guid customerId);
 

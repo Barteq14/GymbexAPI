@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Customer;
 using Gymbex.Blazor.Utils;
 using Microsoft.AspNetCore.Components;
 using System.IdentityModel.Tokens.Jwt;

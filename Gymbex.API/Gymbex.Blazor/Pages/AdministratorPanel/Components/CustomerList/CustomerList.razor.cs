@@ -1,6 +1,6 @@
 ﻿using Gymbex.Blazor.Components;
 using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Customer;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

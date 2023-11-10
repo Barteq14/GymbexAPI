@@ -1,5 +1,9 @@
 ﻿using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Activity;
+using Gymbex.Blazor.Services.Customer;
+using Gymbex.Blazor.Services.Equipment;
+using Gymbex.Blazor.Services.Reservation;
+using Gymbex.Blazor.Services.Ticket;
 using Microsoft.AspNetCore.Components;
 
 namespace Gymbex.Blazor.Pages.AdministratorPanel
@@ -13,7 +17,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
         [Inject] public IReservationService ReservationService { get; set; }
         [Inject] public IEquipmentService EquipmentService { get; set; }
         public List<CustomerDto> Customers { get; set; } = new List<CustomerDto>();
-        public List<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public List<TicketDto> Tickets { get; set; } = new List<TicketDto>();
         public List<ActivityDto> Activities { get; set; } = new List<ActivityDto>();
         public List<ReservationDto> Reservations { get; set; } = new List<ReservationDto>();
         public List<EquipmentDto> Equipments { get; set; } = new List<EquipmentDto>();
@@ -53,7 +57,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
                 var result = await CustomerService.UpdateCustomerDtoAsync(updateModel);
             }
 
-            if(value is Ticket ticket)
+            if(value is TicketDto ticket)
             {
                
             }
@@ -71,7 +75,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
                
             }
 
-            if (value is Ticket ticket)
+            if (value is TicketDto ticket)
             {
                 
             }

@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Customer;
 using Microsoft.AspNetCore.Components;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -11,7 +11,7 @@ namespace Gymbex.Blazor.Pages.Tickets
         [Inject] public ILocalStorageService LocalStorageService { get; set; }
         [Inject] public ICustomerService CustomerService { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
-        public List<Ticket> TicketsList { get; set; } = new();
+        public List<TicketDto> TicketsList { get; set; } = new();
         public string Content { get; set; } = string.Empty;
         public bool IsError { get; set; } = false;
 
@@ -25,7 +25,7 @@ namespace Gymbex.Blazor.Pages.Tickets
             TicketsList = await CustomerService.GetTickets();
         }
 
-        private async Task ChooseTicket(Ticket ticket)
+        private async Task ChooseTicket(TicketDto ticket)
         {
             var token = await LocalStorageService.GetItemAsync<string>("authToken");
             var handler = new JwtSecurityTokenHandler();

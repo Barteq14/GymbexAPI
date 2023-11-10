@@ -1,11 +1,11 @@
 ﻿using Gymbex.Blazor.Models;
 using Microsoft.JSInterop;
 
-namespace Gymbex.Blazor.Pages
+namespace Gymbex.Blazor.Pages.Authentication
 {
     public partial class RegisterPage
     {
-        private Customer RegisterModel = new Customer();
+        private CustomerRegisterModel RegisterModel = new CustomerRegisterModel();
         private bool ShowErrors;
         private string Error;
 

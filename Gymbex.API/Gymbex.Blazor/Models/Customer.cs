@@ -1,6 +1,6 @@
 ﻿namespace Gymbex.Blazor.Models
 {
-    public class Customer
+    public class CustomerRegisterModel
     {
         public Guid CustomerId { get; set; }
         public string Username { get; set; }

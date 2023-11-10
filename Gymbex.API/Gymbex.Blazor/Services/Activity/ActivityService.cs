@@ -1,7 +1,7 @@
 ﻿using Gymbex.Blazor.Models;
 using System.Net.Http.Json;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Activity
 {
     public sealed class ActivityService : IActivityService
     {
@@ -15,7 +15,7 @@ namespace Gymbex.Blazor.Services
 
         public async Task<ReservationActivityResponse> RegisterOnActivity(ReservationActivityRequest command, Guid activityId)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{API}api/activity/registration-activity/{activityId}",command);
+            var response = await _httpClient.PostAsJsonAsync($"{API}api/activity/registration-activity/{activityId}", command);
             ReservationActivityResponse reservationActivityResponse = new ReservationActivityResponse();
 
             if (response.IsSuccessStatusCode)
@@ -32,7 +32,7 @@ namespace Gymbex.Blazor.Services
                 reservationActivityResponse.IsSuccess = false;
                 reservationActivityResponse.Error = reservationResult.Error;
             }
-            
+
             return reservationActivityResponse;
         }
 

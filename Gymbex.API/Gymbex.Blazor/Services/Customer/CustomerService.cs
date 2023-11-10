@@ -2,7 +2,7 @@
 using Gymbex.Blazor.Models;
 using System.Net.Http.Json;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Customer
 {
     public sealed class CustomerService : ICustomerService
     {
@@ -47,13 +47,13 @@ namespace Gymbex.Blazor.Services
             return updateResultCustomer;
         }
 
-        public async Task<List<Ticket>> GetTickets()
+        public async Task<List<TicketDto>> GetTickets()
         {
             var response = await _httpClient.GetAsync($"{API}api/ticket");
 
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<List<Ticket>>();
+                var result = await response.Content.ReadFromJsonAsync<List<TicketDto>>();
                 return result;
             }
 
@@ -145,7 +145,7 @@ namespace Gymbex.Blazor.Services
             var changeroleModel = new ChangeRoleRequest { CustomerId = id, Role = Role };
             var response = await _httpClient.PutAsJsonAsync($"{API}api/customer/change-role", changeroleModel);
 
-            if(!response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Something is wrong with edit role by Admin");
             }
