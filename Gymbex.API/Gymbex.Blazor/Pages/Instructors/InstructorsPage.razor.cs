@@ -1,8 +1,8 @@
 ﻿using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Customer;
 using Microsoft.AspNetCore.Components;
 
-namespace Gymbex.Blazor.Pages
+namespace Gymbex.Blazor.Pages.Instructors
 {
     public partial class InstructorsPage
     {

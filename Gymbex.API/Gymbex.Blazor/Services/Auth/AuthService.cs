@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text;
 using Gymbex.Blazor.ValueObjects;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Auth
 {
     public class AuthService : IAuthService
     {
@@ -35,7 +35,7 @@ namespace Gymbex.Blazor.Services
                 var token = loginResult.Token;
 
                 await _localStorage.SetItemAsync("authToken", token);
-                
+
                 result.IsSuccess = response.IsSuccessStatusCode;
                 result.Token = token;
             }
@@ -51,8 +51,8 @@ namespace Gymbex.Blazor.Services
             }
             return result;
         }
-         
-        public async Task<RegisterResult> Register(Customer registerModel)
+
+        public async Task<RegisterResult> Register(CustomerRegisterModel registerModel)
         {
             var result = await _httpClient.PostAsJsonAsync($"{API}api/customer/sign-up", registerModel);
             var registerResult = await result.Content.ReadFromJsonAsync<RegisterResult>();

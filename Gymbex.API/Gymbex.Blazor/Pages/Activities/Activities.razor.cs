@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Gymbex.Blazor.Models;
-using Gymbex.Blazor.Services;
+using Gymbex.Blazor.Services.Activity;
 using Gymbex.Blazor.Utils;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Text.Json;
 
-namespace Gymbex.Blazor.Pages
+namespace Gymbex.Blazor.Pages.Activities
 {
     public partial class Activities
     {
@@ -31,7 +31,7 @@ namespace Gymbex.Blazor.Pages
             using var responseStream = await response.Content.ReadAsStreamAsync();
             ActivitiesList = await JsonSerializer.DeserializeAsync<List<ActivityDto>>(responseStream);
 
-            
+
         }
 
         protected override async Task OnInitializedAsync()
@@ -62,7 +62,7 @@ namespace Gymbex.Blazor.Pages
         {
             var userId = await UserHelper.GetUserId(LocalStorageService);
 
-            var command = new ReservationActivityRequest { ActivityId = activityId , CustomerId = userId };
+            var command = new ReservationActivityRequest { ActivityId = activityId, CustomerId = userId };
 
 
             var result = await ActivityService.RegisterOnActivity(command, activityId);

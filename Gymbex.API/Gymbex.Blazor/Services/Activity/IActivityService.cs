@@ -1,6 +1,6 @@
 ﻿using Gymbex.Blazor.Models;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Activity
 {
     public interface IActivityService
     {

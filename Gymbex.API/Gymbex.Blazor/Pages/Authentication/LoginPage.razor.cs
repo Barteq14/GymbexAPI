@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Gymbex.Blazor.Pages
+namespace Gymbex.Blazor.Pages.Authentication
 {
     public partial class LoginPage
     {

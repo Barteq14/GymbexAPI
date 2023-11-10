@@ -1,4 +1,4 @@
-﻿namespace Gymbex.Blazor.Pages
+﻿namespace Gymbex.Blazor.Pages.Authentication
 {
     public partial class LogoutPage
     {

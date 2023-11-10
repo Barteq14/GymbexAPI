@@ -1,10 +1,10 @@
 ﻿using Gymbex.Blazor.Models;
 
-namespace Gymbex.Blazor.Services
+namespace Gymbex.Blazor.Services.Auth
 {
     public interface IAuthService
     {
-        Task<RegisterResult> Register(Customer registerModel);
+        Task<RegisterResult> Register(CustomerRegisterModel registerModel);
         Task<LoginResult> Login(SignInCommand loginModel);
         Task Logout();
     }
