@@ -32,5 +32,14 @@ namespace Gymbex.Core.Entities
         public static Equipment Create(EquipmentId id, EquipmentName name, EquipmentDescription description, EquipmentStateEnum equipmentState, EquipmentQuantity quantity, CategoryEquipmentId categoryEquipmentId)
                 => new Equipment(id, name, description, equipmentState, quantity, categoryEquipmentId);
 
+        public void UpdateEquipment(EquipmentName name, EquipmentDescription description, EquipmentState state,
+            EquipmentQuantity quantity, CategoryEquipmentId categoryEquipmentId)
+        {
+            Name = name;
+            Description = description;
+            EquipmentState = state;
+            Quantity = quantity;
+            CategoryEquipmentId = categoryEquipmentId;
+        }
     }
 }

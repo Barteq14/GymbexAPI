@@ -2,6 +2,7 @@
 @activityId = 87ae998b-df16-46c3-8c43-038063e3cebf
 @customerId = b626ead6-a14d-4eaf-b9e5-144e5ca71e1f
 @ticketId = 26e0a280-8de0-40e4-a17e-6eab92b77402
+@equipmentId = 1f56f1c5-2803-48d8-8a5c-56b6c5454a8b
 
 ###
 GET {{url}}/api/activity
@@ -160,3 +161,18 @@ Content-Type: application/json
     "quantity": 10,
     "categoryEquipmentId": "9a46c98f-b486-4592-b58a-947c20bb0dcf"
 }
+
+###
+PUT {{url}}/api/equipment/edit-equipment/{{equipmentId}}
+Content-Type: application/json
+
+{
+    "equipmentName": "test name 2",
+    "equipmentDescription": "test description 2",
+    "equipmentState": 0,
+    "quantity": 9,
+    "categoryEquipmentId": "dc1d8591-75bf-4e29-8d47-1ed61fbb795a"
+}
+
+###
+DELETE {{url}}/api/equipment/delete-equipment/{{equipmentId}}

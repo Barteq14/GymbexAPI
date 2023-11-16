@@ -11,6 +11,9 @@ namespace Gymbex.Core.Repositories
     {
         //equipments
         Task CreateAsync(Equipment equipment);
+        Task UpdateAsync(Equipment equipment);
+        Task<Equipment> GetByIdAsync(Guid id);
+        Task DeleteAsync(Equipment equipment);
 
         //categories
         Task<List<CategoryEquipment>> GetAllCategoriesAsync();

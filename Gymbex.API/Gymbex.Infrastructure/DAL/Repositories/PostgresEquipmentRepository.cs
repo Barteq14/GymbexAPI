@@ -17,6 +17,20 @@ namespace Gymbex.Infrastructure.DAL.Repositories
             await gymbexDbContext.Equipments.AddAsync(equipment);
             await gymbexDbContext.SaveChangesAsync();
         }
+        public async Task UpdateAsync(Equipment equipment)
+        {
+            gymbexDbContext.Equipments.Update(equipment);
+            await gymbexDbContext.SaveChangesAsync();
+        }
+
+        public async Task<Equipment> GetByIdAsync(Guid id)
+            => await gymbexDbContext.Equipments.SingleOrDefaultAsync(x => x.Id == new EquipmentId(id));
+
+        public async Task DeleteAsync(Equipment equipment)
+        {
+            gymbexDbContext.Equipments.Remove(equipment);
+            await gymbexDbContext.SaveChangesAsync(); 
+        }
 
         public async Task<List<CategoryEquipment>> GetAllCategoriesAsync()
             => await gymbexDbContext.CategoriesEquipment.Include(x => x.Equipments).ToListAsync();
