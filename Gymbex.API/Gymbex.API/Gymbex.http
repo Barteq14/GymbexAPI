@@ -148,3 +148,15 @@ GET {{url}}/api/reservation
 
 ###
 GET {{url}}/api/equipment
+
+###
+POST {{url}}/api/equipment/add-equipment
+Content-Type: application/json
+
+{
+    "equipmentName": "test name",
+    "equipmentDescription": "test description",
+    "equipmentState": 1,
+    "quantity": 10,
+    "categoryEquipmentId": "9a46c98f-b486-4592-b58a-947c20bb0dcf"
+}
