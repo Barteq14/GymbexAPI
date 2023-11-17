@@ -41,5 +41,11 @@ namespace Gymbex.Core.Entities
         {
             _customers.Add(customer);
         }
+
+        public void ChangeTicketKind(TicketKindEnum ticketKind)
+        {
+            Kind = ticketKind;
+            KindDescription = ticketKind.GetDisplayName();
+        }
     }
 }

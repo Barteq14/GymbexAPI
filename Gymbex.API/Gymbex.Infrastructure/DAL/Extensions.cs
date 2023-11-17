@@ -25,6 +25,7 @@ namespace Gymbex.Infrastructure.DAL
             services.AddScoped<ICustomerRepository, PostgresCustomerRepository>();
             services.AddScoped<ITicketRepository, PostgresTicketRepository>();
             services.AddScoped<IEquipmentRepository, PostgresEquipmentRepository>();
+            services.AddScoped<IReservationRepository, PostgresReservationRepository>();
             services.AddHostedService<DatabaseInitializer>();
 
             return services;

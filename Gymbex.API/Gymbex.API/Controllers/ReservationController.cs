@@ -1,4 +1,5 @@
 ﻿using Gymbex.Application.Abstractions;
+using Gymbex.Application.Commands.Activities;
 using Gymbex.Application.Dtos;
 using Gymbex.Application.Queries.Customers;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,12 @@ namespace Gymbex.API.Controllers
     public class ReservationController : ControllerBase
     {
         private readonly IQueryHandler<GetReservations, List<ReservationDto>> _getReservationsQueryHandler;
+        private readonly ICommandHandler<RemoveReservation> _removeReservationCommandHandler;
 
-        public ReservationController(IQueryHandler<GetReservations, List<ReservationDto>> getReservationsQueryHandler)
+        public ReservationController(IQueryHandler<GetReservations, List<ReservationDto>> getReservationsQueryHandler, ICommandHandler<RemoveReservation> removeReservationCommandHandler)
         {
             _getReservationsQueryHandler = getReservationsQueryHandler;
+            _removeReservationCommandHandler = removeReservationCommandHandler;
         }
 
         [HttpGet]
@@ -22,6 +25,14 @@ namespace Gymbex.API.Controllers
         {
             var list = await _getReservationsQueryHandler.ExecuteHandleAsync(query);
             return Ok(list);
+        }
+
+        [HttpDelete("{reservationId:guid}")]
+        public async Task<ActionResult> Delete([FromRoute] Guid reservationId)
+        {
+            var command = new RemoveReservation(reservationId);
+            await _removeReservationCommandHandler.HandlerExecuteAsync(command);
+            return NoContent();
         }
     }
 }

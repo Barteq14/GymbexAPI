@@ -1,0 +1,12 @@
+﻿using Gymbex.Application.Abstractions;
+using Gymbex.Core.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Gymbex.Application.Commands.Tickets
+{
+    public sealed record UpdateTicketName(Guid TicketId, TicketKindEnum TicketKindEnum) : ICommand;
+}
