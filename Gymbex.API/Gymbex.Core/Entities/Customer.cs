@@ -90,5 +90,10 @@ namespace Gymbex.Core.Entities
         {
             _reservations.Add(reservation);
         }
+
+        public void DeleteReservation(Reservation reservation)
+        {
+            _reservations.Remove(reservation);
+        }
     }
 }

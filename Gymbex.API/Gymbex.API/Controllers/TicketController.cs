@@ -17,16 +17,18 @@ namespace Gymbex.API.Controllers
         private readonly ICommandHandler<CreateTicket> _createTicketCommandHandler;
         private readonly ICommandHandler<DeleteTicket> _deleteTicketCommandHandler;
         private readonly ICommandHandler<BuyTicket> _buyTicketCommandHandler;
+        private readonly ICommandHandler<UpdateTicketName> _updateTicketNameCommandHandler;
         private readonly IQueryHandler<GetTicket, TicketDto> _getTicketQueryHandler;
         private readonly IQueryHandler<GetTickets, IEnumerable<TicketDto>> _getTicketsQueryHandler;
 
-        public TicketController(ICommandHandler<CreateTicket> createTicketCommandHandler, ICommandHandler<DeleteTicket> deleteTicketCommandHandler, IQueryHandler<GetTicket, TicketDto> getTicketQueryHandler, IQueryHandler<GetTickets, IEnumerable<TicketDto>> getTicketsQueryHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler)
+        public TicketController(ICommandHandler<CreateTicket> createTicketCommandHandler, ICommandHandler<DeleteTicket> deleteTicketCommandHandler, IQueryHandler<GetTicket, TicketDto> getTicketQueryHandler, IQueryHandler<GetTickets, IEnumerable<TicketDto>> getTicketsQueryHandler, ICommandHandler<BuyTicket> buyTicketCommandHandler, ICommandHandler<UpdateTicketName> updateTicketNameCommandHandler)
         {
             _createTicketCommandHandler = createTicketCommandHandler;
             _deleteTicketCommandHandler = deleteTicketCommandHandler;
             _getTicketQueryHandler = getTicketQueryHandler;
             _getTicketsQueryHandler = getTicketsQueryHandler;
             _buyTicketCommandHandler = buyTicketCommandHandler;
+            _updateTicketNameCommandHandler = updateTicketNameCommandHandler;
         }
 
         [SwaggerOperation("Get specify ticket by ID")]
@@ -75,6 +77,14 @@ namespace Gymbex.API.Controllers
             var currentCustomerId = Guid.Parse(HttpContext.User.Identity.Name);
             command = command with { TicketId = ticketId, CustomerId = currentCustomerId};
             await _buyTicketCommandHandler.HandlerExecuteAsync(command);
+            return NoContent();
+        }
+
+        [HttpPut("update-ticket/{ticketId:guid}")]
+        public async Task<ActionResult> UpdateTicket([FromRoute] Guid ticketId, [FromBody] UpdateTicketName command)
+        {
+            command = command with { TicketId = ticketId };
+            await _updateTicketNameCommandHandler.HandlerExecuteAsync(command);
             return NoContent();
         }
     }
