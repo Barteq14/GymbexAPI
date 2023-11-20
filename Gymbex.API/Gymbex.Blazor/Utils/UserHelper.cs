@@ -8,6 +8,11 @@ namespace Gymbex.Blazor.Utils
         public static async Task<Guid> GetUserId(ILocalStorageService localStorageService)
         {
             var token = await localStorageService.GetItemAsync<string>("authToken");
+
+            if (token is null)
+            {
+                return Guid.NewGuid();
+            }
             var handler = new JwtSecurityTokenHandler();
 
             var jwt = new JwtSecurityToken(token);

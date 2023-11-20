@@ -13,7 +13,7 @@ namespace Gymbex.Blazor.Pages.Account
         [Inject] public ICustomerService CustomerService { get; set; }
         [Inject] public ITicketService TicketService { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
-        public CustomerDto CustomerDto { get; set; } = new CustomerDto();
+        public CustomerDto CustomerDto { get; set; }
         public UpdateCustomer ModelToUpdate { get; set; } = new UpdateCustomer();
         private bool ShowErrors;
         private string Error = "";

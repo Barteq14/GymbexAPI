@@ -5,7 +5,72 @@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
-<div class="register-login-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rejestracja</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" href="~/css/login-page.css"/> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    @if (ShowErrors)
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>@Error</p>
+        </div>
+    }
+    <div class="login-card-container">
+        <div class="login-card">
+            <div class="login-card-logo">
+                <img src="./Images/logo-gymbex.png" alt="logo" />
+            </div>
+            <div class="login-card-header">
+                <h1>Rejestracja</h1>
+                <div>Proszę podaj odpowiednie dane do rejestracji</div>
+            </div>
+            <EditForm class="login-card-form" Model="RegisterModel" OnValidSubmit="HandleRegistration">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-item">
+                    <span class="form-item-icon material-symbols-rounded">mail</span>
+                    <InputText type="text" placeholder="Wprowadź email" required autofocus @bind-Value="RegisterModel.Email" />
+                    <ValidationMessage For="@(() => RegisterModel.Email)" />
+                </div>
+                <div class="form-item">
+                    <span class="form-item-icon material-symbols-rounded">lock</span>
+                    <InputText type="password" placeholder="Wprowadź hasło" required @bind-Value="RegisterModel.Password" />
+                    <ValidationMessage For="@(() => RegisterModel.Password)" />
+                </div>
+                <div class="form-item">
+                    <span class="form-item-icon material-symbols-rounded">person</span>
+                    <InputText type="text" placeholder="Wprowadź nazwę" required @bind-Value="RegisterModel.Username" />
+                    <ValidationMessage For="@(() => RegisterModel.Username)" />
+                </div>
+                <div class="form-item">
+                    <span class="form-item-icon material-symbols-rounded">person</span>
+                    <InputText type="text" placeholder="Wprowadź imię i nazwisko" required @bind-Value="RegisterModel.Fullname" />
+                    <ValidationMessage For="@(() => RegisterModel.Fullname)" />
+                </div>
+                <div class="form-item">
+                    <span class="form-item-icon material-symbols-rounded">call</span>
+                    <InputText type="text" placeholder="Wprowadź numer telefonu" required @bind-Value="RegisterModel.PhoneNumber" />
+                    <ValidationMessage For="@(() => RegisterModel.PhoneNumber)" />
+                </div>
+                <button type="submit">Zarejestruj się</button>
+            </EditForm>
+            <div class="login-card-footer">
+                Posiadasz już konto? <a href="/login">Zaloguj się</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+@* <div class="register-login-container">
     @if (ShowErrors)
     {
         <div class="alert alert-danger" role="alert">
@@ -49,4 +114,4 @@
             </EditForm>
         </div>
     </div>
-</div>
+</div> *@

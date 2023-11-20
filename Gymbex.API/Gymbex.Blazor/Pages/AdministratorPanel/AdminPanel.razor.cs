@@ -31,6 +31,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel
 
         protected override async Task OnParametersSetAsync()
         {
+            ShowCustomers = true;
             Customers = await CustomerService.GetCustomersAsync();
             Tickets = await TicketService.GetTicketsAsync();
             Activities = await ActivityService.GetActivitiesAsync();

@@ -64,8 +64,16 @@ namespace Gymbex.Blazor.Services.Auth
 
         public async Task Logout()
         {
-            var token = await _localStorage.GetItemAsync<string>("authToken");
-            await _localStorage.RemoveItemAsync("authToken");
+            try
+            {
+                var token = await _localStorage.GetItemAsync<string>("authToken");
+                await _localStorage.RemoveItemAsync("authToken");
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync($"Błąd podczas wylogowywania: {ex.Message}");
+            }
+           
         }
     }
 }

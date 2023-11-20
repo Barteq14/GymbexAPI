@@ -20,5 +20,20 @@ namespace Gymbex.Blazor.Pages.MainPage
             }
         }
 
+        private void ShowActivities()
+        {
+            NavigationManager.NavigateTo("/activities");
+        }
+
+        private void ShowTickets()
+        {
+            NavigationManager.NavigateTo("/tickets");
+        }
+
+        private void ShowInstructors()
+        {
+            NavigationManager.NavigateTo("/instructors");
+        }
+
     }
 }
