@@ -108,6 +108,7 @@
 
 .content-container {
     width: 100%;
+    min-height:50rem;
     height:auto;
     padding: 50px;
     background-size: cover; /* Dopasuj tło do rozmiaru kontenera */
@@ -167,10 +168,14 @@ table > thead {
     color: black;
     display: flex;
     justify-content: space-between;
-    background-color: black;
+    background: linear-gradient(to bottom, #808080, #000000);
     padding-left: 10px;
     padding-right: 10px;
-    color:white;
+    color: white;
+}
+
+.navbar {
+    background: linear-gradient(to top, #808080, #000000);
 }
 
 .footer-custom p{
@@ -293,9 +298,10 @@ table > thead {
 
 
 /*Main box*/
-.main-box{
-    width:100%;
-    height:auto;
+.main-box {
+    width: 100%;
+    height: auto;
+    min-height: 50rem;
 }
 
 
