@@ -1,6 +1,7 @@
 ﻿@page "/adminPanel"
 @using Gymbex.Blazor.Components
 @using Gymbex.Blazor.Pages.AdministratorPanel.Components.CustomerList
+@using Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
 
 <h1 class="admin-title">Panel administracyjny</h1>
 <div class="admin-box">
@@ -53,14 +54,7 @@
 
         @if (ShowEquipments)
         {
-            <div class="tab-pane" id="sprzet">
-                <BlazorList Items="Equipments" Title="Lista sprzętu" IsAdmin=true ShowAdditionalButton=true AdditionalButtonTitle="Akcja">
-                    <ChildContent>
-                        <button type="button" class="btn btn-warning">Edytuj</button>
-                        <button type="button" class="btn btn-danger">Usuń</button>
-                    </ChildContent>
-                </BlazorList>
-            </div>
+            <EquipmentList Items="Equipments"/>
         }
 
     </div>

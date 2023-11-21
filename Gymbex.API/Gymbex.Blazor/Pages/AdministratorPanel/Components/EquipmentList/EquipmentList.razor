@@ -1,0 +1,61 @@
+﻿@using Gymbex.Blazor.Components
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+
+
+<div class="tab-pane" id="sprzet">
+    <BlazorList Items="Equipments" Title="Lista sprzętu" IsAdmin=true ShowAdditionalButton=true AdditionalButtonTitle="Akcja">
+        <ChildContent>
+            <button type="button" class="btn btn-warning" @onclick="@(async () => {await OpenModal(context);})">Edytuj</button>
+            <button type="button" class="btn btn-danger" @onclick="(async () => {await OpenAlertModal(context);})">Usuń</button>
+        </ChildContent>
+    </BlazorList>
+</div>
+
+<ModalBlazor @ref="ModalBlazor" ModalClass="@ModalClass" Title=@($"Aktualizacja sprzętu: {ModelToUpdate.Name}") OnSave="SaveHandler" ModalId="@ModalId">
+    <BodyContent>
+        <EditForm Model="ModelToUpdate" OnValidSubmit="SaveHandler">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+            <div class="form-group">
+                <label for="name"> Nazwa </label>
+                <input type="text" id="name" @bind-value="ModelToUpdate.Name"/>
+                <ValidationMessage For="@(() => ModelToUpdate.Name)" />
+            </div>
+            <div class="form-group">
+                <label for="description"> Opis </label>
+                <input type="text" id="description" @bind-value="ModelToUpdate.Description" />
+                <ValidationMessage For="@(() => ModelToUpdate.Description)" />
+            </div>
+            <div class="form-group">
+                <label for="role"> Stan sprzętu</label>
+                <select class="form-control" id="selectOption" @bind="ModelToUpdate.EquipmentState">
+                    @foreach (var option in EquipmentStatesList)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+                <ValidationMessage For="@(() => ModelToUpdate.EquipmentState)" />
+            </div>
+            <div class="form-group">
+                <label for="quantity"> Ilość </label>
+                <input type="number" id="quantity" @bind-value="ModelToUpdate.Quantity" />
+                <ValidationMessage For="@(() => ModelToUpdate.Quantity)" />
+            </div>
+            <div class="form-group">
+                <label for="category"> Kategoria </label>
+                <select class="form-control" id="category" @bind="ModelToUpdate.CategoryName">
+                    @foreach (var option in EquipmentStatesList)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+                <ValidationMessage For="@(() => ModelToUpdate.CategoryName)" />
+            </div>
+        </EditForm>
+    </BodyContent>
+</ModalBlazor>
+
+<ModalBlazor @ref="AlertModal" AlertMode=true OnSaveTitle="Tak, usuń" ModalClass="@ModalAlertClass" Title=@($"Czy napewno chcesz usunąć: {ModelToDelete.Name}") OnSave="DeleteUser" ModalId="@ModalAlertId" />
+
+
