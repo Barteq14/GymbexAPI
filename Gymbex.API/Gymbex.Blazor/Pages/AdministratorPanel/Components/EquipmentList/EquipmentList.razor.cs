@@ -44,6 +44,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
 
         private async Task OpenModal(EquipmentDto equipment)
         {
+
             await JSRuntime.InvokeVoidAsync("showModal", ModalId);
 
             ModelToUpdate = equipment;

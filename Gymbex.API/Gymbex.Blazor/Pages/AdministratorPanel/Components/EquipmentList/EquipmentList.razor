@@ -19,37 +19,37 @@
                 <ValidationSummary />
             <div class="form-group">
                 <label for="name"> Nazwa </label>
-                <input type="text" id="name" @bind-value="ModelToUpdate.Name"/>
+                <InputText class="form-control" type="text" id="name" @bind-Value="ModelToUpdate.Name" />
                 <ValidationMessage For="@(() => ModelToUpdate.Name)" />
             </div>
             <div class="form-group">
                 <label for="description"> Opis </label>
-                <input type="text" id="description" @bind-value="ModelToUpdate.Description" />
+                <InputTextArea class="form-control" type="text" id="description" @bind-Value="ModelToUpdate.Description"/>
                 <ValidationMessage For="@(() => ModelToUpdate.Description)" />
             </div>
             <div class="form-group">
-                <label for="role"> Stan sprzętu</label>
-                <select class="form-control" id="selectOption" @bind="ModelToUpdate.EquipmentState">
+                <label for="role"> Stan </label>
+                <InputSelect class="form-control" id="selectOption" @bind-Value="ModelToUpdate.EquipmentState">
                     @foreach (var option in EquipmentStatesList)
                     {
-                        <option value="@option">@option</option>
+                        <option value="@option.Value">@option.Value</option>
                     }
-                </select>
+                </InputSelect>
                 <ValidationMessage For="@(() => ModelToUpdate.EquipmentState)" />
             </div>
             <div class="form-group">
-                <label for="quantity"> Ilość </label>
-                <input type="number" id="quantity" @bind-value="ModelToUpdate.Quantity" />
+                <label for="quantity"> Ilość (szt) </label>
+                <InputNumber class="form-control" type="number" id="quantity" @bind-Value="ModelToUpdate.Quantity" />
                 <ValidationMessage For="@(() => ModelToUpdate.Quantity)" />
             </div>
             <div class="form-group">
                 <label for="category"> Kategoria </label>
-                <select class="form-control" id="category" @bind="ModelToUpdate.CategoryName">
+                <InputSelect class="form-control" id="category" @bind-Value="ModelToUpdate.CategoryName">
                     @foreach (var option in EquipmentStatesList)
                     {
                         <option value="@option">@option</option>
                     }
-                </select>
+                </InputSelect>
                 <ValidationMessage For="@(() => ModelToUpdate.CategoryName)" />
             </div>
         </EditForm>
