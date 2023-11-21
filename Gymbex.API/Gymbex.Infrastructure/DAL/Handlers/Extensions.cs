@@ -69,5 +69,14 @@ namespace Gymbex.Infrastructure.DAL.Handlers
                 CategoryName = equipment.CategoryEquipment.Name
             };
         }
+
+        public static CategoryEquipmentDto AsEquipmentsCategoryDto(this CategoryEquipment categoryEquipment)
+        {
+            return new CategoryEquipmentDto()
+            {
+                Id = categoryEquipment.Id,
+                Name = categoryEquipment.Name
+            };
+        }
     }
 }
