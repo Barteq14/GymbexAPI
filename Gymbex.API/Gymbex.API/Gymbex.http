@@ -188,3 +188,7 @@ DELETE {{url}}/api/equipment/delete-equipment/{{equipmentId}}
 
 ###
 DELETE {{url}}/api/reservation/{{reservationId}}
+
+
+###
+GET {{url}}/api/equipmentCategories

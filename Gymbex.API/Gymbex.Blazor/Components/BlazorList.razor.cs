@@ -6,15 +6,18 @@ namespace Gymbex.Blazor.Components
 {
     public partial class BlazorList<T>
     {
+        [Parameter] public List<string> VisibleColumns { get; set; }
         [Parameter] public List<T> Items { get; set; }
         [Parameter] public string Title { get; set; }
+        [Parameter] public bool ShowVisibleProperties { get; set; } = false;
+
         [Parameter] public bool ShowAdditionalButton { get; set; } = false;
         [Parameter] public bool IsAdmin { get; set; } = false;
         [Parameter] public bool ShowActionHeader { get; set; } = true;
         [Parameter] public bool HaveChildContent { get; set; } = true;
         [Parameter] public string AdditionalButtonTitle { get; set; }
         [Parameter] public RenderFragment<T> ChildContent { get; set; }
-
+        [Parameter] public EventCallback AddEvent { get; set; }
 
         //paginacja
         private int currentPage = 1;
@@ -56,12 +59,32 @@ namespace Gymbex.Blazor.Components
 
         private List<PropertyInfo> GetProperties()
         {
+            
             if(Items is not null && Items.Any())
             {
-                var itemType = Items.First().GetType(); 
+                var itemType = Items.First().GetType();
                 return itemType.GetProperties().ToList();
             }
             return new List<PropertyInfo>();
+        }
+
+        private PropertyInfo[] GetVisibleProperties()
+        {
+            if (ShowVisibleProperties && VisibleColumns is not null)
+            {
+                return GetProperties().Skip(1).Where(x => ShowColumn(x.Name)).ToArray();
+            }
+            return GetProperties().Skip(1).ToArray();
+        }
+
+        private bool ShowColumn(string columnName)
+        {
+            return VisibleColumns.Contains(columnName);
+        }
+
+        private async Task InvokeAddEvent()
+        {
+            await AddEvent.InvokeAsync(this);
         }
     }
 }

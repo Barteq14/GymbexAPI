@@ -61,12 +61,21 @@ namespace Gymbex.Infrastructure.DAL.Handlers
         {
             return new EquipmentDto()
             {
-                ID = equipment.Id,
-                Name = equipment.Name,
-                Description = equipment.Description,
+                EquipmentId = equipment.Id,
+                EquipmentName = equipment.Name,
+                EquipmentDescription = equipment.Description,
                 EquipmentState = equipment.EquipmentState.Value.GetDisplayName(),
                 Quantity = equipment.Quantity,
                 CategoryName = equipment.CategoryEquipment.Name
+            };
+        }
+
+        public static CategoryEquipmentDto AsEquipmentsCategoryDto(this CategoryEquipment categoryEquipment)
+        {
+            return new CategoryEquipmentDto()
+            {
+                Id = categoryEquipment.Id,
+                Name = categoryEquipment.Name
             };
         }
     }

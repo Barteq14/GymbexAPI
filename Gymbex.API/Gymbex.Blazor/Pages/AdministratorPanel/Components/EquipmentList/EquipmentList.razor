@@ -1,0 +1,79 @@
+﻿@using Gymbex.Blazor.Enums
+@using Gymbex.Blazor.Components
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+
+@if (IsResultContainsError)
+{
+    <AlertBlazor Class="@(IsResultContainsError ? "alert alert-danger" : "alert alert-success")"
+                 Content="@ErrorMessage" />
+}
+
+<div class="tab-pane" id="sprzet">
+    <BlazorList
+        Items="Items" 
+        Title="Lista sprzętu" 
+        IsAdmin=true 
+        ShowAdditionalButton=true 
+        AdditionalButtonTitle="Akcja">
+        <ChildContent>
+            <button type="button" class="btn btn-warning" @onclick="@(async () => {await OpenModal(context);})">Edytuj</button>
+            <button type="button" class="btn btn-danger" @onclick="(async () => {await OpenAlertModal(context);})">Usuń</button>
+        </ChildContent>
+    </BlazorList>
+</div>
+
+<ModalBlazor @ref="ModalBlazor" ModalClass="@ModalClass" Title=@($"Aktualizacja sprzętu: {ModelToUpdate.EquipmentName}") OnSave="SaveHandler" ModalId="@ModalId">
+    <BodyContent>
+        <EditForm Model="ModelToUpdate" OnValidSubmit="SaveHandler">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="name"> Nazwa </label>
+                <InputText class="form-control" type="text" id="name" @bind-Value="ModelToUpdate.EquipmentName" />
+                <ValidationMessage For="@(() => ModelToUpdate.EquipmentName)" />
+            </div>
+            <div class="form-group">
+                <label for="description"> Opis </label>
+                <InputTextArea class="form-control" type="text" id="description" @bind-Value="ModelToUpdate.EquipmentDescription" />
+                <ValidationMessage For="@(() => ModelToUpdate.EquipmentDescription)" />
+            </div>
+            <div class="form-group">
+                <label for="role"> Stan </label>
+                <InputSelect class="form-control" id="selectOption" @bind-Value="ModelToUpdate.EquipmentState">
+                    @foreach (var option in EquipmentStatesList)
+                    {
+                        <option value="@option">@option.GetDisplayName()</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => ModelToUpdate.EquipmentState)" />
+            </div>
+            <div class="form-group">
+                <label for="quantity"> Ilość (szt) </label>
+                <InputNumber class="form-control" type="number" id="quantity" @bind-Value="ModelToUpdate.Quantity" />
+                <ValidationMessage For="@(() => ModelToUpdate.Quantity)" />
+            </div>
+            @if (Categories is not null && Categories.StateModel.Any())
+            {
+                <div class="form-group">
+                    <label for="category"> Kategoria </label>
+                    <InputSelect class="form-control" id="category" @bind-Value="ModelToUpdate.CategoryEquipmentId">
+                        @foreach (var option in Categories.StateModel)
+                        {
+                            <option value="@option.Id">@option.Name</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => ModelToUpdate.CategoryEquipmentId)" />
+                </div>
+            }
+        </EditForm>
+    </BodyContent>
+</ModalBlazor>
+
+
+@if(ModelToDelete is not null)
+{
+    <ModalBlazor @ref="AlertModal" AlertMode=true OnSaveTitle="Tak, usuń" ModalClass="@ModalAlertClass" Title=@($"Czy napewno chcesz usunąć: {ModelToDelete.EquipmentName}") OnSave="DeleteUser" ModalId="@ModalAlertId" />
+}
+
+
