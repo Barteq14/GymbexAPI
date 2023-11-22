@@ -17,7 +17,7 @@ namespace Gymbex.Blazor.Components
         [Parameter] public bool HaveChildContent { get; set; } = true;
         [Parameter] public string AdditionalButtonTitle { get; set; }
         [Parameter] public RenderFragment<T> ChildContent { get; set; }
-
+        [Parameter] public EventCallback AddEvent { get; set; }
 
         //paginacja
         private int currentPage = 1;
@@ -80,6 +80,11 @@ namespace Gymbex.Blazor.Components
         private bool ShowColumn(string columnName)
         {
             return VisibleColumns.Contains(columnName);
+        }
+
+        private async Task InvokeAddEvent()
+        {
+            await AddEvent.InvokeAsync(this);
         }
     }
 }
