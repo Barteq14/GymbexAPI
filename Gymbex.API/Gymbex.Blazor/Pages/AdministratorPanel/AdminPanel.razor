@@ -4,8 +4,12 @@
 @using Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
 
 <h1 class="admin-title">Panel administracyjny</h1>
+
 <div class="admin-box">
-    <div class="admin-menu">
+    <div class="sidebar admin-menu">
+        <div class="image-text">
+            <img src="./Images/logo-gymbex.png" />
+        </div>
         <button type="button" class="btn btn-dark" @onclick="CustomerListView">Użytkownicy</button>
         <button type="button" class="btn btn-dark" @onclick="EquipmentListView">Sprzęt</button>
         <button type="button" class="btn btn-dark" @onclick="ActivityListView">Zajęcia</button>
