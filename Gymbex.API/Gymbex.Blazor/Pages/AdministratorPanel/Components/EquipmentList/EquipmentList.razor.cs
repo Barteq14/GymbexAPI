@@ -20,7 +20,7 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
         public StateObjectResult Categories { get; set; }
         EquipmentDto Model { get; set; }
         EquipmentDtoRequest ModelToUpdate { get; set; } = new EquipmentDtoRequest();
-        EquipmentDto ModelToDelete { get; set; }
+        EquipmentDto ModelToDelete { get; set; } = new EquipmentDto();
         public ModalBlazor ModalBlazor { get; set; } = new ModalBlazor();
         private string ModalClass = "modal";
         private string ModalId = "equipment-modal";
@@ -28,6 +28,9 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
         public ModalBlazor AlertModal { get; set; } = new ModalBlazor();
         private string ModalAlertClass = "modal";
         private string ModalAlertId = "equipment-modal-alert-id";
+
+        public bool IsResultContainsError { get; set; } = false;
+        public string ErrorMessage { get; set; }
 
         public EquipmentStateDictionaryAlias EquipmentStatesList { get; set; } = new EquipmentStateDictionaryAlias()
         {
@@ -37,13 +40,6 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
 
         protected override async Task OnParametersSetAsync()
         {
-          
-           /* var stateEquipmentResult = await EquipmentService.GetEquipments();
-            if (stateEquipmentResult.IsSuccess)
-            {
-                Equipments = stateEquipmentResult.StateModel;
-            }*/
-
             //pobranie wszystkich kategorii sprzętu
             Categories = await EquipmentCategoryService.GetAllAsync();
         }
@@ -60,7 +56,6 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
             };
                 
             var category = Categories.StateModel.FirstOrDefault(x => x.Name.Equals(equipment.CategoryName));
-
             ModelToUpdate.CategoryEquipmentId = category.Id;
 
             await JSRuntime.InvokeVoidAsync("showModal", ModalId);
@@ -78,21 +73,24 @@ namespace Gymbex.Blazor.Pages.AdministratorPanel.Components.EquipmentList
         private async Task OpenAlertModal(EquipmentDto equipment)
         {
             var category = Categories.StateModel.FirstOrDefault(x => x.Name.Equals(equipment.CategoryName));
-            ModelToDelete = new EquipmentDto(
-                equipment.EquipmentId,
-                equipment.EquipmentName,
-                equipment.EquipmentDescription,
-                equipment.EquipmentState,
-                equipment.Quantity,
-                category.Id,
-                equipment.CategoryName);
+            ModelToDelete.EquipmentId = equipment.EquipmentId;
+            ModelToDelete.EquipmentName = equipment.EquipmentName;
 
             await JSRuntime.InvokeVoidAsync("showModal", ModalAlertId);
         }
         private async Task DeleteUser()
         {
-           /* await CustomerService.DeleteUserAsync(ModelToDelete.Id);
-            NavigationManager.NavigateTo("/adminPanel", true);*/
+
+            var result = await EquipmentService.DeleteEquipment(ModelToDelete);
+            if (result.IsSuccess)
+            {
+                NavigationManager.NavigateTo("/adminPanel", true);
+            }
+            else
+            {
+                IsResultContainsError = true;
+                ErrorMessage = result.Error;
+            }
         }
     }
 }

@@ -13,6 +13,23 @@ namespace Gymbex.Blazor.Services.Equipment
             _httpClient = httpClient;
         }
 
+        public async Task<ResponseModel> DeleteEquipment(EquipmentDto equipment)
+        {
+            var result = new ResponseModel();
+            var response = await _httpClient.DeleteAsync($"{Const.API_URL}api/equipment/delete-equipment/{equipment.EquipmentId}");
+            if (response.IsSuccessStatusCode)
+            {
+                result.IsSuccess = true;
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.Error = "Wystąpił problem podczas usuwania sprzętu";
+            }
+
+            return result;
+        }
+
         public async Task<StateObject<List<EquipmentDto>>> GetEquipments()
         {
             var state = new StateObject<List<EquipmentDto>>();

@@ -6,5 +6,6 @@ namespace Gymbex.Blazor.Services.Equipment
     {
         Task<StateObject<List<EquipmentDto>>> GetEquipments();
         Task<ResponseModel> UpdateEquipment(EquipmentDtoRequest equipment);
+        Task<ResponseModel> DeleteEquipment(EquipmentDto equipment);
     }
 }

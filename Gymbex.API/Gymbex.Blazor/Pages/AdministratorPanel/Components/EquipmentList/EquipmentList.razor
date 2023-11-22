@@ -3,6 +3,11 @@
 @using Microsoft.AspNetCore.Components.Forms
 @inject IJSRuntime JSRuntime
 
+@if (IsResultContainsError)
+{
+    <AlertBlazor Class="@(IsResultContainsError ? "alert alert-danger" : "alert alert-success")"
+                 Content="@ErrorMessage" />
+}
 
 <div class="tab-pane" id="sprzet">
     <BlazorList
