@@ -15,9 +15,12 @@
 <table class="table admin-table-width">
     <thead>
         <tr>
-            @foreach (var property in GetProperties().Skip(1))
+            @foreach (var property in GetVisibleProperties())
             {
-                <th>@property.Name</th>
+                @if (!property.Name.Equals("CategoryEquipmentId"))
+                {
+                    <th>@property.Name</th>
+                }
             }
             @if (ShowActionHeader)
             {
@@ -29,9 +32,12 @@
         @foreach (var item in CurrentPageItems)
         {
             <tr>
-                @foreach (var property in GetProperties().Skip(1))
+                @foreach (var property in GetVisibleProperties())
                 {
-                    <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
+                    @if (!property.Name.Equals("CategoryEquipmentId"))
+                    {
+                        <td>@(property.GetValue(item) is null ? "Brak" : property.GetValue(item))</td>
+                    } 
                 }
                 <td>
                     @if (HaveChildContent)

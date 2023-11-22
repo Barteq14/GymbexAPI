@@ -28,5 +28,21 @@ namespace Gymbex.Blazor.Services.Equipment
 
             return state;
         }
+
+        public async Task<ResponseModel> UpdateEquipment(EquipmentDtoRequest equipment)
+        {
+            var result = new ResponseModel();
+            var response = await _httpClient.PutAsJsonAsync($"{Const.API_URL}api/equipment/edit-equipment/{equipment.EquipmentId}", equipment);
+            if (response.IsSuccessStatusCode)
+            {
+                result.IsSuccess = true;
+            }
+            else
+            {
+                result.IsSuccess = false;
+            }
+
+            return result;
+        }
     }
 }
