@@ -1,8 +1,8 @@
 ﻿.admin-box {
     width: 100%;
-    height:auto;
+    height: auto;
     min-height: 45rem;
-    background-color: darkgray;
+    background: linear-gradient(to right, #000000, #808080);
     display: grid;
     grid-template-columns: 20% 80%;
     padding: 20px;
@@ -10,7 +10,7 @@
 
 
 .admin-menu {
-    background-color: dimgrey;
+    background-color: rgba(189, 195, 199, 0.5);
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -20,21 +20,31 @@
 }
 
 .admin-content {
-    background-color: white;
     padding: 50px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    background-color: rgba(189, 195, 199, 0.5);
 }
 
 .admin-content table{
     width:100%;
 }
 
+    .admin-content table > tbody {
+        color: white;
+    }
+
+    .admin-content table > tbody, td, tfoot, th, thead, tr {
+        border-style: none;
+    }
+
 .admin-title {
     display: flex;
-    background-color: darkgray;
-    margin-bottom:0px;
-    padding:20px;
+    background: linear-gradient(to right, #000000, #808080);
+    margin-bottom: 0px;
+    padding: 20px;
+    color:white;
+    justify-content:center;
 }
 
 /* List component */
@@ -55,11 +65,14 @@
 }
 
 
-.pagination-box{
-    width:100%;
-    display:grid;
-    grid-template-columns:50% 50%;
-    flex-direction:column;
+.pagination-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    flex-direction: column;
+    background-color: gainsboro;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .pagination-buttons{
@@ -84,4 +97,24 @@
 
 .active-page {
     border: 2px solid #2510a3 !important;
+}
+
+/* Side bar */
+/*.sidebar{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    position:absolute;
+    left:0;
+    height:70%;
+    padding:10px;
+    background-color:dimgray;
+    border-top-right-radius:100px;
+    border-bottom-right-radius:100px;
+}*/
+
+
+.sidebar .image-text img{
+    width:240px;
+    border-radius:6px;
 }

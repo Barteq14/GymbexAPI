@@ -42,6 +42,7 @@ builder.Services.AddHttpClient("MyApiClient", client =>
     client.BaseAddress = new Uri("https://localhost:7291/api");
 });
 
+
 var service = builder.Services.BuildServiceProvider();
 
 var httpClient = service.GetRequiredService<IHttpClientFactory>().CreateClient("MyApiClient");
