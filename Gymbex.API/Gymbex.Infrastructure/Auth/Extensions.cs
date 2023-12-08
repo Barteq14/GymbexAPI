@@ -40,6 +40,12 @@ namespace Gymbex.Infrastructure.Auth
                         ClockSkew = TimeSpan.Zero,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SigningKey))
                     };
+                })
+                .AddCookie(options =>
+                {
+                    options.Cookie.Name = "TwoFactorCookie";
+                    options.SlidingExpiration = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 });
 
             services.AddAuthorization(option =>
@@ -48,7 +54,24 @@ namespace Gymbex.Infrastructure.Auth
                 {
                     policy.RequireRole("Administrator");
                 });
+
+                option.AddPolicy("2fa-policy", policy =>
+                {
+                    policy.RequireClaim("2fa", "true");
+                });
             });
+
+
+            //konfiguracja sesji
+            services.AddDistributedMemoryCache();
+            services.AddSession(option =>
+            {
+                option.Cookie.Name = ".MyApp.Session";
+                option.IdleTimeout = TimeSpan.FromMinutes(1);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
+    
             return services;
         }
     }
